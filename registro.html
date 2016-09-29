@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Registro de usuario | Pictures and Images</title>
-</head>
-<body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="index.html">Inicio</a></li>
-				<li><a href="busqueda.html">Búsqueda</a></li>
-				<li><a href="registro.html">Registrarse</a></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<aside>
-			<form>
-				
-			</form>
-		</aside>
-	</main>
-	<footer>
-		<p>PI - Pictures and Images | Fernández Vidal, Jesús | Quirante Artiaga, Manuel</p>
-	</footer>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Registro de usuario | Pictures and Images</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="busqueda.html">Búsqueda</a></li>
+					<li><a href="registro.html">Registrarse</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<aside>
+				<form>
+					<label for="nombreUsuario">Nombre de usuario</label><br />
+					<input type="text" name="nombreUsuario" id="nombreUsuario"/><br />
+					<label for="pass">Contraseña</label><br />
+					<input type="password" name="pass" id="pass"/><br />
+					<label for="repetirPass">Repetir contraseña</label><br />
+					<input type="password" name="repetirPass" id="repetirPass"/><br />
+					<label for="email">Dirección de email</label><br />
+					<input type="text" name="email" id="email"/><br />
+					<label for="sexo">Sexo</label><br />
+					<select name="sexo" id="sexo">
+						<option value="elegir">Seleccione una opción</option>
+						<option value="hombre">Hombre</option>
+						<option value="mujer">Mujer</option>
+						<option value="otro">Otro</option>
+					</select><br />
+					<label for="fecha">Fecha de nacimiento</label><br />
+					<input type="text" name="fecha" id="fecha"/><br />
+					<label for="pais">País de residencia</label><br />
+					<input type="text" name="pais" id="pais"/><br />
+					<label for="ciudad">Ciudad de residencia</label><br />
+					<input type="text" name="ciudad" id="ciudad"/><br />
+					<label for="foto">Foto de perfil</label><br />
+					<input type="file" name="foto" id="foto"/><br />
+					<input type="submit" value="Registarse" />
+				</form>
+			</aside>
+		</main>
+		<footer>
+			<p>PI - Pictures and Images | Fernández Vidal, Jesús | Quirante Artiaga, Manuel</p>
+		</footer>
+	</body>
 </html>
