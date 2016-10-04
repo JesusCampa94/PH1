@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario de búsqueda | Pictures and Images</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="busqueda.html">Búsqueda</a></li>
+			</ul>
+		</nav>
+		<section>
+			<p>Bienvenido, Usuario</p>
+			<p><a href="perfil.html">Ir al perfil</a> | <a href="../index.html">Salir</a></p>
+		</section>
+	</header>
+	<main>
+		<h1>Búsqueda de fotos</h1>
+		<section>
+			<form action="busqueda_resultado.html">
+				<p><label for="titulo">Título</label></p>
+				<p><input type="text" name="titulo" id="titulo"/></p>
+				<p><label for="fechaInicio">fecha entre: </label></p>
+				<p>
+					<input type="text" name="fechaInicio" id="fechaInicio"/>
+					<label for="fechaFin">y: </label>
+					<input type="text" name="fechaFin" id="fechaFin"/>
+				</p>
+				<p><label for="pais">País</label></p>
+				<p><input type="text" name="pais" id="pais"/></p>
+				<input type="submit" value="Buscar" />
+			</form>
+		</section>
+	</main>
+</body>
+</html>
