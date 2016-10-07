@@ -25,6 +25,7 @@
 			<section>
 				<h2>Formulario de solicitud</h2>
 				<p>Rellena el siguiente formulario para especificar los detalles del envío.</p>
+				<p><em>NOTAS: La fecha de recepcion es aproximada. Los campos marcados con <strong>(*)</strong> son obligatorios.</em></p>
 				<form action="solicitarAlbum_respuesta.html" method="POST">
 					<p><label for="nombre">Nombre <strong>(*)</strong></label></p>
 					<p><input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required/></p>
@@ -38,7 +39,7 @@
 					<p>
 						<input type="text" name="direccion_calle" id="direccion_calle" placeholder="Calle"/>
 						<input type="number" name="direccion_numero" id="direccion_numero" placeholder="Número"/>
-						<input type="number" name="direccion_CP" id="direccion_CP" placeholder="Código Postal"/>
+						<input type="text" name="direccion_CP" id="direccion_CP" pattern="[0-9]{5}" placeholder="Código Postal"/>
 						<select name="direccion_localidad" id="direccion_localidad">
 							<option>Localidad</option>
 							<option>La Campaneta</option>
@@ -55,17 +56,9 @@
 					<p><label for="color_portada">Color de la portada</label></p>
 					<p><input type="color" name="color_portada" id="color_portada"/></p>
 					<p><label for="copias">Numero de copias</label></p>
-					<p><input type="number" name="copias" id="copias" placeholder="Elija cantidad"/></p>
+					<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad"/></p>
 					<p><label for="resolucion">Resolución</label></p>
-					<p>
-						<select name="resolucion" id="resolucion">
-							<option>Elija una resolución</option>
-							<option>150dpi</option>
-							<option>300dpi</option>
-							<option>600dpi</option>
-							<option>1200dpi</option>
-						</select>
-					</p>
+					<p><input type="number" min="150" max="900" step="150" value="150" name="resolucion" id="resolucion" /> dpi</p>
 					<p><label for="album_PI">Álbum de PI <strong>(*)</strong></label></p>
 					<p>
 						<select name="album_PI" id="album_PI">
@@ -81,7 +74,6 @@
 						<input type="radio" name="bw_cmyk" value="bw" id="radio_bw"><label for="radio_bw">Blanco y Negro</label>
 						<input type="radio" name="bw_cmyk" value="cmyk" id="radio_cmyk"><label for="radio_cmyk">Color</label>
 					</p>
-					<p><em>NOTAS: La fecha de recepcion es aproximada. Los campos marcados con <strong>(*)</strong> son obligatorios.</em></p>
 					<input type="submit" value="Solicitar">
 				</form>
 			</section>
