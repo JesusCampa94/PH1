@@ -15,9 +15,31 @@
 					<li><a href="registro.html">Registrarse</a></li>
 				</ul>
 			</nav>
+			<section>				
+				<p><a href="#login">Iniciar sesión</a></p>
+			</section>
 		</header>
-		<main>
-			<h1>Registro de usuario</h1>
+		<div id="login">
+			<aside class="login-contenedor">
+				<a href="#">Cerrar</a>
+				<section class="login-encabezado">
+					<h2>Login</h2>
+					<p>Introduzca sus datos para iniciar sesión.</p>
+				</section>
+				<form action="private/index.html" method="POST">
+					<p><label for="usuario">Usuario</label></p>
+					<p><input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario o email" required/></p>
+					<p><label for="pass">Contraseña</label></p>
+					<p><input type="password" name="pass" id="pass" placeholder="Introduce tu contraseña" required/></p>
+					<p><input type="submit" value="Iniciar sesión" /></p>
+				</form>
+			</aside>
+		</div>
+		<main class="centrado">
+			<section class="encabezado">
+				<h1>Registro de usuario</h1>
+				<p>Rellene los campos para registrarse en la página.</p>
+			</section>
 			<section>
 				<form action="private/index.html" method="POST">
 					<p><label for="nombreUsuario">Nombre de usuario <strong>(*)</strong></label></p>

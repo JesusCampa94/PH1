@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 }
 
+::selection 
+{
+	background: #80CBC4 !important;
+}
+
 body
 {
 	min-height: 100vh;
@@ -110,6 +115,7 @@ main
 
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	flex: 1;
 }
 
@@ -120,6 +126,98 @@ main
 	h1, h2
 	{
 		text-align: center;
+	}
+
+	.tarjeta
+	{
+		margin: .5em 1em;
+		width: 100%;
+		padding: 1em;
+		background: #FAFAFA;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		transition: box-shadow .25s ease-in-out;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.tarjeta:hover
+	{
+		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
+
+		.tarjeta ul
+		{
+			margin-top: 5px;
+			margin-bottom: 10px;
+		}
+
+		.tarjeta ul a
+		{
+			color: #009688;
+			text-decoration: none;
+			transition: color .25s ease-in-out;
+		}
+		.tarjeta ul a:hover
+		{
+			color: #00BFA5;
+		}
+
+	.centrado
+	{
+		margin: 1.5em auto;
+		margin-top: 85px;
+	}
+
+	.encabezado
+	{
+		margin-bottom: 20px;
+		width: 85%;
+		padding-bottom: 10px;
+		border-bottom: 2px solid #009688;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.texto-izquierda
+	{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.texto-izquierda p
+	{
+		margin-bottom: 5px;
+	}
+
+	.boton
+	{
+		display: block;
+		margin: 5px !important; 
+		box-sizing: content-box;
+		border: none;
+		border-radius: 3px;
+		padding: 2px 20px;
+		background: #009688;
+		color: #ECEFF1 !important;
+		text-decoration: none;
+		transition: background .25s ease-in-out;
+	}
+	.boton:hover
+	{
+		background: #00BFA5;
+	}
+
+	.peligro
+	{
+		background: #D50000;
+	}
+	.peligro:hover
+	{
+		background: #FF5252;
 	}
 
 footer
