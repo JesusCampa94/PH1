@@ -1,0 +1,2 @@
+[] Para agrupar CSS de modo que se carguen juntos, usar el mismo título
+[] Hacer la página accesible por teclado (resaltar elmentos con foco)

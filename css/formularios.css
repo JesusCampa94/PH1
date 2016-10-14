@@ -65,7 +65,8 @@ form p
 
 	select:hover,
 	select:focus,
-	input[type="submit"]:hover
+	input[type="submit"]:hover,
+	input[type="submit"]:focus
 	{
 		background: #00BFA5;
 	}
