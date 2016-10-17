@@ -2,6 +2,7 @@
 {
 	margin: 0px;
 	box-sizing: border-box;
+	outline-color: #009688;
 }
 
 ::selection 
@@ -62,7 +63,8 @@ header
 				flex-basis: 30%;
 			}
 
-				header nav ul li a
+				header nav ul li a,
+				header section.iniciar-sesion p a
 				{
 					width: 100%;
 					line-height: 64px;
@@ -71,19 +73,28 @@ header
 					text-decoration: none;
 					transition: background .25s ease-in-out;
 				}
-				header nav ul li a:hover
+				header nav ul li a:hover,
+				header section.iniciar-sesion p a:hover,
+				header nav ul li a:focus,
+				header section.iniciar-sesion p a:focus
 				{
+					outline: 0;
 					background: #90A4AE;
 					color: #263238;
 				}
 
-	header section
+	header section.logueado
 	{
 		padding: 5px 20px;
 
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	header section.iniciar-sesion
+	{
+		padding: 0px;
 	}
 
 		header section p
@@ -93,16 +104,27 @@ header
 			justify-content: flex-end;
 		}
 
-			header section p a
+			header section.iniciar-sesion p a
+			{
+				padding: 0px 20px;
+			}
+
+			header section.logueado p a
 			{
 				margin-left: 20px;
 				color: #4DB6AC;
 				text-decoration: none;
 				transition: color .25s ease-in-out;
 			}
-			header section p a:hover
+			header section.logueado p a:hover
 			{
 				color: #00BFA5;
+			}
+			header section.logueado p a:focus
+			{
+				outline: 0;
+				color: #00BFA5;
+				text-decoration: underline;
 			}
 
 main
@@ -162,6 +184,12 @@ main
 		{
 			color: #00BFA5;
 		}
+		.tarjeta ul a:focus
+		{
+			outline: 0;
+			color: #00BFA5;
+			text-decoration: underline;
+		}
 
 	.centrado
 	{
@@ -206,8 +234,10 @@ main
 		text-decoration: none;
 		transition: background .25s ease-in-out;
 	}
-	.boton:hover
+	.boton:hover,
+	.boton:focus
 	{
+		outline: 0;
 		background: #00BFA5;
 	}
 
@@ -215,8 +245,10 @@ main
 	{
 		background: #D50000;
 	}
-	.peligro:hover
+	.peligro:hover,
+	.peligro:focus
 	{
+		outline: 0;
 		background: #FF5252;
 	}
 

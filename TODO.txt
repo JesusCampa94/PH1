@@ -1,2 +1,5 @@
 [] Para agrupar CSS de modo que se carguen juntos, usar el mismo título
 [] Hacer la página accesible por teclado (resaltar elmentos con foco)
+[] Foco sobre enlaces subrayando
+[] Iniciar sesión con mismo aspecto que la navegación
+[] En las galerías, todo el article esta envuelto en un enlace
