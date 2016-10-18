@@ -3,3 +3,6 @@
 [X] Foco sobre enlaces subrayando
 [X] Iniciar sesión con mismo aspecto que la navegación
 [X] En las galerías, todo el article esta envuelto en un enlace
+[] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
+[] Arreglar la tabla de la página de solicitud de álbum para que se adapte según la página este en vertical u horizontal ¬_¬ :S
+[] Hacer la página responsive

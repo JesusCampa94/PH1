@@ -69,6 +69,7 @@ form p
 	input[type="submit"]:focus
 	{
 		background:#82B1FF;
+		color: #263238;
 	}
 
 	input[type="radio"] + label
