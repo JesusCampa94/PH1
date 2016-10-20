@@ -28,6 +28,7 @@ section
 
 		.galeria-cuerpo a
 		{
+			outline: 0px;
 			display: block;
 			text-decoration: none;
 		}
@@ -46,7 +47,7 @@ section
 				align-items: center;
 				flex-basis: 30%;
 			}
-			.galeria-cuerpo a article:hover,
+			.galeria-cuerpo a:hover article,
 			.galeria-cuerpo a:focus article
 			{
 				border: 2px solid #82B1FF;
