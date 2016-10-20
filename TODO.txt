@@ -5,4 +5,7 @@
 [X] En las galerías, todo el article esta envuelto en un enlace
 [] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
 [] Arreglar la tabla de la página de solicitud de álbum para que se adapte según la página este en vertical u horizontal ¬_¬ :S
-[] Hacer la página responsive
+[X] Hacer la página responsive
+[] Menú hamburguesa (PURO CSS)
+[] Iniciar sesión, se puede hacer scroll
+[X] Escalar imágenes manteniendo proporción

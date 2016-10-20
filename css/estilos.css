@@ -68,6 +68,7 @@ header
 				{
 					width: 100%;
 					line-height: 64px;
+					padding: 0px 10px;
 					color: #ECEFF1;
 					text-align: center;
 					text-decoration: none;
@@ -255,11 +256,50 @@ main
 footer
 {
 	height: 64px;
+	padding: 0em 5em;
 	background: #455A64;
 	color: #ECEFF1;
+	text-align: center;
 
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+/*Media queries*/
+@media screen and (max-width: 480px)
+{
+	body
+	{
+
+	}
+		
+		header
+		{
+			position: static;
+		}
+
+		main,
+		.centrado
+		{
+			margin: 0px;
+			width: 100%;
+			padding: 1em;
+			box-shadow: none;
+		}
+
+		footer
+		{
+
+		}
 }

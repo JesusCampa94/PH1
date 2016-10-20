@@ -237,3 +237,27 @@ form p
 				{
 					border-bottom: none;
 				}
+
+
+
+
+
+
+
+
+
+/*Media queries*/
+@media screen and (max-width: 1240px)
+{
+	.solicitud-y-tabla
+	{
+		flex-direction: column;
+	}
+
+		.solicitud-y-tabla aside
+		{
+			margin: 0px auto;
+			margin-bottom: 20px;
+			position: static;
+		}
+}
