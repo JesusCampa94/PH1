@@ -93,7 +93,8 @@ form p
 
 
 /*Login*/
-#login
+#login,
+#loginErr
 {
 	display: none;
 	position: fixed;
@@ -106,7 +107,8 @@ form p
 	background: rgba(38, 50, 56, .7);
 }
 
-#login:target
+#login:target,
+#loginErr
 {
 	position: absolute;
 

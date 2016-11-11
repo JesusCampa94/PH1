@@ -1,11 +1,35 @@
-[X] Para agrupar CSS de modo que se carguen juntos, usar el mismo título
-[X] Hacer la página accesible por teclado (resaltar elmentos con foco)
-[X] Foco sobre enlaces subrayando
-[X] Iniciar sesión con mismo aspecto que la navegación
-[X] En las galerías, todo el article esta envuelto en un enlace
-[] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
-[] Arreglar la tabla de la página de solicitud de álbum para que se adapte según la página este en vertical u horizontal ¬_¬ :S
-[X] Hacer la página responsive
-[] Menú hamburguesa (PURO CSS)
-[] Iniciar sesión, se puede hacer scroll
-[X] Escalar imágenes manteniendo proporción
+CSS
+	[X] Para agrupar CSS de modo que se carguen juntos, usar el mismo título
+	[X] Hacer la página accesible por teclado (resaltar elmentos con foco)
+	[X] Foco sobre enlaces subrayando
+	[X] Iniciar sesión con mismo aspecto que la navegación
+	[X] En las galerías, todo el article esta envuelto en un enlace
+	[ ] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
+	[X] Arreglar la tabla de la página de solicitud de álbum para que se adapte según la página este en vertical u horizontal ¬_¬ :S
+	[X] Hacer la página responsive
+	[ ] Menú hamburguesa (PURO CSS)
+	[ ] Iniciar sesión, se puede hacer scroll
+	[X] Escalar imágenes manteniendo proporción
+	[X] Mejorar el tema de que el main siempre ocupe toda la altura del viewport
+	[X] Poner los separadores como divs, no bordes inferiores
+PHP (Formularios)
+	[X] Crear includes para separar contenido similar
+	[X] Crear contenido repetido dinámicamente mediante PHP
+	[X] Implementar control de acceso
+	[X] Crear formulario de "Crear álbum"
+	[X] Mostrar confirmación, datos recibidos y precio en la respuesta a solicitud de álbum
+	[X] Mostrar datos introducidos en respuesta a registro de usuario
+	[X] Mostrar datos introducidos en resultado de búsqueda
+	[X] Cargar una u otra página de detalle de foto según la paridad del identificador de una foto
+	[X] Calcular precio con PHP
+	[X] Foto con id incorrecto debe mostrar error
+	[X] Usar isset antes de $_GET y $_POST
+PHP (Cookies y sesiones)
+	[X] Eliminar copias para la parte privada, ahora se carga una cosa u otra según estemos o no logueados
+	[X] Opción de recordar (COMPROBAR QUE EL USUARIO EXISTE ANTES DE RECORDAR!!!)
+	[X] Mostrar nombre y última visita en header. También nombre en el perfil.
+	[X] Las partes privadas sólo pueden ser accedidas con sesión iniciada, con mediante URL.
+	[X] Detalle de foto es privada
+	[X] Hacer operativo el botón "Salir"
+	[X] Cambiar cookies por sesiones
+	[ ] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano

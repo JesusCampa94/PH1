@@ -126,10 +126,21 @@ header
 				text-decoration: underline;
 			}
 
+
+div.marco-dios
+{
+	margin-top: 64px;
+	padding: 1.5em 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+}
+
 main
 {
-	margin: 1.5em 1em;
-	margin-top: 85px;
+	width: 100%;
 	padding: 1em;
 	background: inherit;
 
@@ -138,6 +149,10 @@ main
 	align-items: center;
 	flex: 1;
 }
+	.centrado
+	{
+		width: initial;
+	}
 
 	h1, h2, h3
 	{
@@ -183,22 +198,20 @@ main
 			text-decoration: underline;
 		}
 
-	.centrado
-	{
-		margin: 1.5em auto;
-		margin-top: 85px;
-	}
 
 	.encabezado
 	{
-		margin-bottom: 20px;
-		width: 85%;
-		padding-bottom: 10px;
-		border-bottom: 2px solid #2196F3;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.separador
+	{
+		margin-top: 10px;
+		margin-bottom: 20px;
+		border-bottom: 2px solid #2196F3;
+		width: 85%;
 	}
 
 	.texto-izquierda
@@ -255,4 +268,36 @@ footer
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+/*Media queries*/
+@media screen and (max-width: 480px)
+{
+	header
+	{
+		position: static;
+	}
+
+	div.marco-dios
+	{
+		margin-top: 0px;
+		padding: 0px;
+	}
+
+	main,
+	.centrado
+	{
+		width: 100%;
+		padding: 1em;
+		box-shadow: none;
+	}
 }
