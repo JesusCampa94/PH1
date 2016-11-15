@@ -40,7 +40,7 @@
 
 			setcookie('fecha', $fecha, $tiempoExpiracion, "/");
 
-	 		$localizacion = "usu_perfil.php"; 
+	 		$localizacion = "perfil.php"; 
 		}
 
 		else

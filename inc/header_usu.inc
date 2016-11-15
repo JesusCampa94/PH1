@@ -16,19 +16,30 @@
 
 		$fecha = $_COOKIE["fecha"];
 	}
+
+	//Determinamos si estamos en la raiz o en la carpeta /usu para buscar los estilos en la ruta correcta
+	$prefijoAPublico = "";
+	$prefijoAUsu = "usu/";
+
+	if (isset($dirUsu))
+	{
+		$prefijoAPublico = "../";
+		$prefijoAUsu = "";
+		unset($dirUsu);
+	}
  ?>
 
 <body>	
 	<header>
 		<nav>
 			<ul>
-				<li><a href="index.php">Inicio</a></li>
-				<li><a href="busqueda.php">Búsqueda</a></li>
+				<li><a href="<?php echo $prefijoAPublico; ?>index.php">Inicio</a></li>
+				<li><a href="<?php echo $prefijoAPublico; ?>busqueda.php">Búsqueda</a></li>
 			</ul>
 		</nav>
 		<section class="logueado">
 			<p>Usuario:<?php echo " $usu "; ?>| Última visita:<?php echo " $fecha "; ?></p>
-			<p><a href="usu_perfil.php">Ir al perfil</a><a href="usu_logout.php">Salir</a></p>
+			<p><a href="<?php echo $prefijoAUsu; ?>perfil.php">Ir al perfil</a><a href="<?php echo $prefijoAUsu; ?>logout.php">Salir</a></p>
 		</section>
 	</header>
 	<div class="marco-dios">

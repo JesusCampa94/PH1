@@ -5,6 +5,7 @@
 	//Estilos a cargar
 	$estilos = "fg";
 
+	
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("inc/head.inc");
 
@@ -30,7 +31,7 @@
 
 		unset($_GET["err"]);
 	}
- ?>
+?>
 <main>
 	<h1>PI - Pictures and Images</h1>
 	<section>

@@ -4,12 +4,13 @@
 
 	//Estilos a cargar
 	$estilos = "f";
+	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
-	require_once("inc/head.inc");
+	require_once("../inc/head.inc");
 
 	//Comprueba si el usuario esta logueado para elegir el header
-	require_once("inc/func/elegirHeader.inc.php");	
+	require_once("../inc/func/elegirHeader.inc.php");	
 
  	if (isset($_POST["nombre"], $_POST["titulo_album"], $_POST["comentario"], $_POST["email"], $_POST["direccion_calle"], $_POST["direccion_numero"], $_POST["direccion_CP"], $_POST["direccion_localidad"], $_POST["telefono"], $_POST["color_portada"], $_POST["copias"], $_POST["resolucion"], $_POST["album_PI"], $_POST["fecha-recepcion"], $_POST["bw_cmyk"]))
 	{
@@ -89,5 +90,5 @@
 </main>
 <?php
 	//Footer y cierre de etiquetas </body> y </html> 
-	require_once("inc/footer.inc");
+	require_once("../inc/footer.inc");
 ?>

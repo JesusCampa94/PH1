@@ -13,6 +13,8 @@
 body
 {
 	min-height: 100vh;
+	padding: 0em 1em;
+	padding-top: 64px ;
 	background: #263238;
 	font-family: "Ubuntu", "Arial", "Helvetica", sans-serif;
 	font-size: 14px;
@@ -129,8 +131,7 @@ header
 
 div.marco-dios
 {
-	margin-top: 64px;
-	padding: 1.5em 1em;
+	padding: 1.5em 0em;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -260,6 +261,7 @@ main
 
 footer
 {
+	margin: 0em -1em;
 	height: 64px;
 	background: #37474F;
 	color: #ECEFF1;
@@ -282,14 +284,20 @@ footer
 /*Media queries*/
 @media screen and (max-width: 480px)
 {
+	body
+	{
+		padding: 0px;
+	}
+
 	header
 	{
-		position: static;
+		position: relative;
+		box-shadow: none;
 	}
 
 	div.marco-dios
 	{
-		margin-top: 0px;
+		margin: 0em -1em;
 		padding: 0px;
 	}
 

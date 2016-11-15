@@ -21,7 +21,7 @@
 	</section>
 	<div class="separador"></div>
 	<section>
-		<form action="usu_registroCompleto.php" method="POST" enctype="multipart/form-data">
+		<form action="registroCompleto.php" method="POST" enctype="multipart/form-data">
 			<p><label for="nombreUsuario">Nombre de usuario <strong>(*)</strong></label></p>
 			<p><input type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Escribe tu nombre completo" required/></p>
 			<p><label for="pass">Contraseña <strong>(*)</strong></label></p>

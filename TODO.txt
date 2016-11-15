@@ -12,6 +12,7 @@ CSS
 	[X] Escalar imágenes manteniendo proporción
 	[X] Mejorar el tema de que el main siempre ocupe toda la altura del viewport
 	[X] Poner los separadores como divs, no bordes inferiores
+	[X] Los errores y warnings no se leen porque el header está encima de ellos
 PHP (Formularios)
 	[X] Crear includes para separar contenido similar
 	[X] Crear contenido repetido dinámicamente mediante PHP
@@ -32,4 +33,6 @@ PHP (Cookies y sesiones)
 	[X] Detalle de foto es privada
 	[X] Hacer operativo el botón "Salir"
 	[X] Cambiar cookies por sesiones
-	[ ] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano
+	[X] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano
+PHP (Base de Datos)
+	[ ] Usar una función para los SELECT. Recibe la sql como parámetro y devuelve los resultados

@@ -1,18 +1,19 @@
 <?php 
 	//Controlar acceso a parte privada
-	require_once("inc/func/controlAcceso.inc.php");
+	require_once("../inc/func/controlAcceso.inc.php");
 
 	//Titulo de la pagina
 	$titulo = "Crear álbum | Pictures & Images";
 
 	//Estilos a cargar
 	$estilos = "f";
+	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
-	require_once("inc/head.inc");
+	require_once("../inc/head.inc");
 
 	//Incluye el inicio de <body> y el encabezado
-	require_once("inc/header_usu.inc");
+	require_once("../inc/header_usu.inc");
 ?>
 <main class="centrado">
 	<section class="encabezado">
@@ -36,5 +37,5 @@
 </main>
 <?php
 	//Footer y cierre de etiquetas </body> y </html> 
-	require_once("inc/footer.inc");
+	require_once("../inc/footer.inc");
 ?>

@@ -4,9 +4,19 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title><?php echo $titulo; ?></title>
+
+		<?php 
+			//Determinamos si estamos en la raiz o en la carpeta /usu para buscar los estilos en la ruta correcta
+			$prefijoRuta = "";
+
+			if (isset($dirUsu))
+			{
+				$prefijoRuta = "../";
+			}
+		?>
 		
-		<link rel="stylesheet" href="css/estilos.css" title="Estilo principal" media="screen">
-		<link rel="alternate stylesheet" type="text/css" href="css/contraste.css" title="Alto contraste">
+		<link rel="stylesheet" href="<?php echo $prefijoRuta; ?>css/estilos.css" title="Estilo principal" media="screen">
+		<link rel="alternate stylesheet" type="text/css" href="<?php echo $prefijoRuta; ?>css/contraste.css" title="Alto contraste">
 		
 		<?php 
 			//Usamos la variable $estilos para determinar que estilos opcionales se incluyen
@@ -34,5 +44,5 @@
 				}
 			}
 		?>
-		<link rel="stylesheet" href="css/imprimir.css" media="print">
+		<link rel="stylesheet" href="<?php echo $prefijoRuta; ?>css/imprimir.css" media="print">
 	</head>

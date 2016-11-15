@@ -34,23 +34,20 @@
 			}
 		}
 	}
+		$host = $_SERVER["HTTP_HOST"]; 
+		$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
 
 	//No logueado, vuelta al index
 	if ($logueado == false)
 	{
-		$host = $_SERVER["HTTP_HOST"]; 
-		$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-		$localizacion = "index.php?err=2";
-
+		$localizacion = "../index.php?err=2";
 		header("Location: http://$host$uri/$localizacion"); 
 	}
 
 	//Eliminar fecha ultima visita y devolver al index
 	setcookie('fecha', "", -1, "/");
 
-	$host = $_SERVER["HTTP_HOST"]; 
-	$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-	$localizacion = "index.php";
+	$localizacion = "../index.php";
 
 	header("Location: http://$host$uri/$localizacion");
 ?>

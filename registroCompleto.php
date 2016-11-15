@@ -32,8 +32,8 @@
 
 	else
 	{
-		$h1 = "Algo ocurríó";
-		$p = "Deja de intentar hackearme.";
+		$h1 = "Algo ocurrió";
+		$p = "No se recibieron los datos esperados.";
 		$correcto = false;
 	}
 ?>

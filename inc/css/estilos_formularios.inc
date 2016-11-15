@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="css/formularios.css" title="Estilo principal">
-<link rel="alternate stylesheet" type="text/css" href="css/contraste-formularios.css" title="Alto contraste">
+<link rel="stylesheet" href="<?php echo $prefijoRuta; ?>css/formularios.css" title="Estilo principal">
+<link rel="alternate stylesheet" type="text/css" href="<?php echo $prefijoRuta; ?>css/contraste-formularios.css" title="Alto contraste">

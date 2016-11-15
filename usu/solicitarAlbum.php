@@ -1,18 +1,19 @@
 <?php
 	//Controlar acceso a parte privada
-	require_once("inc/func/controlAcceso.inc.php");
+	require_once("../inc/func/controlAcceso.inc.php");
 
 	//Titulo de la pagina
 	$titulo = "Solicitar álbum impreso | Pictures & Images";
 
 	//Estilos a cargar
 	$estilos = "f";
+	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
-	require_once("inc/head.inc");
+	require_once("../inc/head.inc");
 
 	//Incluye el inicio de <body> y el encabezado
-	require_once("inc/header_usu.inc");
+	require_once("../inc/header_usu.inc");
  ?>
 <main>
 	<section class="encabezado">
@@ -67,7 +68,7 @@
 				<p>Rellena el siguiente formulario para especificar los detalles del envío.</p>
 				<p><em>NOTAS: La fecha de recepcion es aproximada. Los campos marcados con <strong>(*)</strong> son obligatorios.</em></p>
 			</section>
-			<form action="usu_solicitarAlbum_respuesta.php" method="POST">
+			<form action="solicitarAlbum_respuesta.php" method="POST">
 				<p><label for="nombre">Nombre <strong>(*)</strong></label></p>
 				<p><input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required/></p>
 				<p><label for="titulo_album">Título del álbum <strong>(*)</strong></label></p>
@@ -122,5 +123,5 @@
 </main>
 <?php
 	//Footer y cierre de etiquetas </body> y </html> 
-	require_once("inc/footer.inc");
+	require_once("../inc/footer.inc");
 ?>
