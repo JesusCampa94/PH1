@@ -35,4 +35,7 @@ PHP (Cookies y sesiones)
 	[X] Cambiar cookies por sesiones
 	[X] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano
 PHP (Base de Datos)
-	[ ] Usar una función para los SELECT. Recibe la sql como parámetro y devuelve los resultados
+	[X] Separar accesos a BD en ficheros aparte
+	[ ] Entrar como "cliente" (sólo entra "root")
+	[X] Mostrar campos de clave ajena como cadena referencia, no números
+	[ ] Corregir formato fechas

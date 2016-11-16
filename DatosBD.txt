@@ -7,36 +7,3 @@ CUENTA ROOT
 CUENTA CLIENTE
 	Usuario: "cliente"
 	Pass: "P5qXvdLBshww36b5"
-
-
-
-
-
-
-
-
-
-Paises
-
-Albania
-Alemania
-Andorra
-Brasil
-Calimero
-China
-Ecuador
-España
-EE.UU
-Finlandia
-Italia
-Gameland
-Grecia
-Hungría
-Japón
-México
-Noruega
-Pandora
-Reino Unido
-Rusia
-Suecia
-Wonderland
