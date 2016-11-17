@@ -40,14 +40,18 @@ PHP (Base de Datos)
 	[X] Implementar "Resultado de Búsqueda"
 	[X] Mostrar página detalle de foto con BD
 	[X] Controlar acceso a zona privada con BD
-	MANU -> [ ] Crear "Mis álbumes" con un listado de álbumes de un usuario
-	MANU -> [ ] Crear "Ver álbum", accedido desde "Mis álbumes". Muestra las fotos de un álbum
-	MANU -> [ ] Crear "Añadir foto a álbum"
+	[X] Crear "Mis álbumes" con un listado de álbumes de un usuario
+	[X] Crear "Ver álbum", accedido desde "Mis álbumes". Muestra las fotos de un álbum
+	[X] Crear "Añadir foto a álbum"
 	[X] En "Solicitar álbum", mostrar listado de álbumes
 
 	[X] Separar accesos a BD en ficheros aparte
 	[ ] Entrar como "cliente" (sólo entra "root")
 	[X] Mostrar campos de clave ajena como cadena referencia, no números
-	JESÚS - >[ ] Corregir formato fechas
-	[X] Sanear entradas de usuario con real_escape_string()
-	JESÚS - >[ ] Mostrar perfil con los datos del usuario logueado
+	[ ] Corregir formato fechas
+	[X] Sanear entradas de usuario con real_escape_string()"MIRAR VER ALBUM"
+	[ ] Mostrar perfil con los datos del usuario logueado
+	[ ] Introducir imagenes de usuario en la base de datos y mostrarlas en el perfíl (yo quiero mi "Imaginación")
+
+Dudas
+-En añadir foto a álbum no funciona la segunda funcion que devuelve la lista de álbumes o paises para el desplegable

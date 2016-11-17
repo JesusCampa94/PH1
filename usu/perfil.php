@@ -2,7 +2,6 @@
 	//Declaramos que estamos en /usu
 	$dirUsu = true;
 
-
 	//Controlar acceso a parte privada
 	require_once("../inc/func/controlAcceso.inc.php");
 
@@ -41,12 +40,10 @@
 			<h2>Mis álbumes</h2>
 			<p>Consulte y gestione la lista de álbumes vinculados a su cuenta.</p>
 		</section>
-		<h3>Lista de álbumes</h3>
-		<ul>
-			<li><a href="#">Cosas random</a></li>
-			<li><a href="#">Fotos vergonzosas</a></li>
-		</ul>
+		<div class="separador"></div>
+		<p><a href="misAlbumes.php" class="boton">Lista de Álbumes</a></p>
 		<p><a href="crearAlbum.php" class="boton">Crear Álbum</a></p>
+		<p><a href="agregarFoto.php" class="boton">Añadir foto a un álbum</a></p>
 		<p><a href="solicitarAlbum.php" class="boton">Solicitar Álbum</a></p>
 	</section>
 	<section id="baja" class="tarjeta">

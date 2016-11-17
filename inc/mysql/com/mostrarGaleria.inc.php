@@ -1,4 +1,10 @@
 <?php
+	$prefijoRuta="";
+
+	if(isset($dirUsu))
+	{
+		$prefijoRuta="../";
+	}
 	$cont = 0;
 
 	//Recorremos el resultado fila a fila
@@ -12,9 +18,9 @@
 
 		$cont++;
 ?>
-		<a href="foto.php?id=<?php echo $IdFoto; ?>">
+		<a href="<?php echo $prefijoRuta;?>foto.php?id=<?php echo $IdFoto; ?>">
 			<article>
-				<div class="marco"><img src="<?php echo $MiniaturaFoto; ?>" height="225" width="400" alt="Imagen <?php echo $IdFoto; ?>"></div>
+				<div class="marco"><img src="<?php echo "$prefijoRuta$MiniaturaFoto"; ?>" height="225" width="400" alt="Imagen <?php echo $IdFoto; ?>"></div>
 				<h3><?php echo $TituloFoto; ?></h3>
 				<p><?php echo $FechaFoto; ?></p>
 				<p><?php echo $PaisFoto; ?></p>

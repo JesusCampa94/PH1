@@ -25,7 +25,6 @@
 	{
 		$prefijoAPublico = "../";
 		$prefijoAUsu = "";
-		unset($dirUsu);
 	}
  ?>
 
