@@ -1,4 +1,7 @@
 <?php
+	//Declaramos que estamos en /usu
+	$dirUsu = true;
+
 	//Controlar acceso a parte privada
 	require_once("../inc/func/controlAcceso.inc.php");
 
@@ -7,7 +10,6 @@
 
 	//Estilos a cargar
 	$estilos = "f";
-	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
@@ -101,14 +103,7 @@
 				<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad"/></p>
 				<p><label for="resolucion">Resolución</label></p>
 				<p><input type="number" min="150" max="900" step="150" value="150" name="resolucion" id="resolucion" /> dpi</p>
-				<p><label for="album_PI">Álbum de PI <strong>(*)</strong></label></p>
-				<p>
-					<select name="album_PI" id="album_PI">
-						<option>Elija un álbum</option>
-						<option>Cosas random</option>
-						<option>Fotos vergonzosas</option>
-					</select>
-				</p>
+				<?php require_once("../inc/mysql/com/seleccionarAlbum.inc.php"); ?>
 				<p><label for="fecha-recepcion">Fecha de recepción</label></p>
 				<p><input type="date" name="fecha-recepcion" id="fecha-recepcion"/></p>
 				<p><label for="radio_bw">Modo de impresión</label></p>

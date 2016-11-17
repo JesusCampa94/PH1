@@ -1,8 +1,5 @@
 <?php
-	//Declaracion de parejas usuario-pass
-	$datosAcceso["yisus"] = "cawendie";
-	$datosAcceso["maermka"] = "odioelmundo";
-	$datosAcceso["flequi"] = "#heperdido";
+	require_once("../inc/mysql/com/funciones.inc.php");
 
 	//Datos introducidos en el formulario
 	if(isset($_POST["usuario"], $_POST["pass"]))
@@ -19,8 +16,8 @@
 
 	if($correcto)
 	{
-		//Iniciar sesion
-		if ($datosAcceso[$usuario] == $pass)
+		//Contrastar datos de acceso en BD
+		if (comprobarDatosAcceso($usuario, $pass))
 		{
 			$tiempoExpiracion = 0; //Duracion de la sesion
 

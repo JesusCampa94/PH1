@@ -1,10 +1,12 @@
 <?php 
+	//Declaramos que estamos en /usu
+	$dirUsu = true;
+
 	//Titulo de la pagina
 	$titulo = "Resultado de Solicitud | Pictures & Images";
 
 	//Estilos a cargar
 	$estilos = "f";
-	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");

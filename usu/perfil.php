@@ -1,4 +1,8 @@
 <?php
+	//Declaramos que estamos en /usu
+	$dirUsu = true;
+
+
 	//Controlar acceso a parte privada
 	require_once("../inc/func/controlAcceso.inc.php");
 
@@ -7,7 +11,6 @@
 
 	//Estilos a cargar
 	$estilos = "";
-	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
@@ -27,7 +30,7 @@
 			<p>Estos son los datos personales asociados a su cuenta.</p>
 		</section>
 		<a href="../foto.php"><img src="../img/usu/yisus.png" height="128" width="128" alt="Foto perfíl"></a>
-		<p><strong>Nombre de usuario: </strong>Yisus</p>
+		<p><strong>Nombre de usuario: </strong><?php echo $usuario; ?></p>
 		<p><strong>Sexo: </strong>Hombre</p>
 		<p><strong>Fecha de nacimiento: </strong>29/05/1994</p>
 		<p><strong>País de residencia: </strong>España</p>

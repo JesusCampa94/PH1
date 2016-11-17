@@ -1,34 +1,34 @@
-<?php 
+<?php
 	session_start();
 	$logueado = false;
+
+	//Determinamos si estamos en la raiz o en la carpeta /usu
+	$prefijoRuta = "";
+
+	if (isset($dirUsu))
+	{
+		$prefijoRuta = "../";
+	}
 
 	//Comprobamos si existe sesion o cookie
 	if (isset($_SESSION["usu"], $_SESSION["pass"]) || isset($_COOKIE["usu"], $_COOKIE["pass"]))
 	{
-		//Parejas usuario-pass validas
-		$datosAcceso["yisus"] = "cawendie";
-		$datosAcceso["maermka"] = "odioelmundo";
-		$datosAcceso["flequi"] = "#heperdido";
-
 		//Mediante sesion
 		if (isset($_SESSION["usu"], $_SESSION["pass"]))
 		{
-			//Comprobar que la sesion es valida
-			if ($datosAcceso[$_SESSION["usu"]] == $_SESSION["pass"])
-			{
-				$logueado = true;
-			}
+			$usuario = $_SESSION["usu"];
+			$pass = $_SESSION["pass"];
 		}
 
 		//Mediante cookies
 		else
 		{
-			//Comprobar que la cookie es valida
-			if ($datosAcceso[$_COOKIE["usu"]] == $_COOKIE["pass"])
-			{
-				$logueado = true;
-			}
+			$usuario = $_COOKIE["usu"];
+			$pass = $_COOKIE["pass"];
 		}
+
+		require_once("$prefijoRuta"."inc/mysql/com/funciones.inc.php");
+		$logueado = comprobarDatosAcceso($usuario, $pass);
 	}
 
 	//No logueado, vuelta al index

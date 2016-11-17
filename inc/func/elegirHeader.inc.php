@@ -1,8 +1,8 @@
-<?php 
+<?php
 	session_start();
 	$logueado = false;
 
-	//Determinamos si estamos en la raiz o en la carpeta /usu para buscar los estilos en la ruta correcta
+	//Determinamos si estamos en la raiz o en la carpeta /usu
 	$prefijoRuta = "";
 
 	if (isset($dirUsu))
@@ -14,37 +14,25 @@
 	//Comprobamos si existe sesion o cookie
 	if (isset($_SESSION["usu"], $_SESSION["pass"]) || isset($_COOKIE["usu"], $_COOKIE["pass"]))
 	{
-		//Parejas usuario-pass validas
-		$datosAcceso["yisus"] = "cawendie";
-		$datosAcceso["maermka"] = "odioelmundo";
-		$datosAcceso["flequi"] = "#heperdido";
-
 		//Mediante sesion
 		if (isset($_SESSION["usu"], $_SESSION["pass"]))
 		{
-			//Comprobar que la sesion es valida
-			if ($datosAcceso[$_SESSION["usu"]] == $_SESSION["pass"])
-			{
-				require_once("$prefijoRuta"."inc/header_usu.inc");
-				$logueado = true;
-			}
+			$usuario = $_SESSION["usu"];
+			$pass = $_SESSION["pass"];
 		}
 
 		//Mediante cookies
 		else
 		{
-			//Comprobar que la cookie es valida
-			if ($datosAcceso[$_COOKIE["usu"]] == $_COOKIE["pass"])
-			{
-				require_once("$prefijoRuta"."inc/header_usu.inc");
-				$logueado = true;
-			}
+			$usuario = $_COOKIE["usu"];
+			$pass = $_COOKIE["pass"];
 		}
+
+		require_once("$prefijoRuta"."inc/mysql/com/funciones.inc.php");
+		$logueado = comprobarDatosAcceso($usuario, $pass);
 	}
 
-	//No logueado, cargamos header normal
-	if ($logueado == false)
-	{
-		require_once("$prefijoRuta"."inc/header.inc");
-	}
+	//Cargamos un header u otro segun si se ha logueado
+	$rutaHeader = ($logueado ? "$prefijoRuta"."inc/header_usu.inc" : "$prefijoRuta"."inc/header.inc");
+	require_once($rutaHeader);
 ?>

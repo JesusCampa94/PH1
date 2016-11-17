@@ -14,10 +14,8 @@
 	//Obtener datos
 	if (isset($_GET["titulo"], $_GET["fechaInicio"], $_GET["fechaFin"], $_GET["pais"]))
 	{
-		$titulo = $_GET["titulo"];
-		$fechaInicio = $_GET["fechaInicio"];
-		$fechaFin = $_GET["fechaFin"];
-		$pais = $_GET["pais"];
+		//Obtiene datos, pero no muestra la galeria ni cierra conexion con BD
+		require_once("inc/mysql/busqueda_resultado.inc.php");
 
 		//Titulo y descripcion de pagina
 		$h1 = "Parámetros de búsqueda";
@@ -54,30 +52,10 @@
 			<p>Estas son las fotos que se han encontrado que cumplan los criterios indicados.</p>
 		</section>
 		<section class="galeria-cuerpo">
-			<a href="foto.php?id=1">
-				<article>
-					<div class="marco"><img src="img/thumb/001.jpg" height="225" width="400" alt="Imagen 001"></div>
-					<h3>Panda</h3>
-					<p>28/09/2016</p>
-					<p>China</p>
-				</article>
-			</a>
-			<a href="foto.php?id=2">
-				<article>
-					<div class="marco"><img src="img/thumb/002.jpg" height="225" width="400" alt="Imagen 002"></div>
-					<h3>Pato</h3>
-					<p>27/09/2016</p>
-					<p>España</p>
-				</article>
-			</a>
-			<a href="foto.php?id=3">
-				<article>
-					<div class="marco"><img src="img/thumb/003.jpg" height="225" width="400" alt="Imagen 003"></div>
-					<h3>Tiburón</h3>
-					<p>28/08/2016</p>
-					<p>México</p>
-				</article>
-			</a>
+			<?php 
+				require_once("inc/mysql/com/mostrarGaleria.inc.php");
+				require_once("inc/mysql/com/cerrarConexion.inc.php");
+			?>
 		</section>
 	</section>
 	<?php } ?>

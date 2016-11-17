@@ -27,8 +27,7 @@
 				<label for="fechaFin">y: </label>
 				<input type="date" name="fechaFin" id="fechaFin" />
 			</p>
-			<p><label for="pais">País</label></p>
-			<p><input type="text" name="pais" id="pais" placeholder="País de la imagen"/></p>
+			<?php require_once("inc/mysql/com/seleccionarPais.inc.php"); ?>
 			<input type="submit" value="Buscar" />
 		</form>
 	</section>

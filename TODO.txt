@@ -35,7 +35,19 @@ PHP (Cookies y sesiones)
 	[X] Cambiar cookies por sesiones
 	[X] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano
 PHP (Base de Datos)
+	[X] Cargar fotos index con BD
+	[X] Mostrar selector de País en Registro, Búsqueda y Crear Álbum
+	[X] Implementar "Resultado de Búsqueda"
+	[X] Mostrar página detalle de foto con BD
+	[X] Controlar acceso a zona privada con BD
+	MANU -> [ ] Crear "Mis álbumes" con un listado de álbumes de un usuario
+	MANU -> [ ] Crear "Ver álbum", accedido desde "Mis álbumes". Muestra las fotos de un álbum
+	MANU -> [ ] Crear "Añadir foto a álbum"
+	[X] En "Solicitar álbum", mostrar listado de álbumes
+
 	[X] Separar accesos a BD en ficheros aparte
 	[ ] Entrar como "cliente" (sólo entra "root")
 	[X] Mostrar campos de clave ajena como cadena referencia, no números
-	[ ] Corregir formato fechas
+	JESÚS - >[ ] Corregir formato fechas
+	[X] Sanear entradas de usuario con real_escape_string()
+	JESÚS - >[ ] Mostrar perfil con los datos del usuario logueado

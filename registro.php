@@ -41,8 +41,7 @@
 			</p>
 			<p><label for="fecha">Fecha de nacimiento <strong>(*)</strong></label></p>
 			<p><input type="date" name="fecha" id="fecha" required/></p>
-			<p><label for="pais">País de residencia</label></p>
-			<p><input type="text" name="pais" id="pais" placeholder="País en el que vives actualmente"/></p>
+			<?php require_once("inc/mysql/com/seleccionarPais.inc.php"); ?>
 			<p><label for="ciudad">Ciudad de residencia</label></p>
 			<p><input type="text" name="ciudad" id="ciudad" placeholder="Ciudad en la que vives actualmente"/></p>
 			<p><label for="foto">Foto de perfil</label></p>

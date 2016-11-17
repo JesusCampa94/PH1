@@ -1,36 +1,38 @@
 <?php 
-	//CONTROL DE ACCESO A PARTE PRIVADA
 	session_start();
-	$logueado = false;
+	$correcto = false;
 
 	//Comprobamos si existe sesion o cookie
 	if (isset($_SESSION["usu"], $_SESSION["pass"]) || isset($_COOKIE["usu"], $_COOKIE["pass"]))
 	{
-		//Parejas usuario-pass validas
-		$datosAcceso["yisus"] = "cawendie";
-		$datosAcceso["maermka"] = "odioelmundo";
-		$datosAcceso["flequi"] = "#heperdido";
-
+		require_once("../inc/mysql/com/funciones.inc.php");
+		
 		//Mediante sesion
 		if (isset($_SESSION["usu"], $_SESSION["pass"]))
 		{
+			$usuario = $_SESSION["usu"];
+			$pass = $_SESSION["pass"];
+
 			//Eliminar sesion
-			if ($datosAcceso[$_SESSION["usu"]] == $_SESSION["pass"])
+			if (comprobarDatosAcceso($usuario, $pass))
 			{
 				session_destroy();
-				$logueado = true;
+				$correcto = true;
 			}
 		}
 
 		//Mediante cookies
 		else
 		{
+			$usuario = $_COOKIE["usu"];
+			$pass = $_COOKIE["pass"];
+
 			//Eliminar cookies
-			if ($datosAcceso[$_COOKIE["usu"]] == $_COOKIE["pass"])
+			if (comprobarDatosAcceso($usuario, $pass))
 			{
 				setcookie('usu', "", -1, "/");
 				setcookie('pass', "", -1, "/");
-				$logueado = true;
+				$correcto = true;
 			}
 		}
 	}
@@ -38,7 +40,7 @@
 		$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
 
 	//No logueado, vuelta al index
-	if ($logueado == false)
+	if ($correcto == false)
 	{
 		$localizacion = "../index.php?err=2";
 		header("Location: http://$host$uri/$localizacion"); 

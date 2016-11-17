@@ -1,4 +1,7 @@
 <?php 
+	//Declaramos que estamos en /usu
+	$dirUsu = true;
+
 	//Controlar acceso a parte privada
 	require_once("../inc/func/controlAcceso.inc.php");
 
@@ -7,7 +10,6 @@
 
 	//Estilos a cargar
 	$estilos = "f";
-	$dirUsu = true;
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
@@ -29,8 +31,7 @@
 			<p><textarea name="descripcion" id="descripcion" placeholder="Describe brevemente el álbum."></textarea></p>
 			<p><label for="fecha">Fecha</label></p>
 			<p><input type="date" name="fecha" id="fecha" required/></p>
-			<p><label for="pais">País</label></p>
-			<p><input type="text" name="pais" id="pais" placeholder="País mostrado en el álbum." required/></p>
+			<?php require_once("../inc/mysql/com/seleccionarPais.inc.php"); ?>
 			<p><input type="submit" value="Crear"></p>
 		</form>
 	</section>

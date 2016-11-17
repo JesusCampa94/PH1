@@ -24,11 +24,7 @@
 
 		if (is_numeric($id))
 		{
-			if ($id % 2 != 0)
-				require_once("inc/foto1.inc");
-
-			else
-				require_once("inc/foto2.inc");
+			require_once("inc/mysql/foto.inc.php");
 
 			$correcto = true;
 		}
