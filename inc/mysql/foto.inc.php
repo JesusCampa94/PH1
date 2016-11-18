@@ -14,7 +14,7 @@
 	$fila = $resultado->fetch_object();
 
 	$TituloFoto = $fila->TituloFoto;
-	$FechaFoto = $fila->FechaFoto;
+	$FechaFoto = date("j/n/Y", strtotime($fila->FechaFoto));
 	$PaisFoto = nombrePorId("p", $fila->PaisFoto);
 	$AlbumFoto = nombrePorId("a", $fila->AlbumFoto);
 	$FicheroFoto = $fila->FicheroFoto;

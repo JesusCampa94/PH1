@@ -48,10 +48,13 @@ PHP (Base de Datos)
 	[X] Separar accesos a BD en ficheros aparte
 	[ ] Entrar como "cliente" (sólo entra "root")
 	[X] Mostrar campos de clave ajena como cadena referencia, no números
-	[ ] Corregir formato fechas
+	[X] Corregir formato fechas
 	[X] Sanear entradas de usuario con real_escape_string()"MIRAR VER ALBUM"
-	[ ] Mostrar perfil con los datos del usuario logueado
-	[ ] Introducir imagenes de usuario en la base de datos y mostrarlas en el perfíl (yo quiero mi "Imaginación")
+	[X] Mostrar perfil con los datos del usuario logueado
+	[X] Introducir imagenes de usuario en la base de datos y mostrarlas en el perfil
+	[ ] Cuidado donde hacemos exit() o die()
+PHP (Modificar BD)
+	[ ] INSERT de campos opcionales (usar tres variables, para formar la SQl a trozos)
 
 Dudas
 -En añadir foto a álbum no funciona la segunda funcion que devuelve la lista de álbumes o paises para el desplegable

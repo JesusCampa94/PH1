@@ -41,11 +41,11 @@
 		}
 
 		else
-			$localizacion = "index.php?err=1";
+			$localizacion = "../index.php?err=1";
 	}
 	else 
 	{
-		$localizacion = "index.php?err=2";
+		$localizacion = "../index.php?err=2";
 	}
 
 	header("Location: http://$host$uri/$localizacion"); 

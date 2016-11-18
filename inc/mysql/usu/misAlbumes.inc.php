@@ -7,6 +7,8 @@
 	$sql = "SELECT IdAlbum, TituloAlbum, DescripcionAlbum FROM albumes WHERE usuarioAlbum = $IdUsu";
 	$sql2 = "";
 
+	$cont = 0;
+
 	//Ejecutamos la SQL si no da error y la guardamos en $resultado
 	require_once("../inc/mysql/com/ejecutarSQL.inc.php");
 
@@ -40,8 +42,12 @@
 				<p><?php echo $DescripcionAlbum;?></p>
 			</article>
 		</a>
-<?php 
+<?php
+		$cont++; 
 	}
+
+	if ($cont == 0)
+		echo "<p>Aquí no hay nada que ver. Si lo deseas, puedes empezar a añadir álbumes con el siguiente enlace: </p><a href='crearAlbum.php' class='boton'>Crear álbum</a>";
 
 	//Liberamos memoria y desconectamos de la BD
 	require_once("../inc/mysql/com/cerrarConexion.inc.php");

@@ -28,12 +28,10 @@
 			<h2>Datos personales</h2>
 			<p>Estos son los datos personales asociados a su cuenta.</p>
 		</section>
-		<a href="../foto.php"><img src="../img/usu/yisus.png" height="128" width="128" alt="Foto perfíl"></a>
-		<p><strong>Nombre de usuario: </strong><?php echo $usuario; ?></p>
-		<p><strong>Sexo: </strong>Hombre</p>
-		<p><strong>Fecha de nacimiento: </strong>29/05/1994</p>
-		<p><strong>País de residencia: </strong>España</p>
-		<p><strong>Localidad: </strong>La Campaneta</p>
+		<?php
+			require_once("../inc/mysql/com/funciones.inc.php");
+			require_once("../inc/mysql/usu/perfil.inc.php");
+		?>
 	</section>
 	<section id="albumes" class="tarjeta">
 		<section class="encabezado">

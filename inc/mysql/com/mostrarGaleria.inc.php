@@ -5,6 +5,7 @@
 	{
 		$prefijoRuta="../";
 	}
+
 	$cont = 0;
 
 	//Recorremos el resultado fila a fila
@@ -12,7 +13,7 @@
 	{
 		$IdFoto = $fila->IdFoto;
 		$TituloFoto = $fila->TituloFoto;
-		$FechaFoto = $fila->FechaFoto;
+		$FechaFoto = date("j/n/Y", strtotime($fila->FechaFoto));
 		$PaisFoto = nombrePorId("p", $fila->PaisFoto);
 		$MiniaturaFoto = $fila->MiniaturaFoto;
 

@@ -20,7 +20,10 @@
 	$sql = "SELECT IdFoto, TituloFoto, FechaFoto, PaisFoto, MiniaturaFoto FROM fotos, paises WHERE PaisFoto = IdPais";
 
 	if ($titulo != "Cualquier título")
-		$sql .= " AND TituloFoto = '$titulo'";
+	{
+		$sql .= " AND TituloFoto LIKE '%$titulo%'";
+		$titulo = "Contiene <em>$titulo</em>";
+	}
 
 	if ($fechaInicio != "El origen de los tiempos")
 		$sql .= " AND FechaFoto >= '$fechaInicio'";
