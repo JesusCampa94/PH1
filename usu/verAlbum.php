@@ -1,9 +1,16 @@
 <?php
-	//Declaramos que estamos en /usu
-	$dirUsu = true;
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "../";
+	$directorioUsu = "";
+
+	//Funciones requeridas
+	include_once("../inc/func/mysql/basico.inc.php");
+	include_once("../inc/func/accesos.inc.php");
+	include_once("../inc/func/mysql/galerias.inc.php");
 
 	//Controlar acceso a parte privada
-	require_once("../inc/func/controlAcceso.inc.php");
+	controlarAcceso();
 
 	//Titulo de la pagina
 	$titulo = "Mis Álbumes | Pictures & Images";
@@ -14,27 +21,39 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
 
-	//Incluye el inicio de <body> y el encabezado
-	require_once("../inc/header_usu.inc");
-
-	//Incluimos las funciones
-	require_once("../inc/mysql/com/funciones.inc.php");
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
 
  	//Obtener parámetros
 	if(isset($_GET["IdAlbum"]))
 	{
 		$IdAlbum = $_GET["IdAlbum"];
  ?>	
-		<main>
-			<section class="galeria-encabezado">
-				<h1>Álbum <?php echo nombrePorId("a", $IdAlbum);?></h1>
-			</section>
-			<section class="galeria-cuerpo">
-				<?php 
-					require_once("../inc/mysql/usu/verAlbum.inc.php"); 
-				?>
-			</section>
-		</main>
+<main>
+	<section class="galeria-encabezado">
+		<h1>Ver fotos del álbum</h1>
+	</section>
+	<section class="galeria-cuerpo">
+		<?php 
+			if (abrirConexion())
+			{
+				$userId = $_SESSION["userId"];
+				$sql = "SELECT IdFoto, TituloFoto, FechaFoto, NomPais, MiniaturaFoto FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND IdAlbum = $IdAlbum AND UsuarioAlbum = IdUsuario AND IdUsuario = $userId";
+
+				if ($resultado = ejecutarSQL($sql))
+				{
+					verFotos($resultado);
+					cerrarConexion($resultado);
+				}
+
+				else
+				{
+					cerrarConexion();
+				}
+			}
+		?>
+	</section>
+</main>
 <?php
 	}
 	//Footer y cierre de etiquetas </body> y </html> 

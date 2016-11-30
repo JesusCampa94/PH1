@@ -1,21 +1,10 @@
-<?php 
-	//Determinamos si estamos en la raiz o en la carpeta /usu para buscar los estilos en la ruta correcta
-	$prefijoAPublico = "";
-
-	if (isset($dirUsu))
-	{
-		$prefijoAPublico = "../";
-		unset($dirUsu);
-	}
-?>
-
 <body>	
 	<header>
 		<nav>
 			<ul>
-				<li><a href="<?php echo $prefijoAPublico; ?>index.php">Inicio</a></li>
-				<li><a href="<?php echo $prefijoAPublico; ?>busqueda.php">Búsqueda</a></li>
-				<li><a href="<?php echo $prefijoAPublico; ?>registro.php">Registrarse</a></li>
+				<li><a href="<?php echo $directorioRaiz; ?>index.php">Inicio</a></li>
+				<li><a href="<?php echo $directorioRaiz; ?>busqueda.php">Búsqueda</a></li>
+				<li><a href="<?php echo $directorioRaiz; ?>registro.php">Registrarse</a></li>
 			</ul>
 		</nav>
 		<section class="iniciar-sesion">				
@@ -29,7 +18,7 @@
 				<h2>Login</h2>
 				<p>Introduzca sus datos para iniciar sesión.</p>
 			</section>
-			<form action="usu/controlAcceso.php" method="POST">
+			<form action="<?php echo $directorioUsu; ?>login.php" method="POST">
 				<p><label for="usuario">Usuario</label></p>
 				<p><input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario o email" required/></p>
 				<p><label for="pass">Contraseña</label></p>

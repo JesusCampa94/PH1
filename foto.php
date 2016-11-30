@@ -1,7 +1,17 @@
 <?php 
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "";
+	$directorioUsu = "usu/";
+
+	//Funciones requeridas
+	include_once("inc/func/mysql/basico.inc.php");
+	include_once("inc/func/accesos.inc.php");
+	include_once("inc/func/mysql/galerias.inc.php");
+	
 	//Controlar acceso a parte privada
 	$err = 3; //Tipo de error
-	require_once("inc/func/controlAcceso.inc.php");
+	controlarAcceso();
 
 	//Titulo de la pagina
 	$titulo = "Detalle de foto | Pictures & Images";
@@ -12,29 +22,37 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("inc/head.inc");
 
-	//Cargar header. Incluye etiqueta de inicio de <body>
-	require_once("inc/header_usu.inc");
-
-	//Cargar una página u otra segun la paridad del identificador de la foto
-	$correcto = false;
-
-	if (isset($_GET["id"]))
-	{
-		$id = $_GET["id"];
-
-		if (is_numeric($id))
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
+?>
+<main>
+	<?php
+		if (isset($_GET["id"]))
 		{
-			require_once("inc/mysql/foto.inc.php");
+			$id = $_GET["id"];
 
-			$correcto = true;
+			if (is_numeric($id))
+			{				
+				if (abrirConexion())
+				{
+					$sql = "SELECT TituloFoto, FechaFoto, NomPais, TituloAlbum, FicheroFoto, NomUsuario FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND UsuarioAlbum = IdUsuario AND IdFoto = $id";
+
+					if ($resultado = ejecutarSQL($sql))
+					{
+						verFoto($resultado);
+						cerrarConexion($resultado);
+					}
+
+					else
+					{
+						cerrarConexion();
+					}
+				}
+			}
 		}
-	}
-
-	if ($correcto == false)
-	{
-		require_once("inc/foto_error.inc");
-	}
-
+	?>
+</main>
+<?php
 	//Footer y cierre de etiquetas </body> y </html> 
 	require_once("inc/footer.inc");
 ?>

@@ -1,9 +1,15 @@
 <?php
-	//Declaramos que estamos en /usu
-	$dirUsu = true;
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "../";
+	$directorioUsu = "";
+
+	//Funciones requeridas
+	include_once("../inc/func/mysql/basico.inc.php");
+	include_once("../inc/func/accesos.inc.php");
 
 	//Controlar acceso a parte privada
-	require_once("../inc/func/controlAcceso.inc.php");
+	controlarAcceso();
 
 	//Titulo de la pagina
 	$titulo = "Perfil de usuario | Pictures & Images";
@@ -14,8 +20,8 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
 
-	//Incluye el inicio de <body> y el encabezado
-	require_once("../inc/header_usu.inc");
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());	
  ?>
 <main class="centrado">
 	<section class="encabezado">
@@ -28,9 +34,23 @@
 			<h2>Datos personales</h2>
 			<p>Estos son los datos personales asociados a su cuenta.</p>
 		</section>
+		<div class="separador"></div>
 		<?php
-			require_once("../inc/mysql/com/funciones.inc.php");
-			require_once("../inc/mysql/usu/perfil.inc.php");
+			if (abrirConexion())
+			{
+				$sql = getSQLUsuario($_SESSION["userName"]);
+
+				if ($resultado = ejecutarSQL($sql))
+				{
+					mostrarDatos($resultado);
+					cerrarConexion($resultado);
+				}
+
+				else
+				{
+					cerrarConexion();
+				}
+			}
 		?>
 	</section>
 	<section id="albumes" class="tarjeta">
@@ -49,6 +69,7 @@
 			<h2>Baja</h2>
 			<p>Aquí puedes darte de baja. Ten en cuenta que es una acción irrevertible.</p>
 		</section>
+		<div class="separador"></div>
 		<p><a href="../index.php" class="boton peligro">Borrar cuenta</a></p>
 	</section>
 </main>

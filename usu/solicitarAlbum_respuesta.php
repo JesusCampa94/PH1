@@ -1,6 +1,15 @@
 <?php 
-	//Declaramos que estamos en /usu
-	$dirUsu = true;
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "../";
+	$directorioUsu = "";
+
+	//Funciones requeridas
+	include_once("../inc/func/mysql/basico.inc.php");
+	include_once("../inc/func/accesos.inc.php");
+
+	//Controlar acceso a parte privada
+	controlarAcceso();
 
 	//Titulo de la pagina
 	$titulo = "Resultado de Solicitud | Pictures & Images";
@@ -11,8 +20,8 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
 
-	//Comprueba si el usuario esta logueado para elegir el header
-	require_once("../inc/func/elegirHeader.inc.php");	
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
 
  	if (isset($_POST["nombre"], $_POST["titulo_album"], $_POST["comentario"], $_POST["email"], $_POST["direccion_calle"], $_POST["direccion_numero"], $_POST["direccion_CP"], $_POST["direccion_localidad"], $_POST["telefono"], $_POST["color_portada"], $_POST["copias"], $_POST["resolucion"], $_POST["album_PI"], $_POST["fecha-recepcion"], $_POST["bw_cmyk"]))
 	{

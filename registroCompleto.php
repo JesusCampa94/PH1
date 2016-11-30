@@ -1,4 +1,14 @@
 <?php
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "";
+	$directorioUsu = "usu/";
+
+	//Funciones requeridas
+	include_once("inc/func/mysql/basico.inc.php");
+	include_once("inc/func/accesos.inc.php");
+	include_once("inc/func/mysql/formularios.inc.php");
+
 	//Titulo de la pagina
 	$titulo = "Registro completo | Pictures & Images";
 
@@ -8,33 +18,23 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("inc/head.inc");
 
-	//Comprueba si el usuario esta logueado para elegir el header
-	require_once("inc/func/elegirHeader.inc.php");	
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
 
 	//Comprobamos que han introducido los campos adecuados
 	if (isset($_POST["nombreUsuario"], $_POST["pass"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))//falta comprobar la foto
 	{
-		//Creamos las variables para guardar los datos del formulario
-		$usuario = $_POST["nombreUsuario"];
-		$pass = "Eso es secreto";
-		$email = $_POST["email"];
-		$sexo = $_POST["sexo"];
-		$fecha = $_POST["fecha"];
-		$pais = $_POST["pais"];
-		$ciudad = $_POST["ciudad"];
-		$fotoPerfil = "img/users/avatar_Yisus.png";
-
 		//variables que cambiaremos segun los datos del registro
 		$h1 = "Registro completado";
-		$p = "Resumen de los datos de tu registro, compuebalo todo bien.";
-		$correcto = true;
+		$p = "Resumen de los datos de tu registro, compruébalo todo bien.";
+		$datosCorrectos = true;
 	}
 
 	else
 	{
 		$h1 = "Algo ocurrió";
 		$p = "No se recibieron los datos esperados.";
-		$correcto = false;
+		$datosCorrectos = false;
 	}
 ?>
 <main class="centrado">
@@ -42,19 +42,44 @@
 		<h1><?php echo $h1;?></h1>
 		<p><?php echo $p;?></p>
 	</section>
-	<?php if($correcto){ ?>
 	<div class="separador"></div>
-	<section id="datos" class="tarjeta">
-		<p><?php echo "<img src='$fotoPerfil' height='128' width='128' alt='Foto perfil' />"; ?></p>
-		<p><strong>Nombre de usuario:</strong> <?php echo $usuario;?></p>
-		<p><strong>Contraseña:</strong> <?php echo $pass;?></p>
-		<p><strong>Dirección de correo:</strong> <?php echo $email;?></p>
-		<p><strong>Genero:</strong> <?php echo $sexo;?></p>
-		<p><strong>Fecha de nacimiento:</strong> <?php echo $fecha;?></p>
-		<p><strong>País de residencia:</strong> <?php echo $pais;?></p>
-		<p><strong>Localidad:</strong> <?php echo $ciudad;?></p>
+	<section class="tarjeta">
+		<?php 
+			if($datosCorrectos)
+			{
+				if (abrirConexion())
+				{
+					if ($datosRegistro = validarRegistro())
+					{
+						$sql = "INSERT INTO usuarios (NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, PaisUsuario) VALUES ('$datosRegistro->usuario', '$datosRegistro->pass', '$datosRegistro->email', $datosRegistro->sexo, '$datosRegistro->fecha', '$datosRegistro->ciudad', $datosRegistro->pais)";
+
+						//Insertar usuario
+						if (ejecutarSQL($sql))
+						{
+							$sql = getSQLUsuario($datosRegistro->usuario);
+
+							//Recuperar datos de usuario
+							if ($resultado = ejecutarSQL($sql))
+							{
+								mostrarDatos($resultado);
+								cerrarConexion($resultado);
+							}
+
+							else
+							{
+								cerrarConexion();
+							}
+						}
+
+						else
+						{
+							cerrarConexion();
+						}
+					}
+				}
+			} 
+		?>
 	</section>
-	<?php  } ?>
 </main>
 <?php
 	//Footer y cierre de etiquetas </body> y </html> 

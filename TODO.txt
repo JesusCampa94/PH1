@@ -1,60 +1,29 @@
+LEYENDA
+[ ] Sin hacer
+[/] Hecho a medias
+[X] Hecho
+->  En proceso
+
+
 CSS
-	[X] Para agrupar CSS de modo que se carguen juntos, usar el mismo título
-	[X] Hacer la página accesible por teclado (resaltar elmentos con foco)
-	[X] Foco sobre enlaces subrayando
-	[X] Iniciar sesión con mismo aspecto que la navegación
-	[X] En las galerías, todo el article esta envuelto en un enlace
 	[ ] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
-	[X] Arreglar la tabla de la página de solicitud de álbum para que se adapte según la página este en vertical u horizontal ¬_¬ :S
-	[X] Hacer la página responsive
 	[ ] Menú hamburguesa (PURO CSS)
 	[ ] Iniciar sesión, se puede hacer scroll
-	[X] Escalar imágenes manteniendo proporción
-	[X] Mejorar el tema de que el main siempre ocupe toda la altura del viewport
-	[X] Poner los separadores como divs, no bordes inferiores
-	[X] Los errores y warnings no se leen porque el header está encima de ellos
-PHP (Formularios)
-	[X] Crear includes para separar contenido similar
-	[X] Crear contenido repetido dinámicamente mediante PHP
-	[X] Implementar control de acceso
-	[X] Crear formulario de "Crear álbum"
-	[X] Mostrar confirmación, datos recibidos y precio en la respuesta a solicitud de álbum
-	[X] Mostrar datos introducidos en respuesta a registro de usuario
-	[X] Mostrar datos introducidos en resultado de búsqueda
-	[X] Cargar una u otra página de detalle de foto según la paridad del identificador de una foto
-	[X] Calcular precio con PHP
-	[X] Foto con id incorrecto debe mostrar error
-	[X] Usar isset antes de $_GET y $_POST
-PHP (Cookies y sesiones)
-	[X] Eliminar copias para la parte privada, ahora se carga una cosa u otra según estemos o no logueados
-	[X] Opción de recordar (COMPROBAR QUE EL USUARIO EXISTE ANTES DE RECORDAR!!!)
-	[X] Mostrar nombre y última visita en header. También nombre en el perfil.
-	[X] Las partes privadas sólo pueden ser accedidas con sesión iniciada, con mediante URL.
-	[X] Detalle de foto es privada
-	[X] Hacer operativo el botón "Salir"
-	[X] Cambiar cookies por sesiones
-	[X] Crear carpeta "usu" de nuevo e intentar añadir el "../" cuando haga falta con un booleano
 PHP (Base de Datos)
-	[X] Cargar fotos index con BD
-	[X] Mostrar selector de País en Registro, Búsqueda y Crear Álbum
-	[X] Implementar "Resultado de Búsqueda"
-	[X] Mostrar página detalle de foto con BD
-	[X] Controlar acceso a zona privada con BD
-	[X] Crear "Mis álbumes" con un listado de álbumes de un usuario
-	[X] Crear "Ver álbum", accedido desde "Mis álbumes". Muestra las fotos de un álbum
-	[X] Crear "Añadir foto a álbum"
-	[X] En "Solicitar álbum", mostrar listado de álbumes
-
-	[X] Separar accesos a BD en ficheros aparte
 	[ ] Entrar como "cliente" (sólo entra "root")
-	[X] Mostrar campos de clave ajena como cadena referencia, no números
-	[X] Corregir formato fechas
-	[X] Sanear entradas de usuario con real_escape_string()"MIRAR VER ALBUM"
-	[X] Mostrar perfil con los datos del usuario logueado
-	[X] Introducir imagenes de usuario en la base de datos y mostrarlas en el perfil
 	[ ] Cuidado donde hacemos exit() o die()
+	[X] Usar imagen de Manu editada para errores de BD
+
+	[/] Mostrar error de "Foto no encontrada" si nos pasamos de rango
+	[/] Mostrar con "Todo o nada", si falta algún dato no mostrar la página, sino algún error explicativo.
+	[/] Usar funciones para la BD (abrirConexion, ejecutarSQL, cerrarConexion...)
+	->[/] No es necesario comprobar el acceso a zona privada en cada página, incluir un flag al iniciar sesión ($validado = true)
+		- Usar al menos 3 variables de sesion
+			- Una con nombre rarísimo para indicar que se ha iniciado sesión (meCagoEnLaPaca = posOk)
+			- Otra con el nombre de usuario (para saludarlo)
+			- Otra con el id del usuario
+	->[ ] Tampoco es necesario abrir y cerrar conexión a BD más de una vez (selectores de País y Álbum)
+		- ¿Cómo guardamos las variables $mysqli y $resultado de forma que se puedan acceder globalmente?
+
 PHP (Modificar BD)
 	[ ] INSERT de campos opcionales (usar tres variables, para formar la SQl a trozos)
-
-Dudas
--En añadir foto a álbum no funciona la segunda funcion que devuelve la lista de álbumes o paises para el desplegable

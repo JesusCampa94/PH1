@@ -1,16 +1,25 @@
-<?php 
+<?php
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "";
+	$directorioUsu = "usu/";
+
+	//Funciones requeridas
+	include_once("inc/func/mysql/basico.inc.php");
+	include_once("inc/func/accesos.inc.php");
+	include_once("inc/func/mysql/galerias.inc.php");
+
 	//Titulo de la pagina
 	$titulo = "Inicio | Pictures & Images";
 
 	//Estilos a cargar
 	$estilos = "fg";
-
 	
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("inc/head.inc");
 
-	//Comprueba si el usuario esta logueado para elegir el header
-	require_once("inc/func/elegirHeader.inc.php");	
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
 
 	if (isset($_GET["err"]))
 	{
@@ -37,7 +46,23 @@
 	<section>
 		<section class="galeria-encabezado"><h2>Últimas fotos</h2></section>
 		<section class="galeria-cuerpo">				
-			<?php require_once("inc/mysql/index.inc.php"); ?>
+			<?php 
+				if (abrirConexion())
+				{
+					$sql = "SELECT IdFoto, TituloFoto, FechaFoto, NomPais, MiniaturaFoto FROM fotos, paises, albumes WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum ORDER BY FechaFoto DESC LIMIT 5";
+
+					if ($resultado = ejecutarSQL($sql))
+					{
+						verFotos($resultado);
+						cerrarConexion($resultado);
+					}
+
+					else
+					{
+						cerrarConexion();
+					}
+				}
+			?>
 		</section>
 	</section>
 </main>

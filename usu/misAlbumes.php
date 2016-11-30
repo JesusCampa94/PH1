@@ -1,9 +1,16 @@
 <?php
-	//Declaramos que estamos en /usu
-	$dirUsu = true;
+	//Variables globales
+	$conexionBD = null;
+	$directorioRaiz = "../";
+	$directorioUsu = "";
+
+	//Funciones requeridas
+	include_once("../inc/func/mysql/basico.inc.php");
+	include_once("../inc/func/mysql/galerias.inc.php");
+	include_once("../inc/func/accesos.inc.php");
 
 	//Controlar acceso a parte privada
-	require_once("../inc/func/controlAcceso.inc.php");
+	controlarAcceso();
 
 	//Titulo de la pagina
 	$titulo = "Mis Álbumes | Pictures & Images";
@@ -14,18 +21,32 @@
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
 
-	//Incluye el inicio de <body> y el encabezado
-	require_once("../inc/header_usu.inc");
+	//Elegir header en funcion de si el usuario esta logueado
+	require_once(elegirHeader());
  ?>
 <main>
 	<section class="galeria-encabezado">
-		<h1>Álbumes personales de <?php echo $usuario;?></h1>
+		<h1>Álbumes personales de <?php echo $_SESSION["userName"];?></h1>
 		<p>Aqui encontrarás un listado de tus álbumes.</p>
 	</section>
 	<section class="galeria-cuerpo">
-		<?php 
-			require_once("../inc/mysql/com/funciones.inc.php");
-			require_once("../inc/mysql/usu/misAlbumes.inc.php"); 
+		<?php
+			if (abrirConexion())
+			{
+				$userId = $_SESSION["userId"];
+				$sql = "SELECT IdAlbum, TituloAlbum, DescripcionAlbum FROM albumes WHERE usuarioAlbum = $userId";
+
+				if ($resultado = ejecutarSQL($sql))
+				{
+					verAlbumes($resultado);
+					cerrarConexion($resultado);
+				}
+
+				else
+				{
+					cerrarConexion();
+				}
+			}		
 		?>
 	</section>
 </main>
