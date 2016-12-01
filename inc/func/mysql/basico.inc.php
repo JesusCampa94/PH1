@@ -108,10 +108,32 @@
 	}
 
 
+	//Elimina un usuario de la base de datos
+	function darDeBaja($usuario)
+	{
+		if (abrirConexion())
+		{
+			$sql = "DELETE FROM usuarios WHERE IdUsuario = $usuario";
+
+			if (ejecutarSQL($sql))
+			{
+				cerrarConexion();
+				setcookie('fecha', "", -1, "/");
+				logout();
+			}
+
+			else
+			{
+				cerrarConexion();
+			}
+		}
+	}
+
+
 	//Devuelve la SQL para obtener los datos de usuario
 	function getSQLUsuario($usu)
 	{
-		return "SELECT NomUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, NomPais, FotoUsuario FROM usuarios, paises WHERE PaisUsuario = IdPais AND NomUsuario = '$usu'";
+		return "SELECT NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, NomPais, FotoUsuario FROM usuarios, paises WHERE PaisUsuario = IdPais AND NomUsuario = '$usu'";
 	}
 
 

@@ -22,8 +22,17 @@ PHP (Base de Datos)
 	[X] Tampoco es necesario abrir y cerrar conexión a BD más de una vez
 
 PHP (Modificar BD)
-	[ ] INSERT de campos opcionales (usar tres variables, para formar la SQl a trozos)
+	[X] Página "Mis datos" formulario RELLENADO para cambiar los datos de cuenta. Misma validación que en registro.
+	[X] Página darme de baja
+	[ ] Respuesta a Crear Álbum. Inserta un álbum en la BD.
+	[ ] Respuesta a añadir foto a álbum. 
+	[ ] Respuesta a solicitar álbum.
+
+	[/] Validar
 	[ ] Solicitud de Álbum:
 		- Incluir estructura de llamadas a funciones de BD de las demás páginas
 		- Separar en funciones la validación y el cálculo del precio
 		- Obtener número de fotos y calcular páginas
+
+	- ¿Clave alternativa en álbumes (Título-Usuario)?
+	- No podemos dejar el país en blanco

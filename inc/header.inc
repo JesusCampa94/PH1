@@ -13,7 +13,7 @@
 	</header>
 	<div id="login">
 		<aside class="login-contenedor">
-			<a href="#">Cerrar</a>
+			<a class="cerrar" href="#">Cerrar</a>
 			<section class="encabezado">
 				<h2>Login</h2>
 				<p>Introduzca sus datos para iniciar sesión.</p>

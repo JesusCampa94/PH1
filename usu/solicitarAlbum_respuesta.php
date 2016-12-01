@@ -80,24 +80,58 @@
 		<h1><?php echo $h1; ?></h1>
 		<p><?php echo $p; ?></p>
 	</section>
-	<?php if($correcto) { ?>
 	<div class="separador"></div>
 	<section class="texto-izquierda">
-		<p><strong>Nombre: </strong><?php echo $nombre;?></p>
-		<p><strong>Título del álbum: </strong><?php echo $titulo;?></p>
-		<p><strong>Comentario: </strong><?php echo $comentario;?></p>
-		<p><strong>Correo electrónico: </strong><?php echo $email;?></p>
-		<p><strong>Dirección: </strong>c/ <?php echo $direccion_calle;?>, <?php echo $direccion_numero;?>, <?php echo $direccion_CP;?>, <?php echo $direccion_localidad;?></p>
-		<p><strong>Teléfono: </strong><?php echo $telefono;?></p>
-		<p><strong>Color de portada: </strong><?php echo $color_portada;?></p>
-		<p><strong>Número de copias: </strong><?php echo $copias;?></p>
-		<p><strong>Resulución de impresión: </strong><?php echo $resolucion;?> dpi</p>
-		<p><strong>Álbum de PI: </strong><?php echo $album_PI;?></p>
-		<p><strong>Fecha de recepción: </strong><?php echo $fecha_recepcion;?></p>
-		<p><strong>Tipo de impresión: </strong><?php echo $bw_cmyk;?></p>
-		<p><strong>Precio Total: </strong><?php echo $precioTotal?> €</p>
+		<?php 
+			if($datosCorrectos)
+			{
+				if (abrirConexion())
+				{
+					if ($datosRegistro = validarUsuario())
+					{
+						$sql = "";
+
+						//INSERT
+						if (ejecutarSQL($sql))
+						{
+							$sql = "";
+
+							//SELECT
+							if ($resultado = ejecutarSQL($sql))
+							{
+		?>
+								<p><strong>Nombre: </strong><?php echo $nombre;?></p>
+								<p><strong>Título del álbum: </strong><?php echo $titulo;?></p>
+								<p><strong>Comentario: </strong><?php echo $comentario;?></p>
+								<p><strong>Correo electrónico: </strong><?php echo $email;?></p>
+								<p><strong>Dirección: </strong>c/ <?php echo $direccion_calle;?>, <?php echo $direccion_numero;?>, <?php echo $direccion_CP;?>, <?php echo $direccion_localidad;?></p>
+								<p><strong>Teléfono: </strong><?php echo $telefono;?></p>
+								<p><strong>Color de portada: </strong><?php echo $color_portada;?></p>
+								<p><strong>Número de copias: </strong><?php echo $copias;?></p>
+								<p><strong>Resulución de impresión: </strong><?php echo $resolucion;?> dpi</p>
+								<p><strong>Álbum de PI: </strong><?php echo $album_PI;?></p>
+								<p><strong>Fecha de recepción: </strong><?php echo $fecha_recepcion;?></p>
+								<p><strong>Tipo de impresión: </strong><?php echo $bw_cmyk;?></p>
+								<p><strong>Precio Total: </strong><?php echo $precioTotal?> €</p>
+		<?php	
+								cerrarConexion($resultado);
+							}
+
+							else
+							{
+								cerrarConexion();
+							}
+						}
+
+						else
+						{
+							cerrarConexion();
+						}
+					}
+				}
+			} 
+		?>
 	</section>
-	<?php } ?>
 </main>
 <?php
 	//Footer y cierre de etiquetas </body> y </html> 

@@ -29,6 +29,16 @@
 		{
 			require_once("../inc/aviso_registrado.inc");
 		}
+
+		else if ($_GET["err"] == 5)
+		{
+			require_once("../inc/aviso_baja1.inc");
+		}
+
+		else if ($_GET["err"] == 6)
+		{
+			require_once("../inc/aviso_baja2.inc");
+		}
 	}
  ?>
 <main class="centrado">
@@ -60,6 +70,8 @@
 				}
 			}
 		?>
+		<a href="modificarDatos.php" class="boton">Modificar datos de cuenta</a>
+		<a href="modificarPass.php" class="boton">Cambiar contraseña</a>
 	</section>
 	<section id="albumes" class="tarjeta">
 		<section class="encabezado">
@@ -78,7 +90,7 @@
 			<p>Aquí puedes darte de baja. Ten en cuenta que es una acción irrevertible.</p>
 		</section>
 		<div class="separador"></div>
-		<p><a href="../index.php" class="boton peligro">Borrar cuenta</a></p>
+		<p><a href="perfil.php?err=5" class="boton peligro">Borrar cuenta</a></p>
 	</section>
 </main>
 <?php

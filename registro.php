@@ -28,6 +28,7 @@
 	<section class="encabezado">
 		<h1>Registro de usuario</h1>
 		<p>Rellene los campos para registrarse en la página.</p>
+		<p>Los campos marcados con <strong>(*)</strong> son obligatorios.</p>
 	</section>
 	<div class="separador"></div>
 	<section>
@@ -48,7 +49,7 @@
 					<p><input type="password" name="repetirPass" id="repetirPass" placeholder="Repite la contraseña" required/></p>
 					<p><label for="email">Dirección de email <strong>(*)</strong></label></p>
 					<p><input type="email" name="email" id="email" placeholder="Introduce tu email, recuerda la @" required/></p>
-					<p><label for="sexo">Sexo</label></p>
+					<p><label for="sexo">Sexo <strong>(*)</strong></label></p>
 					<p>
 						<select name="sexo" id="sexo">
 							<option value="0">Seleccione una opción</option>
