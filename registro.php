@@ -10,7 +10,7 @@
 	include_once("inc/func/mysql/formularios.inc.php");
  
 	//Comprobar si el usuario está logueado para impedir su registro
-	require_once("inc/func/impedirRegistro.inc.php");
+	impedirRegistro();
 
 	//Titulo de la pagina
 	$titulo = "Registro de ususario | Pictures & Images";

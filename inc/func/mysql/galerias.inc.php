@@ -51,7 +51,9 @@
 ?>
 			<section class="foto-contenedor">
 				<h1><?php echo $TituloFoto; ?></h1>
-				<img src="<?php echo $FicheroFoto; ?>" width="1280" height="720" alt="Imagen $id">
+				<div class="separador"></div>
+				<img class="no-error" src="<?php echo $FicheroFoto; ?>" width="1280" height="720" alt="Imagen $id">
+				<div class="separador">	</div>
 				<section class="foto-info">
 					<p><strong>Fecha: </strong><?php echo $FechaFoto; ?></p>
 					<p><strong>País: </strong><?php echo $NomPais; ?></p>
@@ -67,6 +69,7 @@
 ?>
 			<section class="foto-contenedor">
 				<h1>No encontrado</h1>
+				<div class="separador"></div>
 				<img src="<?php echo 'img/com/error.png'; ?>" width="128" height="128" alt="Imagen $id">
 				<section class="foto-info">
 					<p>No se ha encontrado ninguna foto con el identificador proporcionado</p>

@@ -94,7 +94,7 @@
 	//Expulsa a un usuario no logueado de la parte privada
 	function controlarAcceso()
 	{
-		global $directorioRaiz, $directorioUsu, $err;
+		global $directorioRaiz, $err;
 
 		//Redirigimos a login.php (implicito en funcion estaLogueado()) o al index con error
 		if(!(estaLogueado()))
@@ -111,6 +111,23 @@
 			header("Location: http://$host$uri/$localizacion");
 		}
 	}
+
+
+	//Impide que un usuario con sesion iniciada se registre, redireccionandolo al perfil
+	function impedirRegistro()
+	{
+		global $directorioUsu;
+		
+		if(estaLogueado())
+		{
+			//Formamos la direccion de redireccion
+			$host = $_SERVER["HTTP_HOST"]; 
+			$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");				
+			$localizacion = "$directorioUsu"."perfil.php?err=4";
+						
+			header("Location: http://$host$uri/$localizacion");
+		}
+	}	
 
 
 	//Elige el header de usuario logueado o no logueado

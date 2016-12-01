@@ -61,8 +61,8 @@
 		$precioTotal = ($precioPaginas*$numPaginas + $precioDpi*$numFotos + $precioColor*$numFotos)*$copias;
 	
 		//Titulo y descripcion de pagina
-		$h1 = "Parámetros de búsqueda";
-		$p = "A continuación se resumen los filtros de búsqueda especificados.";
+		$h1 = "Solicitud completa";
+		$p = "A continuacion se resumen los datos de la solicitud del álbum.";
 
 		//Todo fue normalmente
 		$correcto = true;

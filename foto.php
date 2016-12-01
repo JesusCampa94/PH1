@@ -49,6 +49,34 @@
 					}
 				}
 			}
+
+			else
+			{
+	?>
+				<section class="foto-contenedor">
+					<h1>No encontrado</h1>
+					<div class="separador"></div>
+					<img src="<?php echo 'img/com/error.png'; ?>" width="128" height="128" alt="Imagen $id">
+					<section class="foto-info">
+						<p>Por favor, limitese a identificadores numéricos.</p>
+					</section>
+				</section>
+	<?php
+			}	
+		}
+
+		else
+		{
+	?>
+			<section class="foto-contenedor">
+				<h1>No encontrado</h1>
+				<div class="separador"></div>
+				<img src="<?php echo 'img/com/error.png'; ?>" width="128" height="128" alt="Imagen $id">
+				<section class="foto-info">
+					<p>No se ha recibido el parámetro esperado.</p>
+				</section>
+			</section>
+	<?php
 		}
 	?>
 </main>

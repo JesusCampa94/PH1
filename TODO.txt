@@ -9,21 +9,21 @@ CSS
 	[ ] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
 	[ ] Menú hamburguesa (PURO CSS)
 	[ ] Iniciar sesión, se puede hacer scroll
+	
 PHP (Base de Datos)
-	[ ] Entrar como "cliente" (sólo entra "root")
-	[ ] Cuidado donde hacemos exit() o die()
-	[X] Usar imagen de Manu editada para errores de BD
-
-	[/] Mostrar error de "Foto no encontrada" si nos pasamos de rango
-	[/] Mostrar con "Todo o nada", si falta algún dato no mostrar la página, sino algún error explicativo.
-	[/] Usar funciones para la BD (abrirConexion, ejecutarSQL, cerrarConexion...)
-	->[/] No es necesario comprobar el acceso a zona privada en cada página, incluir un flag al iniciar sesión ($validado = true)
+	[X] Mostrar error de "Foto no encontrada" si nos pasamos de rango
+	[X] Mostrar con "Todo o nada", si falta algún dato no mostrar la página, sino algún error explicativo.
+	[X] Usar funciones para la BD (abrirConexion, ejecutarSQL, cerrarConexion...)
+	[X] No es necesario comprobar el acceso a zona privada en cada página, incluir un flag al iniciar sesión ($validado = true)
 		- Usar al menos 3 variables de sesion
-			- Una con nombre rarísimo para indicar que se ha iniciado sesión (meCagoEnLaPaca = posOk)
-			- Otra con el nombre de usuario (para saludarlo)
+			- Una con nombre rarísimo para indicar que se ha iniciado sesión
+			- Otra con el nombre de usuario
 			- Otra con el id del usuario
-	->[ ] Tampoco es necesario abrir y cerrar conexión a BD más de una vez (selectores de País y Álbum)
-		- ¿Cómo guardamos las variables $mysqli y $resultado de forma que se puedan acceder globalmente?
+	[X] Tampoco es necesario abrir y cerrar conexión a BD más de una vez
 
 PHP (Modificar BD)
 	[ ] INSERT de campos opcionales (usar tres variables, para formar la SQl a trozos)
+	[ ] Solicitud de Álbum:
+		- Incluir estructura de llamadas a funciones de BD de las demás páginas
+		- Separar en funciones la validación y el cálculo del precio
+		- Obtener número de fotos y calcular páginas

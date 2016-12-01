@@ -15,13 +15,21 @@
 	$titulo = "Perfil de usuario | Pictures & Images";
 
 	//Estilos a cargar
-	$estilos = "";
+	$estilos = "f";
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
 
 	//Elegir header en funcion de si el usuario esta logueado
 	require_once(elegirHeader());	
+
+	if (isset($_GET["err"]))
+	{
+		if ($_GET["err"] == 4)
+		{
+			require_once("../inc/aviso_registrado.inc");
+		}
+	}
  ?>
 <main class="centrado">
 	<section class="encabezado">
