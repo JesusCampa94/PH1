@@ -119,7 +119,7 @@
 			$datos->pais = nombrePorId("p", $datos->pais);
 		}
 
-		$datos->sql .= " ORDER BY FechaFoto DESC";
+		$datos->sql .= " ORDER BY FechaFoto DESC LIMIT 9";
 
 		return $datos;
 	}
@@ -208,20 +208,22 @@
 				}
 			}
 ?>
-			<a href="verAlbum.php?IdAlbum=<?php echo $IdAlbum;?>">
-				<article>
-					<div class="marco"><img src='<?php echo "$directorioRaiz$MiniaturaFoto"; ?>' alt="Imagen <?php echo $IdFoto;?>"></div>
-					<h3><?php echo $TituloAlbum;?></h3>
-					<p><?php echo $DescripcionAlbum;?></p>
+			<section class="galeria-cuerpo">
+				<a href="verAlbum.php?IdAlbum=<?php echo $IdAlbum;?>">
+					<article>
+						<div class="marco"><img src='<?php echo "$directorioRaiz$MiniaturaFoto"; ?>' alt="Imagen <?php echo $IdFoto;?>"></div>
+						<h3><?php echo $TituloAlbum;?></h3>
+						<p><?php echo $DescripcionAlbum;?></p>
 <?php  
-					if($completo)
-					{
-						echo "<p>$FechaAlbum</p>";
-						echo "<p>$NomPais</p>";
-					}
+						if($completo)
+						{
+							echo "<p>$FechaAlbum</p>";
+							echo "<p>$NomPais</p>";
+						}
 ?>
-				</article>
-			</a>
+					</article>
+				</a>
+			</section>
 <?php
 		}
 
