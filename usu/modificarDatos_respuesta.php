@@ -13,7 +13,7 @@
 	controlarAcceso();
 
 	//Titulo de la pagina
-	$titulo = " | Pictures & Images";
+	$titulo = " Respuesta a modificar datos| Pictures & Images";
 
 	//Estilos a cargar
 	$estilos = "f";
@@ -27,7 +27,6 @@
 	//Comprobamos que han introducido los campos adecuados
 	if ((isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]) || isset($_POST["pass"], $_POST["repetirPass"])) && isset($_POST["passActual"]) )//falta comprobar la foto
 	{
-		//variables que cambiaremos segun los datos del registro
 		$h1 = "Datos de cuenta actualizados";
 		$p = "A continuación se muestran los detalles de su cuenta.";
 		$datosCorrectos = true;
@@ -81,18 +80,8 @@
 									if ($resultado = ejecutarSQL($sql))
 									{
 										mostrarDatos($resultado);	
-										cerrarConexion($resultado);
+										$resultado->close();
 									}
-
-									else
-									{
-										cerrarConexion();
-									}
-								}
-
-								else
-								{
-									cerrarConexion();
 								}
 							}
 
@@ -120,12 +109,16 @@
 							if (isset($datosUsuario->errorFecha))
 								$mensajeError .= $datosUsuario->errorFecha;
 
+							if (isset($datosUsuario->errorPais))
+								$mensajeError .= $datosUsuario->errorPais;
+
 							if (isset($datosUsuario->errorPass))
 								$mensajeError .= $datosUsuario->errorPass;
 
 							echo $mensajeError;
 						}
 					}
+					cerrarConexion();
 				}
 			} 
 		?>

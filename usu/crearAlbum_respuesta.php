@@ -8,15 +8,16 @@
 	include_once("../inc/func/mysql/basico.inc.php");
 	include_once("../inc/func/accesos.inc.php");
 	include_once("../inc/func/mysql/formularios.inc.php");
+	include_once("../inc/func/mysql/galerias.inc.php");
 
 	//Controlar acceso a parte privada
 	controlarAcceso();
 
 	//Titulo de la pagina
-	$titulo = " | Pictures & Images";
+	$titulo = " Respuesta a crear álbum| Pictures & Images";
 
 	//Estilos a cargar
-	$estilos = "f";
+	$estilos = "fg";
 
 	//Incluye el DOCTYPE, la etiqueta de inicio de <html> y el <head> (formado con los parametros de arriba)
 	require_once("../inc/head.inc");
@@ -25,11 +26,10 @@
 	require_once(elegirHeader());
 
 	//Comprobamos que han introducido los campos adecuados
-	if (isset())//falta comprobar la foto
+	if (isset($_POST["titulo"], $_POST["descripcion"], $_POST["fecha"], $_POST["pais"]))
 	{
-		//variables que cambiaremos segun los datos del registro
-		$h1 = "";
-		$p = "";
+		$h1 = "Álbum creado correctamente";
+		$p = "Para poder disfrutarlo rellenelo con sus fotos preferidas. Estos son sus datos:";
 		$datosCorrectos = true;
 	}
 
@@ -46,39 +46,52 @@
 		<p><?php echo $p;?></p>
 	</section>
 	<div class="separador"></div>
-	<section class="tarjeta">
+	<section>
 		<?php 
 			if($datosCorrectos)
 			{
 				if (abrirConexion())
 				{
-					if ($datosRegistro = validarUsuario())
+					if ($datosAlbum = validarAlbum())
 					{
-						$sql = "";
-
-						//INSERT
-						if (ejecutarSQL($sql))
+						if (!($datosAlbum->errorValidacion))
 						{
-							$sql = "";
-
-							//SELECT
-							if ($resultado = ejecutarSQL($sql))
+							$userId = $_SESSION["userId"];
+							$sql = "INSERT INTO albumes (TituloAlbum, DescripcionAlbum, FechaAlbum, PaisAlbum, UsuarioAlbum) VALUES ('$datosAlbum->titulo', '$datosAlbum->descripcion', '$datosAlbum->fecha', $datosAlbum->pais, $userId)";
+							//INSERT
+							if (ejecutarSQL($sql))
 							{
-								
-								cerrarConexion($resultado);
-							}
+								//devuelve el id de la ultima insercion
+								$IdAlbum = $conexionBD->insert_id;
 
-							else
-							{
-								cerrarConexion();
+								$sql = "SELECT IdAlbum, TituloAlbum, DescripcionAlbum, FechaAlbum, NomPais FROM albumes, paises WHERE PaisAlbum = IdPais AND IdAlbum = $IdAlbum";
+								//SELECT
+								if ($resultado = ejecutarSQL($sql))
+								{
+									verAlbumes($resultado, true);
+									$resultado->close();
+								}
 							}
 						}
 
+						//Error de validacion
 						else
 						{
-							cerrarConexion();
+							$mensajeError = "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>";
+
+							if (isset($datosAlbum->errorTitulo))
+								$mensajeError .= $datosAlbum->errorTitulo;
+							if (isset($datosAlbum->errorDescripcion))
+								$mensajeError .= $datosAlbum->errorDescripcion;
+							if (isset($datosAlbum->errorFecha))
+								$mensajeError .= $datosAlbum->errorFecha;
+							if (isset($datosAlbum->errorPais))
+								$mensajeError .= $datosAlbum->errorPais;
+
+							echo $mensajeError;
 						}
 					}
+					cerrarConexion();
 				}
 			} 
 		?>

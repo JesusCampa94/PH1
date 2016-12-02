@@ -156,7 +156,7 @@
 
 
 	//Muestra una lista de albumes
-	function verAlbumes($albumes)
+	function verAlbumes($albumes, $completo = false)
 	{
 		global $conexionBD, $directorioRaiz;
 
@@ -165,6 +165,12 @@
 			$IdAlbum = $fila->IdAlbum;
 			$TituloAlbum = $fila->TituloAlbum;
 			$DescripcionAlbum = $fila->DescripcionAlbum;
+
+			if($completo)
+			{
+				$FechaAlbum = $fila->FechaAlbum;
+				$NomPais = $fila->NomPais;
+			}
 
 			$sqlPortada = "SELECT IdFoto, MiniaturaFoto FROM fotos, albumes WHERE AlbumFoto = IdAlbum AND AlbumFoto = $IdAlbum ORDER BY FechaFoto DESC LIMIT 1";
 
@@ -192,6 +198,13 @@
 					<div class="marco"><img src='<?php echo "$directorioRaiz$MiniaturaFoto"; ?>' alt="Imagen <?php echo $IdFoto;?>"></div>
 					<h3><?php echo $TituloAlbum;?></h3>
 					<p><?php echo $DescripcionAlbum;?></p>
+<?php  
+					if($completo)
+					{
+						echo "<p>$FechaAlbum</p>";
+						echo "<p>$NomPais</p>";
+					}
+?>
 				</article>
 			</a>
 <?php

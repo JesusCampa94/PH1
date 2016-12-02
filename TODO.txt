@@ -36,3 +36,8 @@ PHP (Modificar BD)
 
 	- ¿Clave alternativa en álbumes (Título-Usuario)?
 	- No podemos dejar el país en blanco
+
+
+
+
+	-Para la practica 10 se recomienda usar xml o json para gerstionar el fichero donde se guardan las fotos y los comentarios

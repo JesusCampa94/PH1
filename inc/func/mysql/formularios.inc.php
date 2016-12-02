@@ -77,10 +77,11 @@
 		//Almacenamos los datos recibidos saneados en un objeto
 		$datos = new stdClass();
 
-		$datos->errorValidacion = false;
+		$datos->errorValidacion = true;
 
 		if (isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))
 		{
+			$datos->errorValidacion = false;
 			$datos->usuario = $conexionBD->real_escape_string($_POST["nombreUsuario"]);
 			$datos->email = $conexionBD->real_escape_string($_POST["email"]);
 			$datos->sexo = $conexionBD->real_escape_string($_POST["sexo"]);
@@ -89,6 +90,7 @@
 			$datos->ciudad = $conexionBD->real_escape_string($_POST["ciudad"]);
 			$datos->fotoPerfil = "img/usu/yisus.png";
 
+			//VALIDACION
 			if (!(preg_match("/^[A-Za-z0-9]{3,15}$/", $datos->usuario)))
 			{
 				$datos->errorUsuario = "<p>El nombre de usuario debe contener de 3 a 15 carácteres. Letras o números, salvo letra ñ.</p>";
@@ -114,11 +116,15 @@
 			}
 
 			if ($datos->pais == 0)
-				$datos->pais = "";
+			{
+				$datos->errorPais = "<p>Por favor selecciona un país</p>";
+				$datos->errorValidacion = true;
+			}
 		}
 
 		if (isset($_POST["pass"], $_POST["repetirPass"]))
 		{
+			$datos->errorValidacion = false;
 			$datos->pass = $conexionBD->real_escape_string($_POST["pass"]);
 			$datos->repetirPass = $conexionBD->real_escape_string($_POST["repetirPass"]);
 
@@ -169,6 +175,7 @@
 
 		if (isset($_POST["passActual"]))
 		{
+			$datos->errorValidacion = false;
 			$datos->passActual = $conexionBD->real_escape_string($_POST["passActual"]);
 		}
 
@@ -184,7 +191,36 @@
 		//Almacenamos los datos recibidos saneados en un objeto
 		$datos = new stdClass();
 
+		$datos->errorValidacion = false;
+		$datos->titulo = $conexionBD->real_escape_string($_POST["titulo"]);
+		$datos->descripcion = $conexionBD->real_escape_string($_POST["descripcion"]);
+		$datos->fecha = $conexionBD->real_escape_string($_POST["fecha"]);
+		$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
+
 		//VALIDACION
+		if (!(preg_match("/^[A-Za-z0-9Ññ_\-]{3,50}$/", $datos->titulo)))
+		{
+			$datos->errorTitulo = "<p>El titulo del album solo puede contener mayusculas, minusculas, números y los carácteres '_' y '-'. Ademas debe tener entre 3 y 50 carácteres.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if (!(preg_match("/^.{0,500}$/", $datos->descripcion)))
+		{
+			$datos->errorDescripcion = "<p>La descripcion del album no puede sobrepasar los 500 carácteres.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if ($datos->fecha > date("Y-m-d"))
+		{
+			$datos->errorFecha = "<p>Es imposible que haya usted nacido en el futuro.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if ($datos->pais == 0)
+		{
+			$datos->errorPais = "<p>Por favor seleccione un país de la lista.</p>";
+			$datos->errorValidacion = true;
+		}
 
 		return $datos;
 	}

@@ -39,7 +39,7 @@
 				if ($resultado = ejecutarSQL($sql))
 				{
 		?>					
-					<form action="#" method="POST">
+					<form action="crearAlbum_respuesta.php" method="POST">
 						<p><label for="titulo">Título</label></p>
 						<p><input type="text" name="titulo" id="titulo" placeholder="Título del álbum." required/></p>
 						<p><label for="descripcion">Descripción</label></p>
