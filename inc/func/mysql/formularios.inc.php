@@ -199,9 +199,9 @@
 		$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
 
 		//VALIDACION
-		if (!(preg_match("/^[A-Za-z0-9Ññ_\-]{3,50}$/", $datos->titulo)))
+		if (!(preg_match("/^.{3,50}$/", $datos->titulo)))
 		{
-			$datos->errorTitulo = "<p>El titulo del album solo puede contener mayusculas, minusculas, números y los carácteres '_' y '-'. Ademas debe tener entre 3 y 50 carácteres.</p>";
+			$datos->errorTitulo = "<p>El titulo del album debe tener entre 3 y 50 carácteres.</p>";
 			$datos->errorValidacion = true;
 		}
 
@@ -243,9 +243,9 @@
 		$datos->album_usuario = $conexionBD->real_escape_string($_POST["album_usuario"]);
 
 		//VALIDACION
-		if (!(preg_match("/^.{0,50}$/", $datos->titulo)))
+		if (!(preg_match("/^.{3,50}$/", $datos->titulo)))
 		{
-			$datos->errorTitulo = "<p>El título no debe exceder los 50 carácteres.</p>";
+			$datos->errorTitulo = "<p>El título debe tener entre 3 y 50 carácteres.</p>";
 			$datos->errorValidacion = true;
 		}
 
