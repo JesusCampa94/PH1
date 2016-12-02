@@ -143,6 +143,13 @@
 		return "SELECT IdPais, NomPais FROM paises ORDER BY NomPais ASC";
 	}
 
+
+	//Devuelve los datos de una foto con el id especificado
+	function getSQLFoto($IdFoto)
+	{
+		return "SELECT IdFoto, TituloFoto, DescripcionFoto, FechaFoto, NomPais, TituloAlbum, FicheroFoto, MiniaturaFoto, NomUsuario FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND UsuarioAlbum = IdUsuario AND IdFoto = $IdFoto";
+	}
+
 	
 	//Devuelve la SQL para obtener la lista de albumes de un usuario
 	function getSQLAlbumes($usuario)

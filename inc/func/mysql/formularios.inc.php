@@ -82,6 +82,7 @@
 		if (isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))
 		{
 			$datos->errorValidacion = false;
+
 			$datos->usuario = $conexionBD->real_escape_string($_POST["nombreUsuario"]);
 			$datos->email = $conexionBD->real_escape_string($_POST["email"]);
 			$datos->sexo = $conexionBD->real_escape_string($_POST["sexo"]);
@@ -233,8 +234,44 @@
 
 		//Almacenamos los datos recibidos saneados en un objeto
 		$datos = new stdClass();
+		$datos->errorValidacion = false;
+
+		$datos->titulo = $conexionBD->real_escape_string($_POST["titulo"]);
+		$datos->descripcion = $conexionBD->real_escape_string($_POST["descripcion"]);
+		$datos->fecha = $conexionBD->real_escape_string($_POST["fecha"]);
+		$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
+		$datos->album_usuario = $conexionBD->real_escape_string($_POST["album_usuario"]);
 
 		//VALIDACION
+		if (!(preg_match("/^.{0,50}$/", $datos->titulo)))
+		{
+			$datos->errorTitulo = "<p>El título no debe exceder los 50 carácteres.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if (!(preg_match("/^.{0,500}$/", $datos->descripcion)))
+		{
+			$datos->errorDescripcion = "<p>La descripción no debe exceder los 500 carácteres.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if ($datos->fecha > date("Y-m-d"))
+		{
+			$datos->errorFecha = "<p>Fecha errónea ¿De verdad viene usted del futuro?</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if ($datos->pais == 0)
+		{
+			$datos->errorPais = "<p>Por favor, elija un país.</p>";
+			$datos->errorValidacion = true;
+		}
+
+		if ($datos->album_usuario == 0)
+		{
+			$datos->errorAlbumUsuario = "<p>Por favor, elija un álbum.</p>";
+			$datos->errorValidacion = true;
+		}
 
 		return $datos;
 	}

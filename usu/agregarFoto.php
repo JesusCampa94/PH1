@@ -43,9 +43,11 @@
 					if ($resultadoAlbumes = ejecutarSQL($sql))
 					{
 		?>
-						<form action="#" method="POST">
+						<form action="agregarFoto_respuesta.php" method="POST">
 							<p><label for="titulo">Título</label></p>
-							<p><input type="text" name="titulo" id="titulo" placeholder="Título del álbum." required/></p>
+							<p><input type="text" name="titulo" id="titulo" placeholder="Título de la foto..." required/></p>
+							<p><label for="descripcion">Descripción</label></p>
+							<p><textarea name="descripcion" id="descripcion" placeholder="Escribe una breve descripción de la foto..."></textarea></p>
 							<p><label for="fecha">Fecha</label></p>
 							<p><input type="date" name="fecha" id="fecha" required/></p>
 							<?php

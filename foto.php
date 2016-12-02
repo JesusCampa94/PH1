@@ -35,7 +35,7 @@
 			{				
 				if (abrirConexion())
 				{
-					$sql = "SELECT TituloFoto, FechaFoto, NomPais, TituloAlbum, FicheroFoto, NomUsuario FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND UsuarioAlbum = IdUsuario AND IdFoto = $id";
+					$sql = getSQLFoto($id);
 
 					if ($resultado = ejecutarSQL($sql))
 					{

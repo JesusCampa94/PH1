@@ -126,7 +126,7 @@
 
 
 	//Muestra una galeria de fotos
-	function verFotos($fotos)
+	function verFotos($fotos, $completo = false)
 	{
 		global $directorioRaiz;
 
@@ -138,15 +138,30 @@
 			$FechaFoto = date("j/n/Y", strtotime($fila->FechaFoto));
 			$NomPais = $fila->NomPais;
 			$MiniaturaFoto = $fila->MiniaturaFoto;
+
+			if ($completo)
+			{
+				$DescripcionFoto = $fila->DescripcionFoto;
+				$TituloAlbum = $fila->TituloAlbum;
+			}
 ?>
-			<a href="<?php echo $directorioRaiz; ?>foto.php?id=<?php echo $IdFoto; ?>">
-				<article>
-					<div class="marco"><img src="<?php echo "$directorioRaiz$MiniaturaFoto"; ?>" height="225" width="400" alt="Imagen <?php echo $IdFoto; ?>"></div>
-					<h3><?php echo $TituloFoto; ?></h3>
-					<p><?php echo $FechaFoto; ?></p>
-					<p><?php echo $NomPais; ?></p>
-				</article>
-			</a>
+			<section class="galeria-cuerpo">
+				<a href="<?php echo $directorioRaiz; ?>foto.php?id=<?php echo $IdFoto; ?>">
+					<article>
+						<div class="marco"><img src="<?php echo "$directorioRaiz$MiniaturaFoto"; ?>" height="225" width="400" alt="Imagen <?php echo $IdFoto; ?>"></div>
+						<h3><?php echo $TituloFoto; ?></h3>
+<?php
+						if ($completo)
+						{
+							echo "<p>$DescripcionFoto</p>";
+							echo "<p>$TituloAlbum</p>";
+						}
+?>
+						<p><?php echo $FechaFoto; ?></p>
+						<p><?php echo $NomPais; ?></p>
+					</article>
+				</a>
+			</section>
 <?php 
 		}
 
