@@ -52,6 +52,7 @@
 					$SexoUsuario = $fila->SexoUsuario;
 					$FNacimientoUsuario = $fila->FNacimientoUsuario;
 					$CiudadUsuario = $fila->CiudadUsuario;
+					$IdPais = $fila->IdPais;
 					$NomPais = $fila->NomPais;
 					$FotoUsuario = $fila->FotoUsuario;
 
@@ -65,7 +66,7 @@
 						<?php selectorSexo($SexoUsuario); ?>
 						<p><label for="fecha">Fecha de nacimiento <strong>(*)</strong></label></p>
 						<p><input type="date" name="fecha" id="fecha" required <?php echo "value='$FNacimientoUsuario'"; ?>/></p>
-						<?php selectorPais($resultadoPaises, $NomPais); ?>
+						<?php selectorPais($resultadoPaises, $IdPais); ?>
 						<p><label for="ciudad">Ciudad de residencia</label></p>
 						<p><input type="text" name="ciudad" id="ciudad" placeholder="Ciudad en la que vives actualmente" <?php echo "value='$CiudadUsuario'"; ?>/></p>
 						<p><label for="foto">Foto de perfil</label></p>

@@ -133,7 +133,7 @@
 	//Devuelve la SQL para obtener los datos de usuario
 	function getSQLUsuario($usu)
 	{
-		return "SELECT NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, NomPais, FotoUsuario FROM usuarios, paises WHERE PaisUsuario = IdPais AND NomUsuario = '$usu'";
+		return "SELECT NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, IdPais, NomPais, FotoUsuario FROM usuarios, paises WHERE PaisUsuario = IdPais AND NomUsuario = '$usu'";
 	}
 
 
@@ -155,5 +155,12 @@
 	function getSQLAlbumes($usuario)
 	{
 		return "SELECT IdAlbum, TituloAlbum FROM albumes, usuarios WHERE  UsuarioAlbum = IdUsuario AND UsuarioAlbum = $usuario ORDER BY TituloAlbum ASC";
+	}
+
+
+	//Devuelve datos de la ultima solicitud de un usuario
+	function getSQLSolicitud($usuario)
+	{
+		return "SELECT solicitudes.*, TituloAlbum FROM solicitudes, albumes, usuarios WHERE AlbumSolicitud = IdAlbum AND UsuarioAlbum = IdUsuario AND IdUsuario = $usuario ORDER BY FRegistroSolicitud DESC LIMIT 1";
 	}
 ?>

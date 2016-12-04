@@ -6,6 +6,7 @@
 
 	//Funciones requeridas
 	include_once("../inc/func/mysql/basico.inc.php");
+	include_once("../inc/func/mysql/formularios.inc.php");
 	include_once("../inc/func/accesos.inc.php");
 
 	//Controlar acceso a parte privada
@@ -23,56 +24,21 @@
 	//Elegir header en funcion de si el usuario esta logueado
 	require_once(elegirHeader());
 
- 	if (isset($_POST["nombre"], $_POST["titulo_album"], $_POST["comentario"], $_POST["email"], $_POST["direccion_calle"], $_POST["direccion_numero"], $_POST["direccion_CP"], $_POST["direccion_localidad"], $_POST["telefono"], $_POST["color_portada"], $_POST["copias"], $_POST["resolucion"], $_POST["album_PI"], $_POST["fecha-recepcion"], $_POST["bw_cmyk"]))
-	{
-		//Creamos las variables para guardar los datos del formulario
-		$nombre= $_POST["nombre"];
-		$titulo = $_POST["titulo_album"];
-		$comentario = $_POST["comentario"];
-		$email = $_POST["email"];
-		$direccion_calle = $_POST["direccion_calle"];
-		$direccion_numero = $_POST["direccion_numero"];
-		$direccion_CP = $_POST["direccion_CP"];
-		$direccion_localidad = $_POST["direccion_localidad"];
-		$telefono = $_POST["telefono"];
-		$color_portada = $_POST["color_portada"];
-		$copias = $_POST["copias"];
-		$resolucion = $_POST["resolucion"];
-		$album_PI = $_POST["album_PI"];
-		$fecha_recepcion = $_POST["fecha-recepcion"];
-		$bw_cmyk = $_POST["bw_cmyk"];
-		$precioPaginas = 0.10;
-		$precioColor = 0.0;
-		$precioDpi = 0.0;
-		$precioTotal = 0.0;
-		$numPaginas = 4;//numero fijo de paginas(por ahora)
-		$numFotos = 15;//numero fijo de fotos(por ahora)
-
-		//Ahora calcularemos el precio final del album
-		if($bw_cmyk == "color")//si han elegido la opcion de color
-		{
-			$precioColor = 0.05;
-		}
-		if($resolucion	>= 300)//si ha elegido mas de 300 de dpi
-		{
-			$precioDpi = 0.02;
-		}
-
-		$precioTotal = ($precioPaginas*$numPaginas + $precioDpi*$numFotos + $precioColor*$numFotos)*$copias;
-	
+ 	if (isset($_POST["nombre"], $_POST["titulo_solicitud"], $_POST["comentario"], $_POST["email"], $_POST["direccion_calle"], $_POST["direccion_numero"], $_POST["direccion_CP"], $_POST["direccion_localidad"], $_POST["direccion_provincia"], $_POST["telefono"], $_POST["color_portada"], $_POST["copias"], $_POST["resolucion"], $_POST["album_usuario"], $_POST["fecha-recepcion"]))
+	{	
 		//Titulo y descripcion de pagina
 		$h1 = "Solicitud completa";
 		$p = "A continuacion se resumen los datos de la solicitud del álbum.";
 
 		//Todo fue normalmente
-		$correcto = true;
+		$datosCorrectos = true;
 	}
 
 	else
 	{
 		$h1 = "Algo ocurrió";
 		$p = "No se recibieron los datos que esperaba está página.";
-		$correcto = false;
+		$datosCorrectos = false;
 	}
 ?>
 <main class="centrado">
@@ -81,53 +47,119 @@
 		<p><?php echo $p; ?></p>
 	</section>
 	<div class="separador"></div>
-	<section class="texto-izquierda">
+	<section class="resultados">
 		<?php 
 			if($datosCorrectos)
 			{
 				if (abrirConexion())
 				{
-					if ($datosRegistro = validarUsuario())
+					if ($datosSolicitud = validarSolicitud())
 					{
-						$sql = "";
-
-						//INSERT
-						if (ejecutarSQL($sql))
+						if (!($datosSolicitud->errorValidacion))
 						{
-							$sql = "";
+							$direccion = "$datosSolicitud->direccion_calle".", $datosSolicitud->direccion_numero - $datosSolicitud->direccion_CP $datosSolicitud->direccion_localidad ($datosSolicitud->direccion_provincia)";
 
-							//SELECT
-							if ($resultado = ejecutarSQL($sql))
+							$sql = "INSERT INTO solicitudes (AlbumSolicitud, NombreSolicitud, TituloSolicitud, DescripcionSolicitud, EmailSolicitud, DireccionSolicitud, TelefonoSolicitud, ColorSolicitud, CopiasSolicitud, ResolucionSolicitud, FechaSolicitud, IColorSolicitud, CosteSolicitud) VALUES ($datosSolicitud->album_PI, '$datosSolicitud->nombre', '$datosSolicitud->titulo', '$datosSolicitud->comentario', '$datosSolicitud->email', '$direccion', '$datosSolicitud->telefono', '$datosSolicitud->color_portada', $datosSolicitud->copias, $datosSolicitud->resolucion, '$datosSolicitud->fecha_recepcion', $datosSolicitud->bw_cmyk, $datosSolicitud->coste)";
+
+							//INSERT
+							if (ejecutarSQL($sql))
 							{
+								//Recuperamos datos de la solicitud recien creada
+								if ($datosSolicitud = ultimaSolicitud($_SESSION["userId"]))
+								{
 		?>
-								<p><strong>Nombre: </strong><?php echo $nombre;?></p>
-								<p><strong>Título del álbum: </strong><?php echo $titulo;?></p>
-								<p><strong>Comentario: </strong><?php echo $comentario;?></p>
-								<p><strong>Correo electrónico: </strong><?php echo $email;?></p>
-								<p><strong>Dirección: </strong>c/ <?php echo $direccion_calle;?>, <?php echo $direccion_numero;?>, <?php echo $direccion_CP;?>, <?php echo $direccion_localidad;?></p>
-								<p><strong>Teléfono: </strong><?php echo $telefono;?></p>
-								<p><strong>Color de portada: </strong><?php echo $color_portada;?></p>
-								<p><strong>Número de copias: </strong><?php echo $copias;?></p>
-								<p><strong>Resulución de impresión: </strong><?php echo $resolucion;?> dpi</p>
-								<p><strong>Álbum de PI: </strong><?php echo $album_PI;?></p>
-								<p><strong>Fecha de recepción: </strong><?php echo $fecha_recepcion;?></p>
-								<p><strong>Tipo de impresión: </strong><?php echo $bw_cmyk;?></p>
-								<p><strong>Precio Total: </strong><?php echo $precioTotal?> €</p>
+									<p class="campo-resultado">Nombre</p>
+									<p><?php echo $datosSolicitud->NombreSolicitud;?></p>
+									<p class="campo-resultado">Título del álbum</p>
+									<p><?php echo $datosSolicitud->TituloSolicitud;?></p>
+									<p class="campo-resultado">Comentario</p>
+									<p><?php echo $datosSolicitud->DescripcionSolicitud;?></p>
+									<p class="campo-resultado">Correo electrónico</p>
+									<p><?php echo $datosSolicitud->EmailSolicitud;?></p>
+									<p class="campo-resultado">Dirección</p>
+									<p><?php echo $datosSolicitud->DireccionSolicitud; ?></p>
+									<p class="campo-resultado">Teléfono</p>
+									<p><?php echo $datosSolicitud->TelefonoSolicitud;?></p>
+									<p class="campo-resultado">Color de portada</p>
+									<p><?php echo $datosSolicitud->ColorSolicitud;?></p>
+									<p class="campo-resultado">Número de copias</p>
+									<p><?php echo $datosSolicitud->CopiasSolicitud;?></p>
+									<p class="campo-resultado">Resolución de impresión</p>
+									<p><?php echo $datosSolicitud->ResolucionSolicitud;?> dpi</p>
+									<p class="campo-resultado">Álbum de PI</p>
+									<p><?php echo $datosSolicitud->TituloAlbum;?></p>
+									<p class="campo-resultado">Fecha de recepción</p>
+									<p><?php echo date("j/n/Y", strtotime($datosSolicitud->FechaSolicitud));?></p>
+									<p class="campo-resultado">Tipo de impresión</p>
+									<p><?php echo ($datosSolicitud->IColorSolicitud == 0 ? "Blanco y Negro" : "Color");?></p>
+									<p class="campo-resultado">Precio Total</p>
+									<p><?php echo $datosSolicitud->CosteSolicitud?> €</p>
 		<?php	
-								cerrarConexion($resultado);
-							}
-
-							else
-							{
-								cerrarConexion();
+								}
 							}
 						}
 
+						//Error de validacion
 						else
 						{
-							cerrarConexion();
+							$mensajeError = "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>";
+
+							if (isset($datosSolicitud->errorNombre))
+								$mensajeError .= $datosSolicitud->errorNombre;
+
+							if (isset($datosSolicitud->errorTitulo))
+								$mensajeError .= $datosSolicitud->errorTitulo;
+
+							if (isset($datosSolicitud->errorComentario))
+								$mensajeError .= $datosSolicitud->errorComentario;
+
+							if (isset($datosSolicitud->errorEmail))
+								$mensajeError .= $datosSolicitud->errorEmail;
+
+							if (isset($datosSolicitud->errorDireccionCalle))
+								$mensajeError .= $datosSolicitud->errorDireccionCalle;
+
+							if (isset($datosSolicitud->errorDireccionNumero))
+								$mensajeError .= $datosSolicitud->errorDireccionNumero;
+
+							if (isset($datosSolicitud->errorDireccionCP))
+								$mensajeError .= $datosSolicitud->errorDireccionCP;
+
+							if (isset($datosSolicitud->errorDireccionLocalidad))
+								$mensajeError .= $datosSolicitud->errorDireccionLocalidad;
+
+							if (isset($datosSolicitud->errorDireccionProvincia))
+								$mensajeError .= $datosSolicitud->errorDireccionProvincia;
+
+							if (isset($datosSolicitud->errorTelefono))
+								$mensajeError .= $datosSolicitud->errorTelefono;
+
+							if (isset($datosSolicitud->errorColor))
+								$mensajeError .= $datosSolicitud->errorColor;
+
+							if (isset($datosSolicitud->errorCopias))
+								$mensajeError .= $datosSolicitud->errorCopias;
+
+							if (isset($datosSolicitud->errorResolucion))
+								$mensajeError .= $datosSolicitud->errorResolucion;
+
+							if (isset($datosSolicitud->errorAlbumPI))
+								$mensajeError .= $datosSolicitud->errorAlbumPI;
+
+							if (isset($datosSolicitud->errorFecha))
+								$mensajeError .= $datosSolicitud->errorFecha;
+
+							if (isset($datosSolicitud->errorBlancoNegro))
+								$mensajeError .= $datosSolicitud->errorBlancoNegro;
+
+							if (isset($datosSolicitud->errorCoste))
+								$mensajeError .= $datosSolicitud->errorCoste;
+
+							echo $mensajeError;
 						}
 					}
+
+					cerrarConexion();
 				}
 			} 
 		?>

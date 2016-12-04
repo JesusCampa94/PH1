@@ -242,6 +242,17 @@ main
 		margin-bottom: 5px;
 	}
 
+	.resultados .campo-resultado
+	{
+		margin-top: 10px;
+		font-weight: bold;
+		color: #009688;
+	}
+		.resultados .campo-resultado:first-child
+		{
+			margin-top: 0px;
+		}
+
 	.boton
 	{
 		display: block;

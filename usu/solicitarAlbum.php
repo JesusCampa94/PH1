@@ -36,8 +36,10 @@
 			{
 				$sql = getSQLAlbumes($_SESSION["userId"]);
 
-				if ($resultado = ejecutarSQL($sql))
+				if ($resultadoPaises = ejecutarSQL($sql))
 				{
+					//Recuperamos datos la ultima solicitud del usuario para ayudarle autorellenando algunos campos
+					$ultima = ultimaSolicitud($_SESSION["userId"]);
 		?>
 					<aside>
 						<section class="encabezado">
@@ -87,56 +89,45 @@
 						</section>
 						<form action="solicitarAlbum_respuesta.php" method="POST">
 							<p><label for="nombre">Nombre <strong>(*)</strong></label></p>
-							<p><input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required/></p>
-							<p><label for="titulo_album">Título del álbum <strong>(*)</strong></label></p>
-							<p><input type="text" name="titulo_album" id="titulo_album" placeholder="Ponle un título del álbum" required/></p>
+							<p><input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required <?php echo "value='$ultima->NombreSolicitud'"; ?>/></p>
+							<p><label for="titulo_solicitud">Título de la solicitud <strong>(*)</strong></label></p>
+							<p><input type="text" name="titulo_solicitud" id="titulo_solicitud" placeholder="Ponle un título a la solicitud" required <?php echo "value='$ultima->TituloSolicitud'"; ?>/></p>
 							<p><label for="comentario">Comentario</label></p>
-							<p><textarea name="comentario" id="comentario" placeholder="Escribe información adicional como una descripción, dedicatorias..."></textarea></p>
+							<p><textarea name="comentario" id="comentario" placeholder="Escribe información adicional como una descripción, dedicatorias..."><?php echo "$ultima->DescripcionSolicitud"; ?></textarea></p>
 							<p><label for="email">Email <strong>(*)</strong></label></p>
-							<p><input type="email" name="email" id="email" placeholder="Introduce tu email" required/></p>
-							<p><label for="direccion_calle">Dirección</label></p>
+							<p><input type="email" name="email" id="email" placeholder="Introduce tu email" required <?php echo "value='$ultima->EmailSolicitud'"; ?>/></p>
+							<p><label for="direccion_calle">Dirección  <strong>(*)</strong></label></p>
 							<p>
-								<input type="text" name="direccion_calle" id="direccion_calle" placeholder="Calle"/>
-								<input type="number" name="direccion_numero" id="direccion_numero" placeholder="Número"/>
-								<input type="text" name="direccion_CP" id="direccion_CP" pattern="[0-9]{5}" placeholder="Código Postal"/>
-								<select name="direccion_localidad" id="direccion_localidad">
-									<option>Localidad</option>
-									<option>La Campaneta</option>
-									<option>Callosa de Segura</option>
-								</select>
-								<select name="direccion_provincia" id="direccion_provincia">
-									<option>Provincia</option>
-									<option>Alicante</option>
-									<option>Valencia</option>
-								</select>
+								<input type="text" name="direccion_calle" id="direccion_calle" placeholder="Calle" <?php echo "value='$ultima->DireccionCalle'"; ?> required/>
+								<input type="number" name="direccion_numero" id="direccion_numero" placeholder="Número" <?php echo "value='$ultima->DireccionNumero'"; ?> required/>
+								<input type="text" name="direccion_CP" id="direccion_CP" pattern="[0-9]{5}" placeholder="Código Postal" <?php echo "value='$ultima->DireccionCP'"; ?> required/>
+								<input type="text" name="direccion_localidad" id="direccion_localidad" placeholder="Localidad" <?php echo "value='$ultima->DireccionLocalidad'"; ?> required/>
+								<input type="text" name="direccion_provincia" id="direccion_provincia" placeholder="Provincia" <?php echo "value='$ultima->DireccionProvincia'"; ?> required/>
 							</p>
-							<p><label for="telefono">Teléfono</label></p>
-							<p><input type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto"/></p>
+							<p><label for="telefono">Teléfono  <strong>(*)</strong></label></p>
+							<p><input type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto" <?php echo "value='$ultima->TelefonoSolicitud'"; ?>/></p>
 							<p><label for="color_portada">Color de la portada</label></p>
-							<p><input type="color" name="color_portada" id="color_portada"/></p>
+							<p><input type="color" name="color_portada" id="color_portada" <?php echo "value='$ultima->ColorSolicitud'"; ?>/></p>
 							<p><label for="copias">Numero de copias</label></p>
-							<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad"/></p>
+							<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad" <?php echo "value='$ultima->CopiasSolicitud'"; ?> required/></p>
 							<p><label for="resolucion">Resolución</label></p>
-							<p><input type="number" min="150" max="900" step="150" value="150" name="resolucion" id="resolucion" /> dpi</p>
-							<?php selectorAlbum($resultado); ?>
-							<p><label for="fecha-recepcion">Fecha de recepción</label></p>
-							<p><input type="date" name="fecha-recepcion" id="fecha-recepcion"/></p>
-							<p><label for="radio_bw">Modo de impresión</label></p>
+							<p><input type="number" min="150" max="900" step="150" name="resolucion" id="resolucion" <?php echo "value='$ultima->ResolucionSolicitud'"; ?>/> dpi</p>
+							<?php selectorAlbum($resultadoPaises, $ultima->AlbumSolicitud); ?>
+							<p><label for="fecha-recepcion">Fecha de recepción  <strong>(*)</strong></label></p>
+							<p><input type="date" name="fecha-recepcion" id="fecha-recepcion" <?php echo "value='$ultima->FechaSolicitud'"; ?> required/></p>
+							<p><label for="radio_bw">Modo de impresión  <strong>(*)</strong></label></p>
 							<p>
-								<input type="radio" name="bw_cmyk" value="blanco/negro" id="radio_bw"><label for="radio_bw">Blanco y Negro</label>
-								<input type="radio" name="bw_cmyk" value="color" id="radio_cmyk"><label for="radio_cmyk">Color</label>
+								<input type="radio" name="bw_cmyk" value="0" id="radio_bw" <?php echo "$ultima->BlancoNegro"; ?>><label for="radio_bw">Blanco y Negro</label>
+								<input type="radio" name="bw_cmyk" value="1" id="radio_cmyk" <?php echo "$ultima->EnColor"; ?>><label for="radio_cmyk">Color</label>
 							</p>
 							<p><input type="submit" value="Solicitar"></p>
 						</form>
 					</section>		
 		<?php
-					cerrarConexion($resultado);
+					$resultadoPaises->close();
 				}
 
-				else
-				{
-					cerrarConexion();
-				}
+				cerrarConexion();
 			}
 		?>
 	</section>
