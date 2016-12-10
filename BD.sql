@@ -13,7 +13,6 @@
 
 
 -- Volcando estructura de base de datos para pibd
-DROP DATABASE IF EXISTS `pibd`;
 CREATE DATABASE IF NOT EXISTS `pibd` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `pibd`;
 
@@ -89,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   UNIQUE KEY `NomPais` (`NomPais`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Paises con su identificador.';
 
--- Volcando datos para la tabla pibd.paises: ~21 rows (aproximadamente)
+-- Volcando datos para la tabla pibd.paises: ~22 rows (aproximadamente)
 DELETE FROM `paises`;
 /*!40000 ALTER TABLE `paises` DISABLE KEYS */;
 INSERT INTO `paises` (`IdPais`, `NomPais`) VALUES
