@@ -9,35 +9,23 @@ CSS
 	[ ] Hacer que al imprimir la pagina de inicio se ajuste bien al folio
 	[ ] Menú hamburguesa (PURO CSS)
 	[ ] Iniciar sesión, se puede hacer scroll
-	
-PHP (Base de Datos)
-	[X] Mostrar error de "Foto no encontrada" si nos pasamos de rango
-	[X] Mostrar con "Todo o nada", si falta algún dato no mostrar la página, sino algún error explicativo.
-	[X] Usar funciones para la BD (abrirConexion, ejecutarSQL, cerrarConexion...)
-	[X] No es necesario comprobar el acceso a zona privada en cada página, incluir un flag al iniciar sesión ($validado = true)
-		- Usar al menos 3 variables de sesion
-			- Una con nombre rarísimo para indicar que se ha iniciado sesión
-			- Otra con el nombre de usuario
-			- Otra con el id del usuario
-	[X] Tampoco es necesario abrir y cerrar conexión a BD más de una vez
 
 PHP (Modificar BD)
-	[X] Página "Mis datos" formulario RELLENADO para cambiar los datos de cuenta. Misma validación que en registro.
-	[X] Página darme de baja
-	[ ] Respuesta a Crear Álbum. Inserta un álbum en la BD.
-	[ ] Respuesta a añadir foto a álbum. 
-	[ ] Respuesta a solicitar álbum.
-
-	[/] Validar
-	[ ] Solicitud de Álbum:
-		- Incluir estructura de llamadas a funciones de BD de las demás páginas
-		- Separar en funciones la validación y el cálculo del precio
-		- Obtener número de fotos y calcular páginas
-
 	- ¿Clave alternativa en álbumes (Título-Usuario)?
 	- No podemos dejar el país en blanco
 
 
-
-
-	-Para la practica 10 se recomienda usar xml o json para gerstionar el fichero donde se guardan las fotos y los comentarios
+PHP (Ficheros)
+	[ ] Crear inc/func/ficheros.inc.php
+	[ ] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
+		- $ultimo = scandir($dir, 1)[0];
+	[ ] Incluir "Foto destacada" en Index.
+		- Se elige una foto aleatoria cada vez que se carga la página principal.
+		- Se debe mostrar la fotografía, información sobre ella, persona que la destacó y un comentario explicando por qué la seleccionó.
+		- Los comentarios pueden ser elegidos al azar de un array multidimensional con varias razones por cada foto. La primera dimensión será el id de la foto. La posicion 0 será genérica.
+		- Se recomienda guardar dichos datos en un fichero xml o json.
+	[ ] Controlar la subida de avatar en página de registro
+		- El avatar podrá ser modificado o eliminado en "Modificar datos"
+		- Todas las fotos de usuario estarán en la misma carpeta, evitar colisiones.
+	[ ] Controlar la subida de foto en "Añadir foto a álbum"
+		- Evitar colisiones de nombres cuando dos usuarios suban fotos del mismo título, o un usuario suba dos fotos con el mismo título a dos álbumes.
