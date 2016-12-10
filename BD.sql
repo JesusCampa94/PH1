@@ -13,6 +13,7 @@
 
 
 -- Volcando estructura de base de datos para pibd
+DROP DATABASE IF EXISTS `pibd`;
 CREATE DATABASE IF NOT EXISTS `pibd` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `pibd`;
 
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `fotos` (
   `AlbumFoto` int(11) NOT NULL,
   `FicheroFoto` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'img/com/album.png',
   `MiniaturaFoto` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'img/com/album.png',
-  `FRegistroFoto` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `FRegistroFoto` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`IdFoto`),
   UNIQUE KEY `TituloFoto` (`TituloFoto`,`AlbumFoto`),
   KEY `FK_fotos_paises` (`PaisFoto`),
@@ -67,16 +68,16 @@ CREATE TABLE IF NOT EXISTS `fotos` (
 DELETE FROM `fotos`;
 /*!40000 ALTER TABLE `fotos` DISABLE KEYS */;
 INSERT INTO `fotos` (`IdFoto`, `TituloFoto`, `DescripcionFoto`, `FechaFoto`, `PaisFoto`, `AlbumFoto`, `FicheroFoto`, `MiniaturaFoto`, `FRegistroFoto`) VALUES
-	(1, 'Carretera', 'Tranquilos, miramos que no pasara nadie antes de hacer la foto', '2016-05-29', 11, 1, 'img/photos/4/1/1.jpg', 'img/photos/4/1/thumb/1.jpg', '2016-12-08 16:21:28'),
-	(2, 'Castillo', 'Con su puente de madera, pero no es levadizo', '2016-05-30', 11, 1, 'img/photos/4/1/2.jpg', 'img/photos/4/1/thumb/2.jpg', '2016-12-08 16:35:18'),
-	(3, 'Tiburón', 'Nadando tranquilo, en toda su salsa', '2016-07-22', 16, 2, 'img/photos/3/2/3.jpg', 'img/photos/3/2/thumb/3.jpg', '2016-12-08 16:35:29'),
-	(4, 'Peñón', 'Como un iceberg, pero en roca', '2016-07-28', 16, 2, 'img/photos/3/2/4.jpg', 'img/photos/3/2/thumb/4.jpg', '2016-12-08 16:35:40'),
-	(5, 'Pato', 'Un pato que le gustó mucho la cámara', '2016-09-12', 6, 3, 'img/photos/2/3/5.jpg', 'img/photos/2/3/thumb/5.jpg', '2016-12-08 16:35:48'),
-	(6, 'Panda', 'Los animales estaban muy simpáticos ese día', '2016-09-13', 6, 3, 'img/photos/2/3/6.jpg', 'img/photos/2/3/thumb/6.jpg', '2016-12-08 16:36:04'),
-	(7, 'Río de lava', 'Porque los ríos de agua están muy sobrevalorados', '2016-09-16', 11, 1, 'img/photos/4/1/7.jpg', 'img/photos/4/1/thumb/7.jpg', '2016-12-08 16:36:16'),
-	(8, 'Tortuga marina', 'No le pregunté la edad', '2016-09-20', 16, 2, 'img/photos/3/2/8.jpg', 'img/photos/3/2/thumb/8.jpg', '2016-12-08 16:36:32'),
-	(9, 'Tigre', 'La típica escena que uno espera ver un día cualquiera', '2016-09-27', 16, 2, 'img/photos/3/2/9.jpg', 'img/photos/3/2/thumb/9.jpg', '2016-12-08 16:37:16'),
-	(10, 'Tokio', '¿De verdad es París la Ciudad de la Luz?', '2016-10-27', 15, 4, 'img/photos/1/4/10.jpg', 'img/photos/1/4/thumb/10.jpg', '2016-12-08 16:34:40');
+	(1, 'Carretera', 'Tranquilos, miramos que no pasara nadie antes de hacer la foto', '2016-05-29', 11, 1, 'img/photos/0000000004/0000001/000001.jpg', 'img/photos/0000000004/0000001/thumb/000001.jpg', '2016-12-10 11:12:30'),
+	(2, 'Castillo', 'Con su puente de madera, pero no es levadizo', '2016-05-30', 11, 1, 'img/photos/0000000004/0000001/000002.jpg', 'img/photos/0000000004/0000001/thumb/000002.jpg', '2016-12-10 11:12:33'),
+	(3, 'Tiburón', 'Nadando tranquilo, en toda su salsa', '2016-07-22', 16, 2, 'img/photos/0000000003/0000002/000003.jpg', 'img/photos/0000000003/0000002/thumb/000003.jpg', '2016-12-10 11:12:36'),
+	(4, 'Peñón', 'Como un iceberg, pero en roca', '2016-07-28', 16, 2, 'img/photos/0000000003/0000002/000004.jpg', 'img/photos/0000000003/0000002/thumb/000004.jpg', '2016-12-10 11:12:38'),
+	(5, 'Pato', 'Un pato que le gustó mucho la cámara', '2016-09-12', 6, 3, 'img/photos/0000000002/0000003/000005.jpg', 'img/photos/0000000002/0000003/thumb/000005.jpg', '2016-12-10 11:12:41'),
+	(6, 'Panda', 'Los animales estaban muy simpáticos ese día', '2016-09-13', 6, 3, 'img/photos/0000000002/0000003/000006.jpg', 'img/photos/0000000002/0000003/thumb/000006.jpg', '2016-12-10 11:12:44'),
+	(7, 'Río de lava', 'Porque los ríos de agua están muy sobrevalorados', '2016-09-16', 11, 1, 'img/photos/0000000004/0000001/000007.jpg', 'img/photos/0000000004/0000001/thumb/000007.jpg', '2016-12-10 11:12:46'),
+	(8, 'Tortuga marina', 'No le pregunté la edad', '2016-09-20', 16, 2, 'img/photos/0000000003/0000002/000008.jpg', 'img/photos/0000000003/0000002/thumb/000008.jpg', '2016-12-10 11:12:48'),
+	(9, 'Tigre', 'La típica escena que uno espera ver un día cualquiera', '2016-09-27', 16, 2, 'img/photos/0000000003/0000002/000009.jpg', 'img/photos/0000000003/0000002/thumb/000009.jpg', '2016-12-10 11:12:52'),
+	(10, 'Tokio', '¿De verdad es París la Ciudad de la Luz?', '2016-10-27', 15, 4, 'img/photos/0000000001/0000004/000010.jpg', 'img/photos/0000000001/0000004/thumb/000010.jpg', '2016-12-10 11:12:56');
 /*!40000 ALTER TABLE `fotos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla pibd.paises
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `ResolucionSolicitud` int(11) NOT NULL,
   `FechaSolicitud` date NOT NULL,
   `IColorSolicitud` bit(1) NOT NULL,
-  `FRegistroSolicitud` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `FRegistroSolicitud` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `CosteSolicitud` float NOT NULL,
   PRIMARY KEY (`IdSolicitud`),
   KEY `FK__albumes` (`AlbumSolicitud`),
@@ -158,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `CiudadUsuario` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PaisUsuario` int(11) DEFAULT NULL,
   `FotoUsuario` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'img/com/avatar.png',
-  `FRegistroUsuario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `FRegistroUsuario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`IdUsuario`),
   UNIQUE KEY `NomUsuario` (`NomUsuario`),
   UNIQUE KEY `EmailUsuario` (`EmailUsuario`),
@@ -170,13 +171,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `ClaveUsuario`, `EmailUsuario`, `SexoUsuario`, `FNacimientoUsuario`, `CiudadUsuario`, `PaisUsuario`, `FotoUsuario`, `FRegistroUsuario`) VALUES
-	(1, 'yisus', 'cawendie', 'erYisusToReshulon69XD@gmail.com', 1, '1994-05-29', 'Far, Far Away', 8, 'img/usu/yisus.png', '2016-11-29 15:27:26'),
-	(2, 'maermka', 'odioelmundo', 'sonrisasfelicesFTW@posok.com', 1, '1995-07-08', 'Pulgarcity', 5, 'img/usu/maermka.png', '2016-11-29 15:27:29'),
-	(3, 'flequi1000', '#heperdido', 'swaggerToLoko@gmail.com', 1, '1994-09-14', 'Instagram', 22, 'img/usu/avatar_default.png', '2016-11-29 15:27:35'),
-	(4, 'grecio95', 'helenofiel', 'tuAmoZeus@gmail.com', 1, '1995-07-04', 'Olimpia', 13, 'img/usu/avatar_default.png', '2016-11-29 15:27:40'),
-	(5, 'laVaneh', 'imsofabolous', 'soyDivina@gmail.com', 2, '1996-11-15', 'Rainbow Town', 22, 'img/usu/avatar_default.png', '2016-11-29 15:27:43'),
-	(6, 'birdo', 'tomilazo', 'soyToRosa@pink.com', 3, '1988-10-09', 'Incognita', 12, 'img/usu/avatar_default.png', '2016-12-01 20:48:26'),
-	(7, 'ryasu', 'esoestamal', 'ryasulion@gmail.com', 1, '1994-07-13', 'Narnia', 22, 'img/usu/avatar_default.png', '2016-12-01 18:05:47');
+	(1, 'yisus', 'cawendie', 'erYisusToReshulon69XD@gmail.com', 1, '1994-05-29', 'Far, Far Away', 8, 'img/usu/0000000001.png', '2016-11-29 15:27:26'),
+	(2, 'maermka', 'odioelmundo', 'sonrisasfelicesFTW@posok.com', 1, '1995-07-08', 'Pulgarcity', 5, 'img/usu/0000000002.png', '2016-11-29 15:27:29'),
+	(3, 'flequi1000', '#heperdido', 'swaggerToLoko@gmail.com', 1, '1994-09-14', 'Instagram', 22, 'img/com/avatar.png', '2016-12-10 11:18:33'),
+	(4, 'grecio95', 'helenofiel', 'tuAmoZeus@gmail.com', 1, '1995-07-04', 'Olimpia', 13, 'img/com/avatar.png', '2016-12-10 11:18:35'),
+	(5, 'laVaneh', 'imsofabolous', 'soyDivina@gmail.com', 2, '1996-11-15', 'Rainbow Town', 22, 'img/com/avatar.png', '2016-12-10 11:18:37'),
+	(6, 'birdo', 'tomilazo', 'soyToRosa@pink.com', 3, '1988-10-09', 'Incognita', 12, 'img/com/avatar.png', '2016-12-10 11:18:39'),
+	(7, 'ryasu', 'esoestamal', 'ryasulion@gmail.com', 1, '1994-07-13', 'Narnia', 22, 'img/com/avatar.png', '2016-12-10 11:18:42');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
