@@ -28,8 +28,8 @@
 	//Comprobamos que han introducido los campos adecuados
 	if (isset($_POST["titulo"], $_POST["descripcion"], $_POST["fecha"], $_POST["pais"]))
 	{
-		$h1 = "Álbum creado correctamente";
-		$p = "Para poder disfrutarlo rellenelo con sus fotos preferidas. Estos son sus datos:";
+		$h1 = "Creando el Álbum";
+		$p = "Estos son los detalles de su album:";
 		$datosCorrectos = true;
 	}
 
@@ -45,7 +45,7 @@
 		<h1><?php echo $h1;?></h1>
 		<p><?php echo $p;?></p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 		<?php 
 			if($datosCorrectos)

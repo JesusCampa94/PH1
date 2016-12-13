@@ -30,7 +30,7 @@
 		<p>Rellene los campos para registrarse en la página.</p>
 		<p>Los campos marcados con <strong>(*)</strong> son obligatorios.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 	<?php 
 		if (abrirConexion())

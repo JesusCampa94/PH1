@@ -30,7 +30,7 @@
 		<p>Rellene los campos siguientes para modificar la contraseña asociada a su cuenta.</p>
 		<p>Por motivos de seguridad, introduzca al final su contraseña actual.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 	<?php 
 		if (abrirConexion())

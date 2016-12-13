@@ -29,7 +29,7 @@
 		<h1>Solicitar álbum impreso</h1>
 		<p>En esta página el usuario puede solicitar el envío de uno de sus álbumes en formato impreso a la dirección que especifique.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section class="solicitud-y-tabla">
 		<?php 
 			if (abrirConexion())
@@ -87,13 +87,14 @@
 							<p>Rellena el siguiente formulario para especificar los detalles del envío.</p>
 							<p><em>NOTAS: La fecha de recepcion es aproximada. Los campos marcados con <strong>(*)</strong> son obligatorios.</em></p>
 						</section>
+						<hr />
 						<form action="solicitarAlbum_respuesta.php" method="POST">
 							<p><label for="nombre">Nombre <strong>(*)</strong></label></p>
 							<p><input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre completo" required <?php echo "value='$ultima->NombreSolicitud'"; ?>/></p>
 							<p><label for="titulo_solicitud">Título de la solicitud <strong>(*)</strong></label></p>
-							<p><input type="text" name="titulo_solicitud" id="titulo_solicitud" placeholder="Ponle un título a la solicitud" required <?php echo "value='$ultima->TituloSolicitud'"; ?>/></p>
+							<p><input type="text" name="titulo_solicitud" id="titulo_solicitud" placeholder="Ponle un título a la solicitud" required/></p>
 							<p><label for="comentario">Comentario</label></p>
-							<p><textarea name="comentario" id="comentario" placeholder="Escribe información adicional como una descripción, dedicatorias..."><?php echo "$ultima->DescripcionSolicitud"; ?></textarea></p>
+							<p><textarea name="comentario" id="comentario" placeholder="Escribe información adicional como una descripción, dedicatorias..."></textarea></p>
 							<p><label for="email">Email <strong>(*)</strong></label></p>
 							<p><input type="email" name="email" id="email" placeholder="Introduce tu email" required <?php echo "value='$ultima->EmailSolicitud'"; ?>/></p>
 							<p><label for="direccion_calle">Dirección  <strong>(*)</strong></label></p>
@@ -109,12 +110,12 @@
 							<p><label for="color_portada">Color de la portada</label></p>
 							<p><input type="color" name="color_portada" id="color_portada" <?php echo "value='$ultima->ColorSolicitud'"; ?>/></p>
 							<p><label for="copias">Numero de copias</label></p>
-							<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad" <?php echo "value='$ultima->CopiasSolicitud'"; ?> required/></p>
+							<p><input type="number" min="1" name="copias" id="copias" placeholder="Elija cantidad" required/></p>
 							<p><label for="resolucion">Resolución</label></p>
 							<p><input type="number" min="150" max="900" step="150" name="resolucion" id="resolucion" <?php echo "value='$ultima->ResolucionSolicitud'"; ?>/> dpi</p>
-							<?php selectorAlbum($resultadoPaises, $ultima->AlbumSolicitud); ?>
+							<?php selectorAlbum($resultadoPaises); ?>
 							<p><label for="fecha-recepcion">Fecha de recepción  <strong>(*)</strong></label></p>
-							<p><input type="date" name="fecha-recepcion" id="fecha-recepcion" <?php echo "value='$ultima->FechaSolicitud'"; ?> required/></p>
+							<p><input type="date" name="fecha-recepcion" id="fecha-recepcion" required/></p>
 							<p><label for="radio_bw">Modo de impresión  <strong>(*)</strong></label></p>
 							<p>
 								<input type="radio" name="bw_cmyk" value="0" id="radio_bw" <?php echo "$ultima->BlancoNegro"; ?>><label for="radio_bw">Blanco y Negro</label>

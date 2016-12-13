@@ -32,12 +32,6 @@ main
 	align-items: center;
 	flex: 1;
 }
-	/*
-	p, img
-	{
-		page-break-inside: avoid;
-	}
-	*/
 	h1, h2, h3
 	{
 		color: black;
@@ -48,10 +42,6 @@ main
 	}
 	
 	/*Galerias*/
-	.galeria-encabezado
-	{
-		border-bottom: 2px solid #000;
-	}
 
 	.galeria-cuerpo a article
 	{
@@ -144,14 +134,19 @@ main
 
 	.encabezado
 	{
-		margin-bottom: 20px;
-		width: 85%;
-		padding-bottom: 10px;
-		border-bottom: 2px solid #000;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	hr
+	{
+		margin-top: 10px;
+		margin-bottom: 20px;
+		border: none;
+		height: 2px;
+		width: 85%;
+		background-color: #000;
 	}
 
 	.texto-izquierda
@@ -168,7 +163,7 @@ main
 
 	.boton
 	{
-		display: block;
+		display: inline-block;
 		margin: 5px !important; 
 		box-sizing: content-box;
 		border: 2px solid #000;

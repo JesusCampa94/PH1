@@ -29,7 +29,7 @@
 		<h1>Crear álbum</h1>
 		<p>Rellena los campos para crear un nuevo álbum.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 		<?php
 			if (abrirConexion())
@@ -44,8 +44,8 @@
 						<p><input type="text" name="titulo" id="titulo" placeholder="Título del álbum." required/></p>
 						<p><label for="descripcion">Descripción</label></p>
 						<p><textarea name="descripcion" id="descripcion" placeholder="Describe brevemente el álbum."></textarea></p>
-						<p><label for="fecha">Fecha</label></p>
-						<p><input type="date" name="fecha" id="fecha" required/></p>
+						<p><label for="fecha">Fecha de creación</label></p>
+						<p><input type="date" name="fecha" id="fecha" required value="<?php echo date("Y-m-d");?>"/></p>
 						<?php selectorPais($resultado); ?>
 						<p><input type="submit" value="Crear"></p>
 					</form>

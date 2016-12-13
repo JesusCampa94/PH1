@@ -26,7 +26,7 @@
 		<h1>Búsqueda de fotos</h1>
 		<p>En ésta página puede buscar fotos de acuerdo a los criterios especificados.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 		<?php 
 			if (abrirConexion())

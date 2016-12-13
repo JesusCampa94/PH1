@@ -46,13 +46,13 @@
 		<h1>Perfil de usuario</h1>
 		<p>Aqui encontrarás tus datos personales y otras opciones privadas.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section id="datos" class="tarjeta">
 		<section class="encabezado">
 			<h2>Datos personales</h2>
 			<p>Estos son los datos personales asociados a su cuenta.</p>
 		</section>
-		<div class="separador"></div>
+		<hr />
 		<?php
 			if (abrirConexion())
 			{
@@ -78,7 +78,7 @@
 			<h2>Mis álbumes</h2>
 			<p>Consulte y gestione la lista de álbumes vinculados a su cuenta.</p>
 		</section>
-		<div class="separador"></div>
+		<hr />
 		<p><a href="misAlbumes.php" class="boton">Lista de Álbumes</a></p>
 		<p><a href="crearAlbum.php" class="boton">Crear Álbum</a></p>
 		<p><a href="agregarFoto.php" class="boton">Añadir foto a un álbum</a></p>
@@ -89,7 +89,7 @@
 			<h2>Baja</h2>
 			<p>Aquí puedes darte de baja. Ten en cuenta que es una acción irrevertible.</p>
 		</section>
-		<div class="separador"></div>
+		<hr />
 		<p><a href="perfil.php?err=5" class="boton peligro">Borrar cuenta</a></p>
 	</section>
 </main>

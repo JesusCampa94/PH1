@@ -222,12 +222,19 @@ main
 		align-items: center;
 	}
 	
-	.separador
+	hr
 	{
 		margin-top: 10px;
 		margin-bottom: 20px;
-		border-bottom: 2px solid #009688;
+		border: none;
+		height: 2px;
 		width: 85%;
+		background-color: #009688;
+	}
+
+	hr.anchoMaximo
+	{
+		width: 100%;
 	}
 
 	.texto-izquierda
@@ -255,7 +262,7 @@ main
 
 	.boton
 	{
-		display: block;
+		display: inline-block;
 		margin: 5px !important; 
 		box-sizing: content-box;
 		border: none;

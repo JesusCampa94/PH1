@@ -45,7 +45,7 @@
 		<h1><?php echo $h1; ?></h1>
 		<p><?php echo $p; ?></p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<?php if($datosCorrectos)
 	{
 		if (abrirConexion())
@@ -67,6 +67,7 @@
 						<h2>Fotos encontradas</h2>
 						<p>Estas son las fotos que se han encontrado que cumplan los criterios indicados.</p>
 					</section>
+					<hr />
 					<section class="galeria-cuerpo">
 	<?php		
 				verFotos($resultado);

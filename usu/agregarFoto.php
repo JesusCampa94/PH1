@@ -29,7 +29,7 @@
 		<h1>Agregar nueva foto</h1>
 		<p>Aqui podrás incorporar nuevas imagenes en tus álbumes favoritos.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 		<?php
 			if (abrirConexion())

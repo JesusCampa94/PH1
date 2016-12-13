@@ -31,7 +31,7 @@
 		<p>Los campos marcados con <strong>(*)</strong> son obligatorios.</p>
 		<p>Por motivos de seguridad, introduzca al final su contraseña actual.</p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 	<?php 
 		if (abrirConexion())
@@ -71,6 +71,7 @@
 						<p><input type="text" name="ciudad" id="ciudad" placeholder="Ciudad en la que vives actualmente" <?php echo "value='$CiudadUsuario'"; ?>/></p>
 						<p><label for="foto">Foto de perfil</label></p>
 						<p><input type="file" name="foto" id="foto"/></p>
+						<p><a href="perfil.php" class="boton peligro">Borrar foto de perfil</a></p>
 						<p><label for="passActual">Contraseña actual</label></p>
 						<p><input type="password" name="passActual" id="passActual" placeholder="Introduce tu contraseña actual" required/></p>
 						<input type="submit" value="Modificar datos" />

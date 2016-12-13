@@ -45,6 +45,7 @@
 	<h1>PI - Pictures and Images</h1>
 	<section>
 		<section class="galeria-encabezado"><h2>Últimas fotos</h2></section>
+		<hr />
 		<section class="galeria-cuerpo">				
 			<?php 
 				if (abrirConexion())

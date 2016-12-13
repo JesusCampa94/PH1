@@ -45,7 +45,7 @@
 		<h1><?php echo $h1;?></h1>
 		<p><?php echo $p;?></p>
 	</section>
-	<div class="separador"></div>
+	<hr />
 	<section>
 		<?php 
 			if($datosCorrectos)

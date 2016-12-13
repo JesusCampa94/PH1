@@ -18,6 +18,7 @@
 				<h2>Login</h2>
 				<p>Introduzca sus datos para iniciar sesión.</p>
 			</section>
+			<hr />
 			<form action="<?php echo $directorioUsu; ?>login.php" method="POST">
 				<p><label for="usuario">Usuario</label></p>
 				<p><input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario o email" required/></p>

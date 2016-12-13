@@ -29,6 +29,7 @@
 		<h1>Álbumes personales de <?php echo $_SESSION["userName"];?></h1>
 		<p>Aqui encontrarás un listado de tus álbumes.</p>
 	</section>
+	<hr />
 	<section class="galeria-cuerpo">
 		<?php
 			if (abrirConexion())
