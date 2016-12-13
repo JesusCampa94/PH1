@@ -30,3 +30,19 @@ PHP (Ficheros)
 		- $ultimo = scandir($dir, 1)[0];
 	[ ] Controlar la subida de foto en "Añadir foto a álbum"
 		- Evitar colisiones de nombres cuando dos usuarios suban fotos del mismo título, o un usuario suba dos fotos con el mismo título a dos álbumes.
+
+
+		-Rellenar por la izquierda str_pad($id, 10, "0", STR_PAD_LEFT);
+
+		<?php
+      $cadena = "000020.jpg";
+      echo "<p>$cadena</p>";
+      $cadenaPartida = (explode(".", $cadena));
+      echo "<p>$cadenaPartida[0]</p>";
+      $entero = intval($cadenaPartida[0]);
+      echo "<p>$entero</p>";
+      $entero++;
+      echo "<p>$entero</p>";
+      $nuevaCadena = str_pad($entero, 6, "0", STR_PAD_LEFT) . "." . "$cadenaPartida[1]";
+      echo "<p>$nuevaCadena</p>";
+    ?>
