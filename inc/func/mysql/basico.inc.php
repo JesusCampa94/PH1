@@ -10,7 +10,7 @@
 		//Comprobamos que no ha habido error
 		if ($conexionBD->connect_errno)
 		{
-			echo "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' />
+			echo "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>
 					<p>No se pudo conectar con el servidor</p>";
 			return false;
 		}

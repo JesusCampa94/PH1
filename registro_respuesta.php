@@ -8,6 +8,7 @@
 	include_once("inc/func/mysql/basico.inc.php");
 	include_once("inc/func/accesos.inc.php");
 	include_once("inc/func/mysql/formularios.inc.php");
+	include_once("inc/func/ficheros.inc.php");
 
 	//Titulo de la pagina
 	$titulo = "Registro completo | Pictures & Images";
@@ -22,7 +23,7 @@
 	require_once(elegirHeader());
 
 	//Comprobamos que han introducido los campos adecuados
-	if (isset($_POST["nombreUsuario"], $_POST["pass"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))//falta comprobar la foto
+	if (isset($_POST["nombreUsuario"], $_POST["pass"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))
 	{
 		//variables que cambiaremos segun los datos del registro
 		$h1 = "Registro completado";
@@ -62,20 +63,12 @@
 							if ($resultado = ejecutarSQL($sql))
 							{
 								mostrarDatos($resultado);
-								cerrarConexion($resultado);
+								$resultado->close();
 							}
-
-							else
-							{
-								cerrarConexion();
-							}
-						}
-
-						else
-						{
-							cerrarConexion();
 						}
 					}
+
+					cerrarConexion();
 				}
 			} 
 		?>

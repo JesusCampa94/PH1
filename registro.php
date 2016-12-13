@@ -40,7 +40,7 @@
 			if ($resultado = ejecutarSQL($sql))
 			{
 	?>
-				<form action="registroCompleto.php" method="POST" enctype="multipart/form-data">
+				<form action="registro_respuesta.php" method="POST" enctype="multipart/form-data">
 					<p><label for="nombreUsuario">Nombre de usuario <strong>(*)</strong></label></p>
 					<p><input type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Escribe tu nombre completo" required/></p>
 					<p><label for="pass">Contraseña <strong>(*)</strong></label></p>

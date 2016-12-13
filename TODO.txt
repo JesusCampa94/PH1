@@ -17,8 +17,6 @@ PHP (Modificar BD)
 
 PHP (Ficheros)
 	[ ] Crear inc/func/ficheros.inc.php
-	[ ] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
-		- $ultimo = scandir($dir, 1)[0];
 	[ ] Incluir "Foto destacada" en Index.
 		- Se elige una foto aleatoria cada vez que se carga la página principal.
 		- Se debe mostrar la fotografía, información sobre ella, persona que la destacó y un comentario explicando por qué la seleccionó.
@@ -27,5 +25,8 @@ PHP (Ficheros)
 	[ ] Controlar la subida de avatar en página de registro
 		- El avatar podrá ser modificado o eliminado en "Modificar datos"
 		- Todas las fotos de usuario estarán en la misma carpeta, evitar colisiones.
+	[ ] Modificar o eliminar avatar en "Modificar datos"
+	[ ] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
+		- $ultimo = scandir($dir, 1)[0];
 	[ ] Controlar la subida de foto en "Añadir foto a álbum"
 		- Evitar colisiones de nombres cuando dos usuarios suban fotos del mismo título, o un usuario suba dos fotos con el mismo título a dos álbumes.
