@@ -3,11 +3,13 @@
 	$conexionBD = null;
 	$directorioRaiz = "../";
 	$directorioUsu = "";
+	$tipoSubida = "modificar";
 
 	//Funciones requeridas
 	include_once("../inc/func/mysql/basico.inc.php");
 	include_once("../inc/func/accesos.inc.php");
 	include_once("../inc/func/mysql/formularios.inc.php");
+	include_once("../inc/func/ficheros.inc.php");
 
 	//Controlar acceso a parte privada
 	controlarAcceso();
@@ -25,7 +27,7 @@
 	require_once(elegirHeader());
 
 	//Comprobamos que han introducido los campos adecuados
-	if ((isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]) || isset($_POST["pass"], $_POST["repetirPass"])) && isset($_POST["passActual"]) )//falta comprobar la foto
+	if ((isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]) || isset($_POST["pass"], $_POST["repetirPass"])) && isset($_POST["passActual"]))
 	{
 		$h1 = "Datos de cuenta actualizados";
 		$p = "A continuación se muestran los detalles de su cuenta.";
@@ -68,7 +70,14 @@
 
 								else
 								{								
-									$sql = "UPDATE usuarios SET NomUsuario = '$datosUsuario->usuario', EmailUsuario = '$datosUsuario->email', SexoUsuario = $datosUsuario->sexo, FNacimientoUsuario = '$datosUsuario->fecha', CiudadUsuario = '$datosUsuario->ciudad', PaisUsuario = $datosUsuario->pais  WHERE IdUsuario = $userId";
+									$sql = "UPDATE usuarios SET NomUsuario = '$datosUsuario->usuario', EmailUsuario = '$datosUsuario->email', SexoUsuario = $datosUsuario->sexo, FNacimientoUsuario = '$datosUsuario->fecha', CiudadUsuario = '$datosUsuario->ciudad', PaisUsuario = $datosUsuario->pais";
+
+									if (isset($datosUsuario->fotoPerfil))
+									{
+										$sql .= ", FotoUsuario = '$datosUsuario->fotoPerfil'";
+									}
+
+									$sql .= " WHERE IdUsuario = $userId";
 								}
 
 								//UPDATE

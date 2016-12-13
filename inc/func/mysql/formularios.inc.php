@@ -183,13 +183,14 @@
 	//Sanea y valida los datos de usuario
 	function validarUsuario()
 	{
-		global $conexionBD;
+		global $conexionBD, $tipoSubida;
 
 		//Almacenamos los datos recibidos saneados en un objeto
 		$datos = new stdClass();
 
 		$datos->errorValidacion = true;
 
+		//Campos comunes
 		if (isset($_POST["nombreUsuario"], $_POST["email"], $_POST["sexo"], $_POST["fecha"], $_POST["pais"], $_POST["ciudad"]))
 		{
 			$datos->errorValidacion = false;
@@ -200,13 +201,27 @@
 			$datos->fecha = $conexionBD->real_escape_string($_POST["fecha"]);
 			$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
 			$datos->ciudad = $conexionBD->real_escape_string($_POST["ciudad"]);
-			$datos->fotoPerfil = "img/usu/yisus.png";
+			
+			//Damos un valor por defecto a la ruta de la imagen, segun estemos incluyendo o modificando los datos
+			if ($tipoSubida == "incluir")
+				$datos->fotoPerfil = "img/com/avatar.png";
 
 			//VALIDACION
 			if (!(preg_match("/^[A-Za-z0-9]{3,15}$/", $datos->usuario)))
 			{
 				$datos->errorUsuario = "<p>El nombre de usuario debe contener de 3 a 15 carácteres. Letras o números, salvo letra ñ.</p>";
 				$datos->errorValidacion = true;
+			}
+
+			//El avatar obtiene su nombre del nombre de usuario, de modo que renombramos y subimos la imagen solo cuando el nombre de usuario pase la validacion
+			else
+			{
+				//Si se ha subido foto, formamos su ruta
+				if (subirArchivo("foto", $datos->fotoPerfil))
+				{
+					$datos->fotoPerfil = "img/usu/" . $datos->usuario;
+					$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
+				}
 			}
 
 			if (!(preg_match("/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]+\.[A-Za-z0-9]{2,4}$/", $datos->email)))
@@ -234,6 +249,7 @@
 			}
 		}
 
+		//Para registro o cambio de pass
 		if (isset($_POST["pass"], $_POST["repetirPass"]))
 		{
 			$datos->errorValidacion = false;
@@ -285,6 +301,7 @@
 			}
 		}
 
+		//Para modificar datos o modificar pass
 		if (isset($_POST["passActual"]))
 		{
 			$datos->errorValidacion = false;

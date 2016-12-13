@@ -23,6 +23,24 @@
 
 	//Elegir header en funcion de si el usuario esta logueado
 	require_once(elegirHeader());
+
+	if (isset($_GET["err"]))
+	{
+		if ($_GET["err"] == 7)
+		{
+			require_once("../inc/aviso_borrarAvatar.inc");
+		}
+
+		else if ($_GET["err"] == 8)
+		{
+			require_once("../inc/aviso_borrarAvatarOK.inc");
+		}
+
+		else if ($_GET["err"] == 9)
+		{
+			require_once("../inc/aviso_borrarAvatarFAIL.inc");
+		}
+	}
  ?>
 <main class="centrado">
 	<section class="encabezado">
@@ -71,7 +89,7 @@
 						<p><input type="text" name="ciudad" id="ciudad" placeholder="Ciudad en la que vives actualmente" <?php echo "value='$CiudadUsuario'"; ?>/></p>
 						<p><label for="foto">Foto de perfil</label></p>
 						<p><input type="file" name="foto" id="foto"/></p>
-						<p><a href="perfil.php" class="boton peligro">Borrar foto de perfil</a></p>
+						<p><a href="modificarDatos.php?err=7" class="boton peligro">Borrar foto de perfil</a></p>
 						<p><label for="passActual">Contraseña actual</label></p>
 						<p><input type="password" name="passActual" id="passActual" placeholder="Introduce tu contraseña actual" required/></p>
 						<input type="submit" value="Modificar datos" />

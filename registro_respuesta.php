@@ -3,6 +3,7 @@
 	$conexionBD = null;
 	$directorioRaiz = "";
 	$directorioUsu = "usu/";
+	$tipoSubida = "incluir";
 
 	//Funciones requeridas
 	include_once("inc/func/mysql/basico.inc.php");
@@ -52,19 +53,48 @@
 				{
 					if ($datosRegistro = validarUsuario())
 					{
-						$sql = "INSERT INTO usuarios (NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, PaisUsuario) VALUES ('$datosRegistro->usuario', '$datosRegistro->pass', '$datosRegistro->email', $datosRegistro->sexo, '$datosRegistro->fecha', '$datosRegistro->ciudad', $datosRegistro->pais)";
-
-						//Insertar usuario
-						if (ejecutarSQL($sql))
+						if (!($datosRegistro->errorValidacion))
 						{
-							$sql = getSQLUsuario($datosRegistro->usuario);
+							$sql = "INSERT INTO usuarios (NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, PaisUsuario, FotoUsuario) VALUES ('$datosRegistro->usuario', '$datosRegistro->pass', '$datosRegistro->email', $datosRegistro->sexo, '$datosRegistro->fecha', '$datosRegistro->ciudad', $datosRegistro->pais, '$datosRegistro->fotoPerfil')";
 
-							//Recuperar datos de usuario
-							if ($resultado = ejecutarSQL($sql))
+							//Insertar usuario
+							if (ejecutarSQL($sql))
 							{
-								mostrarDatos($resultado);
-								$resultado->close();
+								$sql = getSQLUsuario($datosRegistro->usuario);
+
+								//Recuperar datos de usuario
+								if ($resultado = ejecutarSQL($sql))
+								{
+									mostrarDatos($resultado);
+									$resultado->close();
+								}
 							}
+						}
+
+						//Error validacion
+						else
+						{
+							$mensajeError = "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>";
+
+							if (isset($datosRegistro->errorUsuario))
+								$mensajeError .= $datosRegistro->errorUsuario;
+
+							if (isset($datosRegistro->errorEmail))
+								$mensajeError .= $datosRegistro->errorEmail;
+
+							if (isset($datosRegistro->errorSexo))
+								$mensajeError .= $datosRegistro->errorSexo;
+
+							if (isset($datosRegistro->errorFecha))
+								$mensajeError .= $datosRegistro->errorFecha;
+
+							if (isset($datosRegistro->errorPais))
+								$mensajeError .= $datosRegistro->errorPais;
+
+							if (isset($datosRegistro->errorPass))
+								$mensajeError .= $datosRegistro->errorPass;
+
+							echo $mensajeError;
 						}
 					}
 
