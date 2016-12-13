@@ -25,7 +25,9 @@ PHP (Ficheros)
 	[ ] Controlar la subida de avatar en página de registro
 		- El avatar podrá ser modificado o eliminado en "Modificar datos"
 		- Todas las fotos de usuario estarán en la misma carpeta, evitar colisiones.
-	[ ] Modificar o eliminar avatar en "Modificar datos"
+	->[ ] Modificar o eliminar avatar en "Modificar datos"
+		- Crear aviso para borrar foto de usuario.
+		- Redirigir a modificar datos con un mensaje de "Se ha borrado... o no"
 	[ ] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
 		- $ultimo = scandir($dir, 1)[0];
 	[ ] Controlar la subida de foto en "Añadir foto a álbum"
