@@ -211,7 +211,7 @@
 			<section class="galeria-cuerpo">
 				<a href="verAlbum.php?IdAlbum=<?php echo $IdAlbum;?>">
 					<article>
-						<div class="marco"><img src='<?php echo "$directorioRaiz$MiniaturaFoto"; ?>' alt="Imagen <?php echo $IdFoto;?>"></div>
+						<div class="marco"><img src='<?php echo "$directorioRaiz$MiniaturaFoto"; ?>' alt="Imagen <?php echo $IdFoto;?>" width="400" height="225"></div>
 						<h3><?php echo $TituloAlbum;?></h3>
 						<p><?php echo $DescripcionAlbum;?></p>
 <?php  

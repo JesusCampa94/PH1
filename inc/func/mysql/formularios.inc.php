@@ -353,6 +353,25 @@
 		$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
 		$datos->album_usuario = $conexionBD->real_escape_string($_POST["album_usuario"]);
 
+		//Error si no se sube foto
+		$datos->errorValidacion = true;
+		
+		$campo = "ficheroFoto";
+
+		if (comprobarArchivo($campo))
+		{
+			$rutas = nombrarFoto($campo, $datos->album_usuario);
+			$datos->ficheroFoto = $rutas->fichero;
+			$datos->miniaturaFoto = $rutas->miniatura;
+
+			$datos->errorValidacion = false;
+		}
+
+		if ($datos->errorValidacion)
+		{
+			$datos->errorFichero = "<p>¿No olvidas algo?¿Una foto, tal vez?</p>";
+		}
+
 		//VALIDACION
 		if (!(preg_match("/^.{3,50}$/", $datos->titulo)))
 		{

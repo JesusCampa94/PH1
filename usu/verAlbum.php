@@ -38,7 +38,8 @@
 			if (abrirConexion())
 			{
 				$userId = $_SESSION["userId"];
-				$sql = "SELECT IdFoto, TituloFoto, FechaFoto, NomPais, MiniaturaFoto FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND IdAlbum = $IdAlbum AND UsuarioAlbum = IdUsuario AND IdUsuario = $userId";
+				
+				$sql = getSQLFotosDeAlbum($IdAlbum, $userId);
 
 				if ($resultado = ejecutarSQL($sql))
 				{

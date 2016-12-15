@@ -150,11 +150,18 @@
 		return "SELECT IdFoto, TituloFoto, DescripcionFoto, FechaFoto, NomPais, TituloAlbum, FicheroFoto, MiniaturaFoto, NomUsuario FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND UsuarioAlbum = IdUsuario AND IdFoto = $IdFoto";
 	}
 
+
+	//Devuelve la SQL para obtener la lista de fotos de un album
+	function getSQLFotosDeAlbum($album, $usuario)
+	{
+		return "SELECT IdFoto, TituloFoto, FechaFoto, NomPais, MiniaturaFoto FROM fotos, paises, albumes, usuarios WHERE PaisFoto = IdPais AND AlbumFoto = IdAlbum AND IdAlbum = $album AND UsuarioAlbum = IdUsuario AND IdUsuario = $usuario ORDER BY IdFoto DESC";
+	}
+
 	
 	//Devuelve la SQL para obtener la lista de albumes de un usuario
 	function getSQLAlbumes($usuario)
 	{
-		return "SELECT IdAlbum, TituloAlbum FROM albumes, usuarios WHERE  UsuarioAlbum = IdUsuario AND UsuarioAlbum = $usuario ORDER BY TituloAlbum ASC";
+		return "SELECT IdAlbum, TituloAlbum, UsuarioAlbum FROM albumes, usuarios WHERE  UsuarioAlbum = IdUsuario AND UsuarioAlbum = $usuario ORDER BY TituloAlbum ASC";
 	}
 
 

@@ -43,7 +43,7 @@
 					if ($resultadoAlbumes = ejecutarSQL($sql))
 					{
 		?>
-						<form action="agregarFoto_respuesta.php" method="POST">
+						<form action="agregarFoto_respuesta.php" method="POST" enctype="multipart/form-data">
 							<p><label for="titulo">Título</label></p>
 							<p><input type="text" name="titulo" id="titulo" placeholder="Título de la foto..." required/></p>
 							<p><label for="descripcion">Descripción</label></p>

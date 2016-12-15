@@ -9,6 +9,7 @@
 	include_once("../inc/func/accesos.inc.php");
 	include_once("../inc/func/mysql/formularios.inc.php");
 	include_once("../inc/func/mysql/galerias.inc.php");
+	include_once("../inc/func/ficheros.inc.php");
 
 	//Controlar acceso a parte privada
 	controlarAcceso();
@@ -61,7 +62,20 @@
 							//INSERT
 							if (ejecutarSQL($sql))
 							{
+								//Quitamos la extension, subirImagen() la necesita así
+								$sinExtension = explode(".", $datosFoto->ficheroFoto)[0];
 								$IdFoto = $conexionBD->insert_id;
+
+								//Incluimos la imagen y su miniatura
+								if (subirImagen("ficheroFoto", $sinExtension))
+								{
+									if (copy($directorioRaiz. $datosFoto->ficheroFoto, $directorioRaiz . $datosFoto->miniaturaFoto))
+									{	
+										$sql = "UPDATE fotos SET FicheroFoto = '$datosFoto->ficheroFoto', MiniaturaFoto = '$datosFoto->miniaturaFoto' WHERE IdFoto = $IdFoto";
+
+										ejecutarSQL($sql);
+									}
+								}
 
 								$sql = getSQLFoto($IdFoto);
 
@@ -94,6 +108,9 @@
 
 							if (isset($datosFoto->errorAlbumUsuario))
 								$mensajeError .= $datosFoto->errorAlbumUsuario;
+
+							if (isset($datosFoto->errorFichero))
+								$mensajeError .= $datosFoto->errorFichero;
 
 							echo $mensajeError;
 						}

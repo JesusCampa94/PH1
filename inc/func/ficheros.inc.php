@@ -193,5 +193,57 @@
 		}
 	}
 
+	//Determina cual sera el nombre de la siguiente foto en una carpeta
+	function getSiguienteNombre($ruta)
+	{
+		global $directorioRaiz;
 
+
+		$elementos = scandir($directorioRaiz . $ruta);				//Elementos de la carpeta (ordenados por nombre)
+		$carpetas = array('.', '..', 'thumb');							//Elementos que queremos excluir de los resultados de scandir		
+		$sinCarpetas = array_diff($elementos, $carpetas);			//Quitamos directorios
+		$ultimo = end($sinCarpetas);										//Nos quedamos con el ultimo fichero
+		$ultimo = explode(".", $ultimo)[0];								//Le quitamos la extension
+		$ultimoINT = intval($ultimo);										//Lo pasamos a numerico
+		$ultimoINT++;															//Lo incrementamos
+		$siguiente = str_pad($ultimoINT, 6, "0", STR_PAD_LEFT); 	//Rellenamos con ceros y lo devolvemos sin extension
+
+		return $siguiente;
+	}
+
+
+	//Crea una cadena con el nombre de la ultima foto
+	function nombrarFoto($campo, $album)
+	{
+		$sql = "SELECT IdAlbum, UsuarioAlbum FROM albumes, usuarios WHERE  UsuarioAlbum = IdUsuario AND IdAlbum = $album";
+
+		if ($resultado = ejecutarSQL($sql))
+		{
+			$fila = $resultado->fetch_object();
+
+			$rutas = new stdClass();
+
+			//Formamos una ruta para la foto y otra para la miniatura
+			$rutas->fichero = "img/photos/"; 
+			$rutas->fichero .= str_pad($fila->UsuarioAlbum, 10, "0", STR_PAD_LEFT);
+			$rutas->fichero .= "/";
+			$rutas->fichero .= str_pad($fila->IdAlbum, 7, "0", STR_PAD_LEFT);
+			$rutas->fichero .= "/";
+
+			$rutas->miniatura = $rutas->fichero . "thumb/";
+
+			$siguiente = getSiguienteNombre($rutas->fichero);
+			$extension = getExtension($_FILES[$campo]["name"]);
+
+			$rutas->fichero .= $siguiente;
+			$rutas->fichero .= $extension;
+
+			$rutas->miniatura .= $siguiente;
+			$rutas->miniatura .= $extension;
+
+			echo "Fichero : $rutas->fichero, <br /> Miniatura: $rutas->miniatura";
+
+			return $rutas;
+		}
+	}
 ?>
