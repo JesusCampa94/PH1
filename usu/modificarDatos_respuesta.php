@@ -60,45 +60,41 @@
 							{
 								$_SESSION["passActual"] = "";
 								$userId = $_SESSION["userId"];
-								$userName = $_SESSION["userName"];
 								
+								//Llego desde modificarPass
 								if (isset($datosUsuario->pass))
 								{
 									$sql = "UPDATE usuarios SET ClaveUsuario = '$datosUsuario->pass' WHERE IdUsuario = $userId";
 								}
 
+								//Llego desde modificarDatos
 								else
 								{								
-									$sql = "UPDATE usuarios SET NomUsuario = '$datosUsuario->usuario', EmailUsuario = '$datosUsuario->email', SexoUsuario = $datosUsuario->sexo, FNacimientoUsuario = '$datosUsuario->fecha', CiudadUsuario = '$datosUsuario->ciudad', PaisUsuario = $datosUsuario->pais";
-
-									if ($datosUsuario->fotoSubida)
-									{
-										$sql .= ", FotoUsuario = '$datosUsuario->fotoPerfil'";
-									}
-
-									$sql .= " WHERE IdUsuario = $userId";
+									$sql = "UPDATE usuarios SET NomUsuario = '$datosUsuario->usuario', EmailUsuario = '$datosUsuario->email', SexoUsuario = $datosUsuario->sexo, FNacimientoUsuario = '$datosUsuario->fecha', CiudadUsuario = '$datosUsuario->ciudad', PaisUsuario = $datosUsuario->pais WHERE IdUsuario = $userId";
 								}
 
 								//UPDATE
 								if (ejecutarSQL($sql))
 								{
-									if (subirArchivo("foto", $datosUsuario->fotoPerfil))
+									$campo = "foto";
+
+									//Hay que modificar la foto si se cambia de nombre o se sube una nueva
+									if ($_SESSION["userName"] != $datosUsuario->usuario || comprobarArchivo($campo))
 									{
-										$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
+										if (modificarFotoUsuario($campo, $datosUsuario->fotoPerfil))
+										{								
+											$IdUsuario = $_SESSION["userId"];
+											$sql = "UPDATE usuarios SET FotoUsuario = '$datosUsuario->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
 
-										if (session_status() == PHP_SESSION_NONE) 
-										{
-											session_start();
+											//Update de la foto
+											ejecutarSQL($sql);
 										}
-		
-										$IdUsuario = $_SESSION["userId"];
-										$sql = "UPDATE usuarios SET FotoUsuario = '$datosUsuario->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
-
-										//Update de la foto
-										ejecutarSQL($sql);
 									}
 
-									$sql = getSQLUsuario($userName);
+									//Si hemos cambiado el nombre de usuario, hay que actualizar la variable de sesion
+									$_SESSION["userName"] = $datosUsuario->usuario;
+
+									$sql = getSQLUsuario($_SESSION["userName"]);
 
 									//SELECT
 									if ($resultado = ejecutarSQL($sql))

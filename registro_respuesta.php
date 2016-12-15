@@ -59,15 +59,18 @@
 							//Insertar usuario
 							if (ejecutarSQL($sql))
 							{
-								if (subirArchivo("foto", $datosRegistro->fotoPerfil))
+								$campo = "foto";
+
+								if (comprobarArchivo($campo))
 								{
-									$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
+									if (subirImagen($campo, $datosRegistro->fotoPerfil))
+									{
+										$IdUsuario = $conexionBD->insert_id;
+										$sql = "UPDATE usuarios SET FotoUsuario = '$datosRegistro->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
 
-									$IdUsuario = $conexionBD->insert_id;
-									$sql = "UPDATE usuarios SET FotoUsuario = '$datosRegistro->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
-
-									//Update de la foto
-									ejecutarSQL($sql);
+										//Update de la foto
+										ejecutarSQL($sql);
+									}
 								}
 								
 								$sql = getSQLUsuario($datosRegistro->usuario);
