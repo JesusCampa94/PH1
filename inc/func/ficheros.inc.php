@@ -111,7 +111,7 @@
 
 
 	//Elimina la foto de usuario
-	function borrarFotoUsuario($redireccion = false)
+	function borrarFotoUsuario()
 	{
 		global $directorioRaiz;
 
@@ -124,28 +124,18 @@
 
 		$ruta = $directorioRaiz . "img/usu/$userName";
 		$extensiones = array (1 => ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg");
-		$borrado = false;
 
 		for ($i = 1; $i <= 6; $i++)
 		{
 			if (file_exists($ruta . $extensiones[$i]))
 			{
 				unlink($ruta . $extensiones[$i]);
-				$borrado = true;
-				break;
+				
+				return true;
 			}
 		}
 
-		if ($redireccion)
-		{
-			//Formamos la direccion de redireccion
-			$host = $_SERVER["HTTP_HOST"]; 
-			$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-			$err = ($borrado ? 8 : 9);
-			$localizacion = "$directorioUsu"."modificarDatos.php?err=$err";
-
-			header("Location: http://$host$uri/$localizacion");
-		}
+		return false;
 	}
 
 	//Renombra una foto de usuario al cambiar su nick
@@ -175,7 +165,7 @@
 
 				//Concatenamos la extension al destino, ahora que la conocemos
 				$destino .= $extensiones[$i];
-				
+
 				rename($actual, $nuevo);
 				
 				return true;

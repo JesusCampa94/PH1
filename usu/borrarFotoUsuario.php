@@ -12,5 +12,35 @@
 	//Controlar acceso a parte privada
 	controlarAcceso();
 
-	borrarFotoUsuario();
+	//Formamos la direccion de redireccion
+	$host = $_SERVER["HTTP_HOST"]; 
+	$uri = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+	
+	//Redirigimos con un mensaje de confirmacion o de error
+	$err = 9;
+
+	if (borrarFotoUsuario())
+	{
+		//Si se borra, hay que decirselo a la BD
+		if (abrirConexion())
+		{
+			if (session_status() == PHP_SESSION_NONE) 
+			{
+				session_start();
+			}
+
+			$userId = $_SESSION["userId"];
+
+			$sql = "UPDATE usuarios SET FotoUsuario = 'img/com/avatar.png' WHERE IdUsuario = $userId";
+
+			ejecutarSQL($sql);
+			cerrarConexion();
+			
+			$err = 8;
+		}
+	}
+	
+	$localizacion = "$directorioUsu"."modificarDatos.php?err=$err";
+
+	header("Location: http://$host$uri/$localizacion");
 ?>

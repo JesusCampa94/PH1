@@ -16,16 +16,16 @@ PHP (Modificar BD)
 
 
 PHP (Ficheros)
-	[ ] Crear inc/func/ficheros.inc.php
+	[X] Crear inc/func/ficheros.inc.php
 	[ ] Incluir "Foto destacada" en Index.
 		- Se elige una foto aleatoria cada vez que se carga la página principal.
 		- Se debe mostrar la fotografía, información sobre ella, persona que la destacó y un comentario explicando por qué la seleccionó.
 		- Los comentarios pueden ser elegidos al azar de un array multidimensional con varias razones por cada foto. La primera dimensión será el id de la foto. La posicion 0 será genérica.
 		- Se recomienda guardar dichos datos en un fichero xml o json.
-	[ ] Controlar la subida de avatar en página de registro
+	[X] Controlar la subida de avatar en página de registro
 		- El avatar podrá ser modificado o eliminado en "Modificar datos"
 		- Todas las fotos de usuario estarán en la misma carpeta, evitar colisiones.
-	->[ ] Modificar o eliminar avatar en "Modificar datos"
+	[X] Modificar o eliminar avatar en "Modificar datos"
 		- Crear aviso para borrar foto de usuario.
 		- Redirigir a modificar datos con un mensaje de "Se ha borrado... o no"
 	[ ] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
