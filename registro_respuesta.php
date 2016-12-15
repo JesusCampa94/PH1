@@ -3,7 +3,6 @@
 	$conexionBD = null;
 	$directorioRaiz = "";
 	$directorioUsu = "usu/";
-	$tipoSubida = "incluir";
 
 	//Funciones requeridas
 	include_once("inc/func/mysql/basico.inc.php");
@@ -55,11 +54,22 @@
 					{
 						if (!($datosRegistro->errorValidacion))
 						{
-							$sql = "INSERT INTO usuarios (NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, PaisUsuario, FotoUsuario) VALUES ('$datosRegistro->usuario', '$datosRegistro->pass', '$datosRegistro->email', $datosRegistro->sexo, '$datosRegistro->fecha', '$datosRegistro->ciudad', $datosRegistro->pais, '$datosRegistro->fotoPerfil')";
-
+							$sql = "INSERT INTO usuarios (NomUsuario, ClaveUsuario, EmailUsuario, SexoUsuario, FNacimientoUsuario, CiudadUsuario, PaisUsuario) VALUES ('$datosRegistro->usuario', '$datosRegistro->pass', '$datosRegistro->email', $datosRegistro->sexo, '$datosRegistro->fecha', '$datosRegistro->ciudad', $datosRegistro->pais)";
+							
 							//Insertar usuario
 							if (ejecutarSQL($sql))
 							{
+								if (subirArchivo("foto", $datosRegistro->fotoPerfil))
+								{
+									$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
+
+									$IdUsuario = $conexionBD->insert_id;
+									$sql = "UPDATE usuarios SET FotoUsuario = '$datosRegistro->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
+
+									//Update de la foto
+									ejecutarSQL($sql);
+								}
+								
 								$sql = getSQLUsuario($datosRegistro->usuario);
 
 								//Recuperar datos de usuario

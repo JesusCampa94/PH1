@@ -1,11 +1,10 @@
 <?php
 	//Imprime un selector de paises a partir de los datos recuperados en la BD
-	function selectorPais($paises, $preSel = 0)
+	function selectorPais($paises, $preSel = 1)
 	{
 ?>	
 		<p><label for="pais">País</label></p>
 		<p><select name="pais" id="pais">
-			<option value="0">Seleccionar país...</option>
 <?php
 		//Recorremos el resultado fila a fila
 		while ($fila = $paises->fetch_object())
@@ -183,7 +182,7 @@
 	//Sanea y valida los datos de usuario
 	function validarUsuario()
 	{
-		global $conexionBD, $tipoSubida;
+		global $conexionBD;
 
 		//Almacenamos los datos recibidos saneados en un objeto
 		$datos = new stdClass();
@@ -202,9 +201,8 @@
 			$datos->pais = $conexionBD->real_escape_string($_POST["pais"]);
 			$datos->ciudad = $conexionBD->real_escape_string($_POST["ciudad"]);
 			
-			//Damos un valor por defecto a la ruta de la imagen, segun estemos incluyendo o modificando los datos
-			if ($tipoSubida == "incluir")
-				$datos->fotoPerfil = "img/com/avatar.png";
+			//Damos un valor por defecto a la ruta de la imagen, se ignorara si no se sube nada
+			$datos->fotoPerfil = "img/usu/" . $datos->usuario;
 
 			//VALIDACION
 			if (!(preg_match("/^[A-Za-z0-9]{3,15}$/", $datos->usuario)))
@@ -213,16 +211,6 @@
 				$datos->errorValidacion = true;
 			}
 
-			//El avatar obtiene su nombre del nombre de usuario, de modo que renombramos y subimos la imagen solo cuando el nombre de usuario pase la validacion
-			else
-			{
-				//Si se ha subido foto, formamos su ruta
-				if (subirArchivo("foto", $datos->fotoPerfil))
-				{
-					$datos->fotoPerfil = "img/usu/" . $datos->usuario;
-					$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
-				}
-			}
 
 			if (!(preg_match("/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]+\.[A-Za-z0-9]{2,4}$/", $datos->email)))
 			{
@@ -241,13 +229,8 @@
 				$datos->errorFecha = "<p>Es imposible que haya usted nacido en el futuro.</p>";
 				$datos->errorValidacion = true;
 			}
-
-			if ($datos->pais == 0)
-			{
-				$datos->errorPais = "<p>Por favor selecciona un país</p>";
-				$datos->errorValidacion = true;
-			}
 		}
+
 
 		//Para registro o cambio de pass
 		if (isset($_POST["pass"], $_POST["repetirPass"]))

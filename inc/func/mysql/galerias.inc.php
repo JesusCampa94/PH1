@@ -96,7 +96,7 @@
 		$datos->titulo = ($datos->titulo == "" ? "Cualquier título" : $datos->titulo);
 		$datos->fechaInicio = ($datos->fechaInicio == "" ? "El origen de los tiempos" : $datos->fechaInicio);
 		$datos->fechaFin = ($datos->fechaFin == "" ? "Actualidad" : $datos->fechaFin);
-		$datos->pais = ($datos->pais == "0" ? "Mundial" : $datos->pais);
+		$datos->pais = ($datos->pais == "1" ? "Mundial" : $datos->pais);
 
 		//Consulta
 		$datos->sql = "SELECT IdFoto, TituloFoto, FechaFoto, NomPais, MiniaturaFoto FROM fotos, paises WHERE PaisFoto = IdPais";

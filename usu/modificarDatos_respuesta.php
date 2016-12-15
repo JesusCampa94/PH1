@@ -3,7 +3,6 @@
 	$conexionBD = null;
 	$directorioRaiz = "../";
 	$directorioUsu = "";
-	$tipoSubida = "modificar";
 
 	//Funciones requeridas
 	include_once("../inc/func/mysql/basico.inc.php");
@@ -72,7 +71,7 @@
 								{								
 									$sql = "UPDATE usuarios SET NomUsuario = '$datosUsuario->usuario', EmailUsuario = '$datosUsuario->email', SexoUsuario = $datosUsuario->sexo, FNacimientoUsuario = '$datosUsuario->fecha', CiudadUsuario = '$datosUsuario->ciudad', PaisUsuario = $datosUsuario->pais";
 
-									if (isset($datosUsuario->fotoPerfil))
+									if ($datosUsuario->fotoSubida)
 									{
 										$sql .= ", FotoUsuario = '$datosUsuario->fotoPerfil'";
 									}
@@ -83,6 +82,22 @@
 								//UPDATE
 								if (ejecutarSQL($sql))
 								{
+									if (subirArchivo("foto", $datosUsuario->fotoPerfil))
+									{
+										$datos->fotoPerfil .= getExtension($_FILES["foto"]["name"]);
+
+										if (session_status() == PHP_SESSION_NONE) 
+										{
+											session_start();
+										}
+		
+										$IdUsuario = $_SESSION["userId"];
+										$sql = "UPDATE usuarios SET FotoUsuario = '$datosUsuario->fotoPerfil' WHERE  IdUsuario = $IdUsuario";
+
+										//Update de la foto
+										ejecutarSQL($sql);
+									}
+
 									$sql = getSQLUsuario($userName);
 
 									//SELECT
@@ -117,9 +132,6 @@
 
 							if (isset($datosUsuario->errorFecha))
 								$mensajeError .= $datosUsuario->errorFecha;
-
-							if (isset($datosUsuario->errorPais))
-								$mensajeError .= $datosUsuario->errorPais;
 
 							if (isset($datosUsuario->errorPass))
 								$mensajeError .= $datosUsuario->errorPass;
