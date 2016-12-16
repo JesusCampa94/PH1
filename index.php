@@ -8,7 +8,7 @@
 	include_once("inc/func/mysql/basico.inc.php");
 	include_once("inc/func/accesos.inc.php");
 	include_once("inc/func/mysql/galerias.inc.php");
-	include_once("inc/func/xml.inc.php");
+	include_once("inc/func/ficheros.inc.php");
 
 	//Titulo de la pagina
 	$titulo = "Inicio | Pictures & Images";
@@ -45,12 +45,9 @@
 <main>
 	<h1>PI - Pictures and Images</h1>
 	<section>
-		<section class="galeria-destacado">
-		<?php
-			generarXML("destacada.xml");
-			leerXML("destacada.xml");
-		?>			
-		</section>
+		<section class="galeria-encabezado"><h2>Foto destacada</h2></section>
+		<hr />
+		<?php leerXML("destacada.xml"); ?>			
 		<section class="galeria-encabezado"><h2>Últimas fotos</h2></section>
 		<hr />
 		<section class="galeria-cuerpo">				

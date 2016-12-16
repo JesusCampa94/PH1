@@ -283,4 +283,41 @@
 			return $rutas;
 		}
 	}
+
+	//Lee un archivo XML
+	function leerXML($archivo)
+	{
+		global $directorioRaiz;
+
+		if (file_exists($archivo))
+		{
+			if (!($fichero = @file($archivo)))
+			{
+				echo "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>
+					<p>No se pudo leer la imagen destacada</p>";
+			}
+
+			else
+			{
+				//Elegimos una linea aleatoria
+				$linea = rand(0, count($fichero) - 1);
+
+				$xml = '<?xml version="1.0" encoding="UTF-8"?>' . $fichero[$linea];
+				$datosImagen = simplexml_load_string($xml);
+?>
+				<section class="galeria-cuerpo destacada">
+					<a href="<?php echo $directorioRaiz; ?>foto.php?id=<?php echo $datosImagen->id; ?>">
+						<article>
+							<div class="marco"><img src="<?php echo "$directorioRaiz$datosImagen->url"; ?>" height="337" width="600" alt="Imagen <?php echo $datosImagen->id; ?>"></div>
+							<h3><?php echo "Título"; ?></h3>
+							<p><?php echo $datosImagen->desc; ?></p>
+							<p>Recomendada por <strong><?php echo $datosImagen->sel; ?></strong></p>
+							<p><em>"<?php echo $datosImagen->com; ?>"</em></p>
+						</article>
+					</a>
+				</section>
+<?php
+			}
+		}
+	}
 ?>

@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<destacada>
-	<id>ID DE FOTO</id>
-	<url>URL DE FOTO</url>
-	<desc>DESCRIPCION</desc>
-	<sel>SELECCIONADOR</sel>
-	<com>COMENTARIO</com>
-</destacada>
+<destacada><id>1</id><titulo>Carretera</titulo><url>img/photos/0000000004/0000001/thumb/000001.jpg</url><desc>Tranquilos, miramos que no pasara nadie antes de hacer la foto.</desc><sel>grecio95</sel><com>En un futuro será un antiguo camino, me gusta verlo así.</com></destacada>
+<destacada><id>2</id><titulo>Castillo</titulo><url>img/photos/0000000004/0000001/thumb/000002.jpg</url><desc>Con su puente de madera, pero no es levadizo.</desc><sel>birdo</sel><com>Me siento como una princesa (que ya soy, claro) cuando lo veo.</com></destacada>
+<destacada><id>3</id><titulo>Tiburón</titulo><url>img/photos/0000000003/0000002/thumb/000001.jpg</url><desc>Nadando tranquilo, en toda su salsa.</desc><sel>laVaneh</sel><com>Se parece al Jhonny el día que nos conocimos en la Poligony.</com></destacada>
+<destacada><id>4</id><titulo>Peñón</titulo><url>img/photos/0000000003/0000002/thumb/000002.jpg</url><desc>Como un iceberg, pero en roca.</desc><sel>ryasu</sel><com>Me recuerda a la coronación de Simba.</com></destacada>
+<destacada><id>5</id><titulo>Pato</titulo><url>img/photos/0000000002/0000005/thumb/000002.jpg</url><desc>Un pato que le gustó mucho la cámara.</desc><sel>flequi1000</sel><com>Posa tan bien como yo.</com></destacada>
+<destacada><id>6</id><titulo>Panda</titulo><url>img/photos/0000000002/0000003/thumb/000002.jpg</url><desc>Los animales estaban muy simpáticos ese día.</desc><sel>yisus</sel><com>Tiene nombre de coche.</com></destacada>
+<destacada><id>7</id><titulo>Río de lava</titulo><url>img/photos/0000000004/0000001/thumb/000003.jpg</url><desc>Porque los ríos de agua están muy sobrevalorados.</desc><sel>maermka</sel><com>Es donde voy en Navidad xD.</com></destacada>
+<destacada><id>8</id><titulo>Tortuga marina</titulo><url>img/photos/0000000003/0000002/thumb/000003.jpg</url><desc>No le pregunté la edad.</desc><sel>laVaneh</sel><com>La confundí con una señora mayor y le pregunté la hora.</com></destacada>
+<destacada><id>9</id><titulo>Tigre</titulo><url>img/photos/0000000003/0000002/thumb/000004.jpg</url><desc>La típica escena que uno espera ver un día cualquiera.</desc><sel>yisus</sel><com>Tengo su versión de bolsillo en casa.</com></destacada>
+<destacada><id>10</id><titulo>Tokio</titulo><url>img/photos/0000000001/0000004/thumb/000001.jpg</url><desc>¿De verdad es París la ciudad de la Luz?</desc><sel>birdo</sel><com>Ni siquiera esas luces pueden eclipsar mi fabulosidad.</com></destacada>
+<destacada><id>11</id><titulo>Iceberg</titulo><url>img/photos/0000000002/0000005/thumb/000001.jpg</url><desc>Te deja helado.</desc><sel>ryasu</sel><com>Me recuerda al final de Titanic, fue una escena muy divertida.</com></destacada>
+<destacada><id>12</id><titulo>Árbol de Navidad</titulo><url>img/photos/0000000002/0000005/thumb/000002.jpg</url><desc>Una buena imagen para la época</desc><sel>flequi1000</sel><com>Me ha dado una idea para una foto.</com></destacada>
