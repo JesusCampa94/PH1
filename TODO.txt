@@ -28,7 +28,9 @@ PHP (Ficheros)
 	[X] Modificar o eliminar avatar en "Modificar datos"
 		- Crear aviso para borrar foto de usuario.
 		- Redirigir a modificar datos con un mensaje de "Se ha borrado... o no"
+	[X] Crear carpetas al crear álbum
 	[X] Encontrar forma de generar nombres de fichero incrementando el último encontrado.
 	[X] Controlar la subida de foto en "Añadir foto a álbum"
 		- Evitar colisiones de nombres cuando dos usuarios suban fotos del mismo título, o un usuario suba dos fotos con el mismo título a dos álbumes.
-    ?>
+
+ 

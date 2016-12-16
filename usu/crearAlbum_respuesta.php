@@ -9,6 +9,7 @@
 	include_once("../inc/func/accesos.inc.php");
 	include_once("../inc/func/mysql/formularios.inc.php");
 	include_once("../inc/func/mysql/galerias.inc.php");
+	include_once("../inc/func/ficheros.inc.php");
 
 	//Controlar acceso a parte privada
 	controlarAcceso();
@@ -61,8 +62,11 @@
 							//INSERT
 							if (ejecutarSQL($sql))
 							{
-								//devuelve el id de la ultima insercion
+								//Devuelve el id de la ultima insercion
 								$IdAlbum = $conexionBD->insert_id;
+								
+								//Creamos las carpetas necesarias
+								crearDirectoriosAlbum($IdAlbum);
 
 								$sql = "SELECT IdAlbum, TituloAlbum, DescripcionAlbum, FechaAlbum, NomPais FROM albumes, paises WHERE PaisAlbum = IdPais AND IdAlbum = $IdAlbum";
 								//SELECT

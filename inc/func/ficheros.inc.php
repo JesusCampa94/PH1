@@ -193,6 +193,33 @@
 		}
 	}
 
+	//Crea las carpetas necesarias cuando se crea un nuevo album
+	function crearDirectoriosAlbum($idAlbum)
+	{
+		global $directorioRaiz;
+
+		if (session_status() == PHP_SESSION_NONE) 
+		{
+			session_start();
+		}
+
+		$usuario = str_pad($_SESSION["userId"], 10, "0", STR_PAD_LEFT);
+		$ruta = $directorioRaiz . "img/photos/" . $usuario . "/";
+		
+		//Creamos la carpeta del usuario si no existe ya
+		if (!file_exists($ruta))
+		{
+			mkdir($ruta); 
+		}
+
+		$album = str_pad($idAlbum, 7, "0", STR_PAD_LEFT);
+		$ruta .= $album . "/";
+
+		//Directorios para fotos y miniaturas
+		mkdir ($ruta);
+		mkdir ($ruta . "thumb/");
+	}
+
 	//Determina cual sera el nombre de la siguiente foto en una carpeta
 	function getSiguienteNombre($ruta)
 	{
@@ -202,11 +229,23 @@
 		$elementos = scandir($directorioRaiz . $ruta);				//Elementos de la carpeta (ordenados por nombre)
 		$carpetas = array('.', '..', 'thumb');							//Elementos que queremos excluir de los resultados de scandir		
 		$sinCarpetas = array_diff($elementos, $carpetas);			//Quitamos directorios
-		$ultimo = end($sinCarpetas);										//Nos quedamos con el ultimo fichero
-		$ultimo = explode(".", $ultimo)[0];								//Le quitamos la extension
-		$ultimoINT = intval($ultimo);										//Lo pasamos a numerico
-		$ultimoINT++;															//Lo incrementamos
-		$siguiente = str_pad($ultimoINT, 6, "0", STR_PAD_LEFT); 	//Rellenamos con ceros y lo devolvemos sin extension
+		
+		//Primera foto
+		if(empty($sinCarpetas))
+		{
+			$ultimoINT = 1;														//Si no hay fotos, le decimos que es la primera y punto
+		}
+
+		//Ya hay fotos
+		else
+		{
+			$ultimo = end($sinCarpetas);										//Nos quedamos con el ultimo fichero
+			$ultimo = explode(".", $ultimo)[0];								//Le quitamos la extension
+			$ultimoINT = intval($ultimo);										//Lo pasamos a numerico
+			$ultimoINT++;															//Lo incrementamos
+		}
+		
+		$siguiente = str_pad($ultimoINT, 6, "0", STR_PAD_LEFT); 		//Rellenamos con ceros y lo devolvemos sin extension
 
 		return $siguiente;
 	}
@@ -240,8 +279,6 @@
 
 			$rutas->miniatura .= $siguiente;
 			$rutas->miniatura .= $extension;
-
-			echo "Fichero : $rutas->fichero, <br /> Miniatura: $rutas->miniatura";
 
 			return $rutas;
 		}
