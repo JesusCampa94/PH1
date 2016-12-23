@@ -47,7 +47,7 @@
 	<section>
 		<section class="galeria-encabezado"><h2>Foto destacada</h2></section>
 		<hr />
-		<?php leerXML("destacada.xml"); ?>			
+		<?php leerXML("destacada.xml"); ?>	
 		<section class="galeria-encabezado"><h2>Últimas fotos</h2></section>
 		<hr />
 		<section class="galeria-cuerpo">				

@@ -289,35 +289,38 @@
 	{
 		global $directorioRaiz;
 
-		if (file_exists($archivo))
+		if (!($destacadas = @simplexml_load_file($archivo)))
 		{
-			if (!($fichero = @file($archivo)))
-			{
-				echo "<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>
-					<p>No se pudo leer la imagen destacada</p>";
-			}
+			echo "
+				<section class='tarjeta'>
+					<p><img src='$directorioRaiz"."img/com/error.png' alt='Error' /></p>
+					<p>No se pudo leer la imagen destacada</p>
+				</section>";
+		}
 
-			else
-			{
-				//Elegimos una linea aleatoria
-				$linea = rand(0, count($fichero) - 1);
+		else
+		{
+			$elegida = rand(0, count($destacadas->foto) - 1);
 
-				$xml = '<?xml version="1.0" encoding="UTF-8"?>' . $fichero[$linea];
-				$datosImagen = simplexml_load_string($xml);
+			$id = $destacadas->foto[$elegida]->id;
+			$titulo = $destacadas->foto[$elegida]->titulo;
+			$url = $destacadas->foto[$elegida]->url;
+			$desc = $destacadas->foto[$elegida]->desc;
+			$sel = $destacadas->foto[$elegida]->sel;
+			$com = $destacadas->foto[$elegida]->com;
 ?>
-				<section class="galeria-cuerpo destacada">
-					<a href="<?php echo $directorioRaiz; ?>foto.php?id=<?php echo $datosImagen->id; ?>">
-						<article>
-							<div class="marco"><img src="<?php echo "$directorioRaiz$datosImagen->url"; ?>" height="337" width="600" alt="Imagen <?php echo $datosImagen->id; ?>"></div>
-							<h3><?php echo "Título"; ?></h3>
-							<p><?php echo $datosImagen->desc; ?></p>
-							<p>Recomendada por <strong><?php echo $datosImagen->sel; ?></strong></p>
-							<p><em>"<?php echo $datosImagen->com; ?>"</em></p>
-						</article>
-					</a>
-				</section>
+			<section class="galeria-cuerpo destacada">
+				<a href="<?php echo $directorioRaiz; ?>foto.php?id=<?php echo $id; ?>">
+					<article>
+						<div class="marco"><img src="<?php echo "$directorioRaiz$url"; ?>" height="337" width="600" alt="Imagen <?php echo $id; ?>"></div>
+						<h3><?php echo $titulo; ?></h3>
+						<p><?php echo $desc; ?></p>
+						<p>Recomendada por <strong><?php echo $sel; ?></strong></p>
+						<p><em>"<?php echo $com; ?>"</em></p>
+					</article>
+				</a>
+			</section>
 <?php
-			}
 		}
 	}
 ?>
